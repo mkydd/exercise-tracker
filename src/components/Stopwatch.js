@@ -9,7 +9,6 @@ function Stopwatch() {
     setTimeout(() => {
       if (time.minutes === 59 && time.seconds === 59) {
         setTime({hours: time.hours + 1, minutes: 0, seconds: 0})
-        console.log(9999)
         return
       }
   
@@ -19,7 +18,6 @@ function Stopwatch() {
       }
   
       setTime({...time, seconds: time.seconds + 1})
-      console.log("Time:", time)
     }, 1000);
   }, [time, start])
 
@@ -27,14 +25,13 @@ function Stopwatch() {
     let displayTime;
     if (time.hours > 0) {
       displayTime = `${String(time.hours).padStart(2, 0)}:${String(time.minutes).padStart(2, 0)}:${String(time.seconds).padStart(2, 0)}`
-      console.log('displayTime', displayTime)
     } else if (time.minutes > 0){
       displayTime = `${String(time.minutes).padStart(2, 0)}:${String(time.seconds).padStart(2, 0)}`
     } else {
       displayTime = `00:${String(time.seconds).padStart(2, 0)}`
     }
     return displayTime
-  }
+  }  
 
   return (
     <div>
