@@ -1,21 +1,28 @@
-import { createTimeModel, useTimeModel } from "react-compound-timer";
+import React, { useEffect, useState } from 'react'
 
-// Create model, provide your own options object if needed
-const stopwatch = createTimeModel();
-
-export const Stopwatch = () => {
-  // Use this model in any components with useTimeModel hook
-  const { value } = useTimeModel(stopwatch);
+function Stopwatch() {
+  const [time, setTime] = useState({hours: 0, minutes: 0, seconds:0})
+  const [start, setStart] = useState(false)
+  
+  useEffect(() => {
+    if (!start) return
+    setTimeout(() => {
+      setTime({...time, seconds: time.seconds+1})
+      console.log("Time:", time)
+    }, 1000);
+  }, [time, start])
 
   return (
     <div>
-      <div>
-      {value.h > 0 && value.h < 10 ? 0 : null}{value.h > 0 ? <div>:{value.h}</div> : null}
-      
-      {value.m < 10 ? 0 : null}{value.m}
-      :
-      {value.s < 10 ? 0 : null}{value.s}
-      </div>
+      <button onClick={() => {setStart(true)}}>Start Workout</button>
+      <br />
+      {time.hours > 0 ? time.hours : null}
+      {time.minutes > 0 ? time.minutes : null}
+      {time.seconds > 0 ? time.seconds : null}
+      <br />
+      <button onClick={() => {setStart(false)}}>End Workout</button>
     </div>
-  );
-};
+  )
+}
+
+export default Stopwatch

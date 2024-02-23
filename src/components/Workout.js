@@ -1,6 +1,6 @@
 import React from 'react'
 import WorkoutHeader from "./WorkoutHeader";
-import { Stopwatch } from './Stopwatch';
+import Stopwatch from './Stopwatch';
 
 function Workout() {
   return (
