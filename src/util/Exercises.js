@@ -2,15 +2,16 @@ const axios = require('axios');
 
 const options = {
   method: 'GET',
-  url: 'https://exercises-by-api-ninjas.p.rapidapi.com/v1/exercises',
-  params: {muscle: 'biceps'},
+  url: 'https://exercisedb.p.rapidapi.com/exercises/bodyPart/back',
+  params: {limit: '10'},
   headers: {
     'X-RapidAPI-Key': 'cea507f5e2mshd2949d5e1e89ef5p1eca22jsnb48171ef3c56',
-    'X-RapidAPI-Host': 'exercises-by-api-ninjas.p.rapidapi.com'
+    'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
   }
 };
 
-async function getData() {
+async function getData(bodyPart) {
+  options.url = 'https://exercisedb.p.rapidapi.com/exercises/bodyPart/' + bodyPart
   try {
     const response = await axios.request(options);
     console.log(response.data);
@@ -18,5 +19,5 @@ async function getData() {
     console.error(error);
   }
 }
-
-export { getData }
+getData('lower legs')
+module.exports = { getData }
