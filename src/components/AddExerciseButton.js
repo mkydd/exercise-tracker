@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Exercises from './Exercises'
 
 function AddExerciseButton() {
+  const [clicked, setClicked] = useState(false)
   return (
     <div>
-      <button>Add Exercise</button>
+      <button onClick={() => setClicked(true)}>Add Exercise</button>
+      {clicked ? <Exercises /> : null}
     </div>
   )
 }
