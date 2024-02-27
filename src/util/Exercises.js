@@ -6,15 +6,15 @@ const options = {
 	}
 };
 
-async function getData(bodyPart) {
-  const url = 'https://exercisedb.p.rapidapi.com/exercises/bodyPart/' + bodyPart
+async function getData() {
+  const url = 'https://exercisedb.p.rapidapi.com/exercises?limit=1500';
   try {
     const response = await fetch(url, options);
     const result = await response.text();
-    console.log(result);
+    return JSON.parse(result)
   } catch (error) {
     console.error(error);
   }
 }
 
-export { getData }
+export { getData };
