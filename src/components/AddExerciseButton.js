@@ -6,7 +6,7 @@ function AddExerciseButton() {
   
   return (
     <div>
-      <button onClick={() => setClicked(true)}>Add Exercise</button>
+      <button onClick={() => setClicked(!clicked)}>Add Exercise</button>
       {clicked ? <Exercises /> : null}
     </div>
   )
