@@ -1,20 +1,22 @@
-import React, { useEffect, useState } from 'react'
-import { getData } from '../util/Exercises';
+import React from 'react'
+// import { useEffect, useState } from 'react';
+// import { getData } from '../util/getExercises';
+import { allExercises } from '../util/Data';
 
 function Exercises() {
-  const [exercises, setExercises] = useState([])
+  // const [exercises, setExercises] = useState([])
 
-  useEffect(() => {
-    getData().then(results => {
-      setExercises(results)
-    })
-  }, [])
+  // useEffect(() => {
+  //   getData().then(results => {
+  //     setExercises(results)
+  //   })
+  // }, [])
 
   return (
     <div>
-      {console.log(exercises)}
+      {console.log(allExercises)}
       <ul>
-        {exercises.map(exercise => {
+        {allExercises.map(exercise => {
           return <li key={exercise.id}>{exercise.name}</li>
         })}
       </ul>
