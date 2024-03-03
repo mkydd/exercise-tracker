@@ -5,6 +5,7 @@ import { allExercises } from '../util/Data';
 
 function Exercises() {
   // const [exercises, setExercises] = useState([])
+  const [selectedExercises, setSelectedExercises] = useState([])
 
   // useEffect(() => {
   //   getData().then(results => {
@@ -12,28 +13,16 @@ function Exercises() {
   //   })
   // }, [])
 
-  // function getExercises(bodyParts) {
-  //   for (let i=0; i<bodyParts.length; i++) {
-      
-  //   }
-  // }
-  const [showChest, setShowChest] = useState(false)
-
   return (
     <div>
-      <button onClick={() => setShowChest(!showChest)}>Chest</button>
-      {showChest && <ul>
-          {allExercises.filter((exercise) => exercise.bodyPart === 'chest').map((exercise) => {
-            return <li key={exercise.id}>{exercise.name}</li>
-          })}
-        </ul>}
-      <button>Back</button>
-      <button>Arms</button>
-      <button>Shoulders</button>
-      <button>Core</button>
-      <button>Legs</button>
-      {showChest && <ul>
-          {allExercises.filter((exercise) => exercise.bodyPart === 'chest').map((exercise) => {
+      <button onClick={() => setSelectedExercises(() => allExercises.filter((exercise) => exercise.bodyPart === 'chest'))}>Chest</button>
+      <button onClick={() => setSelectedExercises(() => allExercises.filter((exercise) => exercise.bodyPart === 'back'))}>Back</button>
+      <button onClick={() => setSelectedExercises(() => allExercises.filter((exercise) => exercise.bodyPart === 'upper arms'))}>Arms</button>
+      <button onClick={() => setSelectedExercises(() => allExercises.filter((exercise) => exercise.bodyPart === 'shoulders'))}>Shoulders</button>
+      <button onClick={() => setSelectedExercises(() => allExercises.filter((exercise) => exercise.bodyPart === 'waist'))}>Core</button>
+      <button onClick={() => setSelectedExercises(() => allExercises.filter((exercise) => exercise.bodyPart === 'upper legs'))}>Legs</button>
+      {selectedExercises && <ul>
+          {selectedExercises.map((exercise) => {
             return <li key={exercise.id}>{exercise.name}</li>
           })}
         </ul>}
