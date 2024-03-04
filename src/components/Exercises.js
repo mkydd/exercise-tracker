@@ -13,14 +13,18 @@ function Exercises() {
   //   })
   // }, [])
 
+  function filterExercise(bodyPart) {
+    setSelectedExercises(() => allExercises.filter((exercise) => exercise.bodyPart === bodyPart))
+  }
+
   return (
     <div>
-      <button onClick={() => setSelectedExercises(() => allExercises.filter((exercise) => exercise.bodyPart === 'chest'))}>Chest</button>
-      <button onClick={() => setSelectedExercises(() => allExercises.filter((exercise) => exercise.bodyPart === 'back'))}>Back</button>
-      <button onClick={() => setSelectedExercises(() => allExercises.filter((exercise) => exercise.bodyPart === 'upper arms'))}>Arms</button>
-      <button onClick={() => setSelectedExercises(() => allExercises.filter((exercise) => exercise.bodyPart === 'shoulders'))}>Shoulders</button>
-      <button onClick={() => setSelectedExercises(() => allExercises.filter((exercise) => exercise.bodyPart === 'waist'))}>Core</button>
-      <button onClick={() => setSelectedExercises(() => allExercises.filter((exercise) => exercise.bodyPart === 'upper legs'))}>Legs</button>
+      <button onClick={() => filterExercise('chest')}>Chest</button>
+      <button onClick={() => filterExercise('back')}>Back</button>
+      <button onClick={() => filterExercise('upper arms')}>Arms</button>
+      <button onClick={() => filterExercise('shoulders')}>Shoulders</button>
+      <button onClick={() => filterExercise('waist')}>Core</button>
+      <button onClick={() => filterExercise('upper legs')}>Legs</button>
       {selectedExercises && <ul>
           {selectedExercises.map((exercise) => {
             return <li key={exercise.id}>{exercise.name}</li>
