@@ -18,7 +18,7 @@ function Workout() {
     <div>
       <WorkoutHeader />
       <Stopwatch />
-      <CurrentExercises />
+      <CurrentExercises exercises={currentExercises} />
       <AddExerciseButton onClickFunction={exerciseOnClick} />
     </div>
   )

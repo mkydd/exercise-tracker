@@ -1,8 +1,10 @@
 import React from 'react'
 
-function CurrentExercises() {
+function CurrentExercises({ exercises }) {
   return (
-    <div>CurrentExercises</div>
+    <div>
+
+    </div>
   )
 }
 
