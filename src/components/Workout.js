@@ -12,15 +12,26 @@ function Workout() {
 
   function exerciseOnClick(exercise) {
     if (currentExercises.includes(exercise)) return;
-    
+
     setCurrentExercises([...currentExercises, exercise])
     console.log('Exercise Added')
+  }
+
+  function removeExercise(exercise) {
+    let newArr = []
+    for (let i=0; i<currentExercises.length; i++) {
+      if (currentExercises[i].id !== exercise.id) {
+        newArr.push(currentExercises[i])
+      }
+    }
+    setCurrentExercises(newArr)
+    console.log('Removed ', exercise.name)
   }
   return (
     <div>
       <WorkoutHeader />
       <Stopwatch />
-      <CurrentExercises exercises={currentExercises} />
+      <CurrentExercises exercises={currentExercises} removeExercise={removeExercise} />
       <AddExerciseButton onClickFunction={exerciseOnClick} />
     </div>
   )
