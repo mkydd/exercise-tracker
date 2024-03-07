@@ -4,7 +4,6 @@ import { useState } from 'react';
 import WorkoutHeader from "./WorkoutHeader";
 import Stopwatch from './Stopwatch';
 import AddExerciseButton from './AddExerciseButton';
-import CompletedExercises from './CompletedWorkout';
 import CurrentExercises from './CurrentExercises';
 
 function Workout() {
@@ -21,7 +20,6 @@ function Workout() {
       <Stopwatch />
       <CurrentExercises />
       <AddExerciseButton onClickFunction={exerciseOnClick} />
-      <CompletedExercises />
     </div>
   )
 }
