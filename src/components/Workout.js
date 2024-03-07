@@ -11,6 +11,8 @@ function Workout() {
   console.log('currentExercises =', currentExercises)
 
   function exerciseOnClick(exercise) {
+    if (currentExercises.includes(exercise)) return;
+    
     setCurrentExercises([...currentExercises, exercise])
     console.log('Exercise Added')
   }
