@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 // import { getData } from '../util/getExercises';
 import { allExercises } from '../util/Data';
 
-function Exercises() {
+function Exercises({ onClickFunction }) {
   // const [exercises, setExercises] = useState([])
   const [selectedExercises, setSelectedExercises] = useState([])
 
@@ -27,7 +27,7 @@ function Exercises() {
       <button onClick={() => filterExercise('upper legs')}>Legs</button>
       {selectedExercises && <ul>
           {selectedExercises.map((exercise) => {
-            return <li key={exercise.id}>{exercise.name}</li>
+            return <li key={exercise.id} onClick={() => onClickFunction(exercise)}>{exercise.name}</li>
           })}
         </ul>}
     </div>
