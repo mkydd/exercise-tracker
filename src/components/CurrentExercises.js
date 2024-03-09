@@ -35,6 +35,20 @@ function CurrentExercises({ exercises, removeExercise }) {
     console.log('allSets =', allSets)
   }, [allSets])
 
+  function displaySets(exercise) {
+    let exerciseSets = allSets.filter((elem) => exercise.id === elem.exerciseId)
+    let sets
+
+    if (exerciseSets.length > 0) {
+      console.log(9999)
+      sets = exerciseSets[0].sets.map((set) => {
+        return <li key={`${exercise.id}-${set.setNumber}`}>Set Number: {set.setNumber} - Reps: {set.reps}</li>
+      })
+    }
+
+    return sets
+  }
+
   return (
     <div>
       <ul>
@@ -44,9 +58,7 @@ function CurrentExercises({ exercises, removeExercise }) {
                 {exercise.name} -
                 <button onClick={() => addSet(exercise)}>Add Set</button>
                 <ul>
-                  {allSets.filter((elem) => exercise.id === elem.exerciseId)[0].sets.map((set) => {
-                    return <li key={`${exercise.id}-${set.setNumber}`}>Set Number: {set.setNumber} - Reps: {set.reps}</li>
-                  })}
+                  {allSets.length > 0 ? displaySets(exercise) : null}
                 </ul>
               </li>)
         })}
