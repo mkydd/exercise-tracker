@@ -8,7 +8,6 @@ import CurrentExercises from './CurrentExercises';
 
 function Workout() {
   const [currentExercises, setCurrentExercises] = useState([])
-  console.log('currentExercises =', currentExercises)
 
   function exerciseOnClick(exercise) {
     if (currentExercises.includes(exercise)) return;
