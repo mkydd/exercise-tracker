@@ -29,6 +29,7 @@ function CurrentExercises({ exercises, removeExercise }) {
       setAllSets([...allSets, {exerciseId: exercise.id, sets: [{setNumber: 1, reps: 0}]}])
     }
   }
+  
 
   useEffect(() => {
     console.log('allSets =', allSets)
@@ -43,10 +44,10 @@ function CurrentExercises({ exercises, removeExercise }) {
                 {exercise.name} -
                 <button onClick={() => addSet(exercise)}>Add Set</button>
                 <ul>
-                  Sets
+                  {allSets.filter((elem) => exercise.id === elem.exerciseId)[0].sets.map((set) => {
+                    return <li key={`${exercise.id}-${set.setNumber}`}>Set Number: {set.setNumber} - Reps: {set.reps}</li>
+                  })}
                 </ul>
-                
-                {/* <button onClick={}>Add Rep</button> */}
               </li>)
         })}
       </ul>
