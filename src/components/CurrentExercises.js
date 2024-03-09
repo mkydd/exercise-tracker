@@ -29,11 +29,6 @@ function CurrentExercises({ exercises, removeExercise }) {
       setAllSets([...allSets, {exerciseId: exercise.id, sets: [{setNumber: 1, reps: 0}]}])
     }
   }
-  
-
-  useEffect(() => {
-    console.log('allSets =', allSets)
-  }, [allSets])
 
   function displaySets(exercise) {
     let exerciseSets = allSets.filter((elem) => exercise.id === elem.exerciseId)
@@ -48,6 +43,11 @@ function CurrentExercises({ exercises, removeExercise }) {
 
     return sets
   }
+
+  useEffect(() => {
+    console.log('allSets =', allSets)
+  }, [allSets])
+
 
   return (
     <div>
