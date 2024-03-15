@@ -54,8 +54,8 @@ function CurrentExercises({ exercises, removeExercise }) {
       <ul>
         {exercises.map((exercise) => {
           return (
-              <li key={exercise.id} >
-                {exercise.name} -
+              <li key={exercise.id} style={{display: 'flex', flexWrap: 'wrap'}}>
+                <div onClick={() => removeExercise(exercise)} >{exercise.name}</div> -
                 <button onClick={() => addSet(exercise)}>Add Set</button>
                 <ul>
                   {allSets.length > 0 ? displaySets(exercise) : null}
