@@ -44,14 +44,14 @@ function CurrentExercises({ exercises, removeExercise }) {
     return sets
   }
 
-  useEffect(() => {
-    console.log('allSets =', allSets)
-  }, [allSets])
-
-  function exerciseOnClick(exercise) {
+  function removeExerciseOnClick(exercise) {
     removeExercise(exercise)
     setAllSets(allSets.filter((sets) => sets.exerciseId !== exercise.id))
   }
+  
+  useEffect(() => {
+    console.log('allSets =', allSets)
+  }, [allSets])
 
   return (
     <div>
@@ -59,7 +59,7 @@ function CurrentExercises({ exercises, removeExercise }) {
         {exercises.map((exercise) => {
           return (
               <li key={exercise.id} style={{display: 'flex', flexWrap: 'wrap'}}>
-                <div onClick={() => exerciseOnClick(exercise)} >{exercise.name}</div> -
+                <div onClick={() => removeExerciseOnClick(exercise)} >{exercise.name}</div> -
                 <button onClick={() => addSet(exercise)}>Add Set</button>
                 <ul>
                   {allSets.length > 0 ? displaySets(exercise) : null}
