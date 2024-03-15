@@ -48,6 +48,10 @@ function CurrentExercises({ exercises, removeExercise }) {
     console.log('allSets =', allSets)
   }, [allSets])
 
+  function exerciseOnClick(exercise) {
+    removeExercise(exercise)
+    setAllSets(allSets.filter((sets) => sets.exerciseId !== exercise.id))
+  }
 
   return (
     <div>
@@ -55,7 +59,7 @@ function CurrentExercises({ exercises, removeExercise }) {
         {exercises.map((exercise) => {
           return (
               <li key={exercise.id} style={{display: 'flex', flexWrap: 'wrap'}}>
-                <div onClick={() => removeExercise(exercise)} >{exercise.name}</div> -
+                <div onClick={() => exerciseOnClick(exercise)} >{exercise.name}</div> -
                 <button onClick={() => addSet(exercise)}>Add Set</button>
                 <ul>
                   {allSets.length > 0 ? displaySets(exercise) : null}
