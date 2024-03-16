@@ -6,7 +6,7 @@ function CurrentExercises({ exercises, removeExercise }) {
   function addSet(exercise) {
     let updated = false;
     allSets.forEach((exerciseSets, index) => {
-      console.log('looooop')
+      // console.log('looooop')
       if (exerciseSets.exerciseId === exercise.id) {
         let lastSet = exerciseSets.sets.reduce(
           (prev, current) => {
@@ -15,11 +15,11 @@ function CurrentExercises({ exercises, removeExercise }) {
         )
 
         let lastSetNum = lastSet.setNumber
-        console.log('lastSetNum =', lastSetNum)
+        // console.log('lastSetNum =', lastSetNum)
         let newArr = [...allSets]
         newArr[index].sets = [...exerciseSets.sets, {setNumber: lastSetNum+1, reps: 0}]
         setAllSets(newArr);
-        console.log('after update')
+        // console.log('after update')
         updated = true;
         return
       }
@@ -35,7 +35,7 @@ function CurrentExercises({ exercises, removeExercise }) {
     let sets
 
     if (exerciseSets.length > 0) {
-      console.log(9999)
+      // console.log(9999)
       sets = exerciseSets[0].sets.map((set) => {
         return (
           <li key={`${exercise.id}-${set.setNumber}`}>
@@ -69,9 +69,9 @@ function CurrentExercises({ exercises, removeExercise }) {
     setAllSets(allSets.filter((sets) => sets.exerciseId !== exercise.id))
   }
   
-  useEffect(() => {
-    console.log('allSets =', allSets)
-  }, [allSets])
+  // useEffect(() => {
+  //   console.log('allSets =', allSets)
+  // }, [allSets])
 
   return (
     <div>

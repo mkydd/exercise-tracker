@@ -13,7 +13,7 @@ function Workout() {
     if (currentExercises.includes(exercise)) return;
 
     setCurrentExercises([...currentExercises, exercise])
-    console.log('Exercise Added')
+    // console.log('Exercise Added')
   }
 
   function removeExercise(exercise) {
@@ -24,7 +24,7 @@ function Workout() {
       }
     }
     setCurrentExercises(newArr)
-    console.log('Removed ', exercise.name)
+    // console.log('Removed ', exercise.name)
   }
   return (
     <div>
