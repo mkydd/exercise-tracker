@@ -104,7 +104,7 @@ function CurrentExercises({ exercises, removeExercise }) {
     let newSets = []
 
     cloneSetData.sets.forEach((set) => {
-      if (set.setNumber != setNumber) {
+      if (set.setNumber !== setNumber) {
         if (set.setNumber < setNumber) {
           newSets.push(set)
         } else {
@@ -120,9 +120,9 @@ function CurrentExercises({ exercises, removeExercise }) {
     setAllSets(newArr)
   }
   
-  // useEffect(() => {
-  //   console.log('allSets =', allSets)
-  // }, [allSets])
+  useEffect(() => {
+    // console.log('allSets =', allSets)
+  }, [allSets])
 
   return (
     <div>
