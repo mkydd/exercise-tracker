@@ -35,8 +35,22 @@ function CurrentExercises({ exercises, removeExercise }) {
     })
 
     if (!updated) {
-      setAllSets([...allSets, {exerciseId: exercise.id, sets: [{setNumber: 1, reps: 0}]}])
+      setAllSets([...allSets, {exerciseId: exercise.id, sets: [{setNumber: 1, reps: 0, weight: 0}]}])
     }
+  }
+
+  function weightOnChange(exercise, setNumber, newWeight) {
+    let setData = {...allSets.filter((sets) => sets.exerciseId === exercise.id)[0]}
+    let cloneSetData = Object.assign({}, setData)
+    cloneSetData.sets.forEach((set) => {
+      if (set.setNumber === setNumber) {
+        set.weight = newWeight
+      }
+    })
+
+    let newArr = allSets.filter((sets) => sets.exerciseId !== exercise.id)
+    newArr.push(cloneSetData)
+    setAllSets(newArr)
   }
 
   function displaySets(exercise) {
@@ -48,7 +62,15 @@ function CurrentExercises({ exercises, removeExercise }) {
       sets = exerciseSets[0].sets.map((set) => {
         return (
           <li key={`${exercise.id}-${set.setNumber}`}>
-            Set Number: {set.setNumber} | Reps: {set.reps}
+            Set Number: {set.setNumber} | Reps: {set.reps} | Weight: 
+            <input 
+              type="number" 
+              id={`weight-${exercise.id}-${set.setNumber}`} 
+              name="weight" 
+              onChange={(e) => weightOnChange(exercise, set.setNumber, e.target.value)}
+              value={set.weight}>
+                {console.log(`Exercise = ${exercise.name}, SetNumber = ${set.setNumber}, Weight = ${set.weight}`)}
+            </input>
             <button onClick={() => incrementReps(exercise, set.setNumber)}>+</button>
             <button onClick={() => decrementReps(exercise, set.setNumber)}>-</button>
             <button onClick={() => removeSet(exercise, set.setNumber)}>Remove</button>
