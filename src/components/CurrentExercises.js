@@ -39,8 +39,9 @@ function CurrentExercises({ exercises, removeExercise }) {
       sets = exerciseSets[0].sets.map((set) => {
         return (
           <li key={`${exercise.id}-${set.setNumber}`}>
-            Set Number: {set.setNumber} - Reps: {set.reps}
-            <button onClick={() => incrementReps(exercise, set.setNumber)}>Add Rep</button>
+            Set Number: {set.setNumber} | Reps: {set.reps}
+            <button onClick={() => incrementReps(exercise, set.setNumber)}>+</button>
+            <button onClick={() => decrementReps(exercise, set.setNumber)}>-</button>
           </li>)
       })
     }
@@ -54,6 +55,22 @@ function CurrentExercises({ exercises, removeExercise }) {
     cloneSetData.sets.forEach((set) => {
       if (set.setNumber === setNumber) {
         set.reps++
+      }
+    })
+    // console.log('cloneSetData =', cloneSetData)
+    // console.log('allSets.filter((sets) => sets.exerciseId !== exercise.id) =', allSets.filter((sets) => sets.exerciseId !== exercise.id))
+
+    let newArr = allSets.filter((sets) => sets.exerciseId !== exercise.id)
+    newArr.push(cloneSetData)
+    setAllSets(newArr)
+  }
+
+  function decrementReps(exercise, setNumber) {
+    let setData = {...allSets.filter((sets) => sets.exerciseId === exercise.id)[0]}
+    let cloneSetData = Object.assign({}, setData)
+    cloneSetData.sets.forEach((set) => {
+      if (set.setNumber === setNumber) {
+        set.reps--
       }
     })
     // console.log('cloneSetData =', cloneSetData)
