@@ -69,7 +69,7 @@ function CurrentExercises({ exercises, removeExercise }) {
     let setData = {...allSets.filter((sets) => sets.exerciseId === exercise.id)[0]}
     let cloneSetData = Object.assign({}, setData)
     cloneSetData.sets.forEach((set) => {
-      if (set.setNumber === setNumber) {
+      if (set.setNumber === setNumber && set.reps > 0) {
         set.reps--
       }
     })
