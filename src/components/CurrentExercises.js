@@ -37,11 +37,31 @@ function CurrentExercises({ exercises, removeExercise }) {
     if (exerciseSets.length > 0) {
       console.log(9999)
       sets = exerciseSets[0].sets.map((set) => {
-        return <li key={`${exercise.id}-${set.setNumber}`}>Set Number: {set.setNumber} - Reps: {set.reps}</li>
+        return (
+          <li key={`${exercise.id}-${set.setNumber}`}>
+            Set Number: {set.setNumber} - Reps: {set.reps}
+            <button onClick={() => incrementReps(exercise, set.setNumber)}>Add Rep</button>
+          </li>)
       })
     }
 
     return sets
+  }
+
+  function incrementReps(exercise, setNumber) {
+    let setData = {...allSets.filter((sets) => sets.exerciseId === exercise.id)[0]}
+    let cloneSetData = Object.assign({}, setData)
+    cloneSetData.sets.forEach((set) => {
+      if (set.setNumber === setNumber) {
+        set.reps++
+      }
+    })
+    // console.log('cloneSetData =', cloneSetData)
+    // console.log('allSets.filter((sets) => sets.exerciseId !== exercise.id) =', allSets.filter((sets) => sets.exerciseId !== exercise.id))
+
+    let newArr = allSets.filter((sets) => sets.exerciseId !== exercise.id)
+    newArr.push(cloneSetData)
+    setAllSets(newArr)
   }
 
   function removeExerciseOnClick(exercise) {
