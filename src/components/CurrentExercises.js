@@ -18,14 +18,14 @@ function CurrentExercises({ exercises, removeExercise }) {
           let lastSetNum = lastSet.setNumber
           // console.log('lastSetNum =', lastSetNum)
           let newArr = [...allSets]
-          newArr[index].sets = [...exerciseSets.sets, {setNumber: lastSetNum+1, reps: 0}]
+          newArr[index].sets = [...exerciseSets.sets, {setNumber: lastSetNum+1, reps: 0, weight: 0}]
           setAllSets(newArr);
           // console.log('after update')
           updated = true;
           return
         } else {
           let newArr = [...allSets]
-          newArr[index].sets = [{setNumber: 1, reps: 0}]
+          newArr[index].sets = [{setNumber: 1, reps: 0, weight: 0}]
           setAllSets(newArr);
           // console.log('after update')
           updated = true;
