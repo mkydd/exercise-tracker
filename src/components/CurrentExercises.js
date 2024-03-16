@@ -8,21 +8,30 @@ function CurrentExercises({ exercises, removeExercise }) {
     allSets.forEach((exerciseSets, index) => {
       // console.log('looooop')
       if (exerciseSets.exerciseId === exercise.id) {
-        let lastSet = exerciseSets.sets.reduce(
-          (prev, current) => {
-            return prev.setNumber > current.setNumber ? prev : current
-          }
-        )
-
-        let lastSetNum = lastSet.setNumber
-        // console.log('lastSetNum =', lastSetNum)
-        let newArr = [...allSets]
-        newArr[index].sets = [...exerciseSets.sets, {setNumber: lastSetNum+1, reps: 0}]
-        setAllSets(newArr);
-        // console.log('after update')
-        updated = true;
-        return
-      }
+        if (exerciseSets.sets.length > 0) {
+          let lastSet = exerciseSets.sets.reduce(
+            (prev, current) => {
+              return prev.setNumber > current.setNumber ? prev : current
+            }
+          )
+  
+          let lastSetNum = lastSet.setNumber
+          // console.log('lastSetNum =', lastSetNum)
+          let newArr = [...allSets]
+          newArr[index].sets = [...exerciseSets.sets, {setNumber: lastSetNum+1, reps: 0}]
+          setAllSets(newArr);
+          // console.log('after update')
+          updated = true;
+          return
+        } else {
+          let newArr = [...allSets]
+          newArr[index].sets = [{setNumber: 1, reps: 0}]
+          setAllSets(newArr);
+          // console.log('after update')
+          updated = true;
+          return
+        }
+      }  
     })
 
     if (!updated) {
