@@ -42,6 +42,7 @@ function CurrentExercises({ exercises, removeExercise }) {
             Set Number: {set.setNumber} | Reps: {set.reps}
             <button onClick={() => incrementReps(exercise, set.setNumber)}>+</button>
             <button onClick={() => decrementReps(exercise, set.setNumber)}>-</button>
+            <button onClick={() => removeSet(exercise, set.setNumber)}>Remove</button>
           </li>)
       })
     }
@@ -84,6 +85,30 @@ function CurrentExercises({ exercises, removeExercise }) {
   function removeExerciseOnClick(exercise) {
     removeExercise(exercise)
     setAllSets(allSets.filter((sets) => sets.exerciseId !== exercise.id))
+  }
+
+  function removeSet(exercise, setNumber) {
+    console.log('Starting to remove set')
+    let setData = allSets.filter((sets) => sets.exerciseId === exercise.id)[0]
+    console.log('setData =', setData)
+    let cloneSetData = Object.assign({}, setData)
+    let newSets = []
+
+    cloneSetData.sets.forEach((set) => {
+      if (set.setNumber != setNumber) {
+        if (set.setNumber < setNumber) {
+          newSets.push(set)
+        } else {
+          newSets.push({...set, setNumber: set.setNumber - 1})
+        }
+      }
+    })
+
+    cloneSetData = {...cloneSetData, sets: newSets}
+
+    let newArr = allSets.filter((sets) => sets.exerciseId !== exercise.id)
+    newArr.push(cloneSetData)
+    setAllSets(newArr)
   }
   
   // useEffect(() => {
