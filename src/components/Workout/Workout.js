@@ -6,6 +6,8 @@ import Stopwatch from './Stopwatch';
 import AddExerciseButton from './AddExerciseButton';
 import CurrentExercises from './CurrentExercises';
 
+import '../../styles/workout.css'
+
 function Workout() {
   const [currentExercises, setCurrentExercises] = useState([])
 
@@ -27,7 +29,7 @@ function Workout() {
     // console.log('Removed ', exercise.name)
   }
   return (
-    <div>
+    <div className='workout'>
       <WorkoutHeader />
       <Stopwatch />
       <CurrentExercises exercises={currentExercises} removeExercise={removeExercise} />

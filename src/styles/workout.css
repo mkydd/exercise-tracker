@@ -1,0 +1,14 @@
+.workout {
+    margin-top: 5rem;
+}
+
+/* Style WorkoutHeader */
+.workout-header-input {
+    border: 0;
+    font-size: 1.5rem;
+    color: black;
+}
+
+.workout-header-input::placeholder {
+    color: black;
+}
