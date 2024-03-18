@@ -1,4 +1,4 @@
-import Workout from "./components/Workout";
+import Workout from "./components/Workout/Workout";
 
 function App() {
   return (

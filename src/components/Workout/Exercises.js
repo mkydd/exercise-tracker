@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 // import { useEffect, useState } from 'react';
 // import { getData } from '../util/getExercises';
-import { allExercises } from '../util/Data';
+import { allExercises } from '../../util/Data';
 
 function Exercises({ onClickFunction }) {
   // const [exercises, setExercises] = useState([])
