@@ -6,6 +6,7 @@ import { allExercises } from '../../util/Data';
 function Exercises({ onClickFunction }) {
   // const [exercises, setExercises] = useState([])
   const [selectedExercises, setSelectedExercises] = useState([])
+  const [selectedBodyPart, setSelectedBodyPart] = useState('')
 
   // useEffect(() => {
   //   getData().then(results => {
@@ -15,6 +16,12 @@ function Exercises({ onClickFunction }) {
 
   function filterExercise(bodyPart) {
     setSelectedExercises(() => allExercises.filter((exercise) => exercise.bodyPart === bodyPart))
+    setSelectedBodyPart(bodyPart)
+  }
+
+  function searchOnChange(exerciseName) {
+    // console.log('exerciseName =', exerciseName)
+    setSelectedExercises(allExercises.filter((exercise) => exercise.name.indexOf(exerciseName) !== -1 && exercise.bodyPart === selectedBodyPart))
   }
 
   return (
@@ -25,6 +32,9 @@ function Exercises({ onClickFunction }) {
       <button onClick={() => filterExercise('shoulders')}>Shoulders</button>
       <button onClick={() => filterExercise('waist')}>Core</button>
       <button onClick={() => filterExercise('upper legs')}>Legs</button>
+      <div className="search-exercises-wrapper">
+        <input type="text" name="search" className='search-exercises' onChange={(e) => searchOnChange(e.target.value)}/>
+      </div>
       {selectedExercises && <ul>
           {selectedExercises.map((exercise) => {
             return <li key={exercise.id} onClick={() => onClickFunction(exercise)}>{exercise.name}</li>
