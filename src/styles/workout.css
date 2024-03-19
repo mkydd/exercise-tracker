@@ -17,3 +17,14 @@
 /* .stopwatch .time {
     
 } */
+
+/* Style Exercises */
+.selected-exercises {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.selected-exercise {
+    border-top: 1px solid black;
+}
