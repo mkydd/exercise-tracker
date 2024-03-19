@@ -78,17 +78,48 @@ function CurrentExercises({ exercises, removeExercise }) {
                   value={set.weight}>
                 </input>
               </div>
-              <div className="reps">{set.reps}</div>
+              <div className="reps">
+                <input 
+                  type="number" 
+                  id={`reps-${exercise.id}-${set.setNumber}`} 
+                  name="reps" 
+                  onChange={(e) => repsOnChange(exercise, set.setNumber, e.target.value)}
+                  value={set.reps}>
+                </input>
+              </div>
+            </div>
+            <div className="set-buttons-wrapper">
+              <div className="remove-button">
+                <button onClick={() => removeSet(exercise, set.setNumber)}>Remove Set</button>
+              </div>
+              {/* <div className="rep-buttons">
+                <button onClick={() => incrementReps(exercise, set.setNumber)}>+</button>
+                <button onClick={() => decrementReps(exercise, set.setNumber)}>-</button>
+              </div> */}
             </div>
             
-            <button onClick={() => incrementReps(exercise, set.setNumber)}>+</button>
-            <button onClick={() => decrementReps(exercise, set.setNumber)}>-</button>
-            <button onClick={() => removeSet(exercise, set.setNumber)}>Remove</button>
           </li>)
       })
     }
 
     return sets
+  }
+
+  function repsOnChange(exercise, setNumber, reps) {
+    let setData = {...allSets.filter((sets) => sets.exerciseId === exercise.id)[0]}
+    let cloneSetData = Object.assign({}, setData)
+    cloneSetData.sets.forEach((set) => {
+      if (set.setNumber === setNumber) {
+        set.reps = reps
+      }
+    })
+    // console.log('cloneSetData =', cloneSetData)
+    // console.log('allSets.filter((sets) => sets.exerciseId !== exercise.id) =', allSets.filter((sets) => sets.exerciseId !== exercise.id))
+
+    let newArr = allSets.filter((sets) => sets.exerciseId !== exercise.id)
+    newArr.push(cloneSetData)
+    console.log('New Reps =', newArr)
+    setAllSets(newArr)
   }
 
   function incrementReps(exercise, setNumber) {
@@ -164,7 +195,7 @@ function CurrentExercises({ exercises, removeExercise }) {
               <li key={exercise.id} className='current-exercise'>
                 <div onClick={() => removeExerciseOnClick(exercise)} >{exercise.name}</div> -
                 <button onClick={() => addSet(exercise)}>Add Set</button>
-                <ul>
+                <ul className='sets'>
                   {allSets.length > 0 ? displaySets(exercise) : null}
                 </ul>
               </li>)

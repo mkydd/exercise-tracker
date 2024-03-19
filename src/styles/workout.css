@@ -55,6 +55,12 @@
 list-style: none;
 }
 
+.sets {
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+}
+
 .set-header {
     display: flex;
     justify-content: space-between;
@@ -72,8 +78,8 @@ list-style: none;
     /* border: 1px solid black; */
 }
 
-.set-data .weight input {
-    max-width: 100%;
+.set-data input {
+    max-width: 33%;
     text-align: center;
 }
 
@@ -82,4 +88,24 @@ list-style: none;
     /* border: 1px solid red; */
     display: flex;
     justify-content: center;
+}
+
+.set-buttons-wrapper {
+    display: flex;
+    justify-content: space-between;
+    /* border: 1px solid black; */
+    box-sizing: border-box;
+}
+
+.set-buttons-wrapper .rep-buttons {
+    max-width: 33%;
+}
+
+.set-buttons-wrapper .remove-button {
+    min-width: 66%;
+}
+
+.set-wrapper {
+    display: flex;
+    max-width: 100%;
 }
