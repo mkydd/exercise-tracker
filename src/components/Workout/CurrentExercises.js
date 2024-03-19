@@ -61,7 +61,7 @@ function CurrentExercises({ exercises, removeExercise }) {
       // console.log(9999)
       sets = exerciseSets[0].sets.map((set) => {
         return (
-          <li key={`${exercise.id}-${set.setNumber}`}>
+          <li key={`${exercise.id}-${set.setNumber}`} className='current-exercise-set'>
             Set Number: {set.setNumber} | Reps: {set.reps} | Weight: 
             <input 
               type="number" 
@@ -148,10 +148,10 @@ function CurrentExercises({ exercises, removeExercise }) {
 
   return (
     <div>
-      <ul>
+      <ul className='current-exercises-list'>
         {exercises.map((exercise) => {
           return (
-              <li key={exercise.id} style={{display: 'flex', flexWrap: 'wrap'}}>
+              <li key={exercise.id} className='current-exercise'>
                 <div onClick={() => removeExerciseOnClick(exercise)} >{exercise.name}</div> -
                 <button onClick={() => addSet(exercise)}>Add Set</button>
                 <ul>

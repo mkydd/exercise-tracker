@@ -37,3 +37,20 @@
 .exercise-bodypart {
     text-transform: capitalize;
 }
+
+
+/* Style CurrentExercises */
+.current-exercises-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.current-exercise {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.current-exercise-set {
+list-style: none;
+}
