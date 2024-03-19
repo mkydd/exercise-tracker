@@ -54,3 +54,32 @@
 .current-exercise-set {
 list-style: none;
 }
+
+.set-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.set-header div {
+    min-width: 33%;
+    display: flex;
+    justify-content: center;
+}
+
+.set-data {
+    display: flex;
+    justify-content: space-between;
+    /* border: 1px solid black; */
+}
+
+.set-data .weight input {
+    max-width: 100%;
+    text-align: center;
+}
+
+.set-data div {
+    min-width: 33%;
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+}

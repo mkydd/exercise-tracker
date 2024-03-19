@@ -62,15 +62,25 @@ function CurrentExercises({ exercises, removeExercise }) {
       sets = exerciseSets[0].sets.map((set) => {
         return (
           <li key={`${exercise.id}-${set.setNumber}`} className='current-exercise-set'>
-            Set Number: {set.setNumber} | Reps: {set.reps} | Weight: 
-            <input 
-              type="number" 
-              id={`weight-${exercise.id}-${set.setNumber}`} 
-              name="weight" 
-              onChange={(e) => weightOnChange(exercise, set.setNumber, e.target.value)}
-              value={set.weight}>
-                {console.log(`Exercise = ${exercise.name}, SetNumber = ${set.setNumber}, Weight = ${set.weight}`)}
-            </input>
+            <div className="set-header">
+              <div className="set">Set</div>
+              <div className="weight">lbs</div>
+              <div className="Reps">Reps</div>
+            </div>
+            <div className="set-data">
+              <div className="set-number">{set.setNumber}</div>
+              <div className="weight">
+                <input 
+                  type="number" 
+                  id={`weight-${exercise.id}-${set.setNumber}`} 
+                  name="weight" 
+                  onChange={(e) => weightOnChange(exercise, set.setNumber, e.target.value)}
+                  value={set.weight}>
+                </input>
+              </div>
+              <div className="reps">{set.reps}</div>
+            </div>
+            
             <button onClick={() => incrementReps(exercise, set.setNumber)}>+</button>
             <button onClick={() => decrementReps(exercise, set.setNumber)}>-</button>
             <button onClick={() => removeSet(exercise, set.setNumber)}>Remove</button>
