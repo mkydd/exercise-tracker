@@ -42,7 +42,10 @@ function Exercises({ onClickFunction }) {
             return <li 
               key={exercise.id} 
               onClick={() => onClickFunction(exercise)} 
-              className='selected-exercise'>{exercise.name}</li>
+              className='selected-exercise'>
+                <div className="exercise-name">{exercise.name}</div>
+                <div className="exercise-bodypart">{exercise.bodyPart}</div>
+                </li>
           })}
         </ul>}
     </div>

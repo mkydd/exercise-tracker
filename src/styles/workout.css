@@ -28,3 +28,12 @@
 .selected-exercise {
     border-top: 1px solid black;
 }
+
+.exercise-name {
+    text-transform: capitalize;
+    font-weight: 700;
+}
+
+.exercise-bodypart {
+    text-transform: capitalize;
+}
