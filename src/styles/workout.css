@@ -31,6 +31,18 @@
     margin-block: 1rem;
 }
 
+/* Style Search Bar */
+.search-exercises {
+    width: 100%;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+    background-color: rgb(226, 226, 226);
+    border-radius: 2px;
+    padding: 0.25rem;
+    margin-bottom: 1rem;
+}
+
 /* Style Exercises */
 .selected-exercises {
     list-style-type: none;
