@@ -122,37 +122,37 @@ function CurrentExercises({ exercises, removeExercise }) {
     setAllSets(newArr)
   }
 
-  function incrementReps(exercise, setNumber) {
-    let setData = {...allSets.filter((sets) => sets.exerciseId === exercise.id)[0]}
-    let cloneSetData = Object.assign({}, setData)
-    cloneSetData.sets.forEach((set) => {
-      if (set.setNumber === setNumber) {
-        set.reps++
-      }
-    })
-    // console.log('cloneSetData =', cloneSetData)
-    // console.log('allSets.filter((sets) => sets.exerciseId !== exercise.id) =', allSets.filter((sets) => sets.exerciseId !== exercise.id))
+  // function incrementReps(exercise, setNumber) {
+  //   let setData = {...allSets.filter((sets) => sets.exerciseId === exercise.id)[0]}
+  //   let cloneSetData = Object.assign({}, setData)
+  //   cloneSetData.sets.forEach((set) => {
+  //     if (set.setNumber === setNumber) {
+  //       set.reps++
+  //     }
+  //   })
+  //   // console.log('cloneSetData =', cloneSetData)
+  //   // console.log('allSets.filter((sets) => sets.exerciseId !== exercise.id) =', allSets.filter((sets) => sets.exerciseId !== exercise.id))
 
-    let newArr = allSets.filter((sets) => sets.exerciseId !== exercise.id)
-    newArr.push(cloneSetData)
-    setAllSets(newArr)
-  }
+  //   let newArr = allSets.filter((sets) => sets.exerciseId !== exercise.id)
+  //   newArr.push(cloneSetData)
+  //   setAllSets(newArr)
+  // }
 
-  function decrementReps(exercise, setNumber) {
-    let setData = {...allSets.filter((sets) => sets.exerciseId === exercise.id)[0]}
-    let cloneSetData = Object.assign({}, setData)
-    cloneSetData.sets.forEach((set) => {
-      if (set.setNumber === setNumber && set.reps > 0) {
-        set.reps--
-      }
-    })
-    // console.log('cloneSetData =', cloneSetData)
-    // console.log('allSets.filter((sets) => sets.exerciseId !== exercise.id) =', allSets.filter((sets) => sets.exerciseId !== exercise.id))
+  // function decrementReps(exercise, setNumber) {
+  //   let setData = {...allSets.filter((sets) => sets.exerciseId === exercise.id)[0]}
+  //   let cloneSetData = Object.assign({}, setData)
+  //   cloneSetData.sets.forEach((set) => {
+  //     if (set.setNumber === setNumber && set.reps > 0) {
+  //       set.reps--
+  //     }
+  //   })
+  //   // console.log('cloneSetData =', cloneSetData)
+  //   // console.log('allSets.filter((sets) => sets.exerciseId !== exercise.id) =', allSets.filter((sets) => sets.exerciseId !== exercise.id))
 
-    let newArr = allSets.filter((sets) => sets.exerciseId !== exercise.id)
-    newArr.push(cloneSetData)
-    setAllSets(newArr)
-  }
+  //   let newArr = allSets.filter((sets) => sets.exerciseId !== exercise.id)
+  //   newArr.push(cloneSetData)
+  //   setAllSets(newArr)
+  // }
 
   function removeExerciseOnClick(exercise) {
     removeExercise(exercise)
