@@ -6,7 +6,7 @@ import { allExercises } from '../../util/Data';
 function Exercises({ onClickFunction }) {
   // const [exercises, setExercises] = useState([])
   const [selectedExercises, setSelectedExercises] = useState(allExercises)
-  const [selectedBodyPart, setSelectedBodyPart] = useState('Any Body Part')
+  const [selectedBodyPart, setSelectedBodyPart] = useState(null)
 
   // useEffect(() => {
   //   getData().then(results => {
@@ -22,7 +22,13 @@ function Exercises({ onClickFunction }) {
 
   function searchOnChange(exerciseName) {
     // console.log('exerciseName =', exerciseName)
-    setSelectedExercises(allExercises.filter((exercise) => exercise.name.indexOf(exerciseName) !== -1 && exercise.bodyPart === selectedBodyPart))
+    setSelectedExercises(allExercises.filter((exercise) => {
+      if (selectedBodyPart) {
+        return exercise.name.indexOf(exerciseName) !== -1 && exercise.bodyPart === selectedBodyPart
+      }
+      return exercise.name.indexOf(exerciseName) !== -1
+      }
+    ))
   }
 
   return (
