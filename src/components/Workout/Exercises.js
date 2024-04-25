@@ -7,6 +7,7 @@ function Exercises({ onClickFunction }) {
   // const [exercises, setExercises] = useState([])
   const [selectedExercises, setSelectedExercises] = useState(allExercises)
   const [selectedBodyPart, setSelectedBodyPart] = useState(null)
+  const [searchQuery, setSearchQuery] = useState('')
 
   // useEffect(() => {
   //   getData().then(results => {
@@ -15,13 +16,19 @@ function Exercises({ onClickFunction }) {
   // }, [])
 
   function filterExercise(bodyPart) {
-    setSelectedExercises(() => allExercises.filter((exercise) => exercise.bodyPart === bodyPart))
+    setSelectedExercises(() => allExercises.filter((exercise) => {
+      if (searchQuery) {
+        return exercise.bodyPart === bodyPart && exercise.name.indexOf(searchQuery) !== -1
+      }
+      return exercise.bodyPart === bodyPart}))
     setSelectedBodyPart(bodyPart)
+    console.log('search =', searchQuery)
     console.log('selectedExercises =', selectedExercises)
   }
 
   function searchOnChange(exerciseName) {
     // console.log('exerciseName =', exerciseName)
+    setSearchQuery(exerciseName)
     setSelectedExercises(allExercises.filter((exercise) => {
       if (selectedBodyPart) {
         return exercise.name.indexOf(exerciseName) !== -1 && exercise.bodyPart === selectedBodyPart
