@@ -19,6 +19,18 @@
     
 } */
 
+/* Style Main Buttons */
+.add-exercise-button {
+    border: none;
+    background-color: rgba(55, 165, 215, 0.25);
+    color: rgb(55, 124, 215);
+    border-radius: 2px;
+    width: 100%;
+    font-weight: bold;
+    padding: 0.25rem;
+    margin-block: 1rem;
+}
+
 /* Style Exercises */
 .selected-exercises {
     list-style-type: none;
