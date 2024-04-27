@@ -193,11 +193,11 @@ function CurrentExercises({ exercises, removeExercise }) {
         {exercises.map((exercise) => {
           return (
               <li key={exercise.id} className='current-exercise'>
-                <div onClick={() => removeExerciseOnClick(exercise)} >{exercise.name}</div> -
-                <button onClick={() => addSet(exercise)}>Add Set</button>
+                <div onClick={() => removeExerciseOnClick(exercise)} >{exercise.name}</div>
                 <ul className='sets'>
                   {allSets.length > 0 ? displaySets(exercise) : null}
                 </ul>
+                <button className='add-set-button' onClick={() => addSet(exercise)}>+ Add Set</button>
               </li>)
         })}
       </ul>
