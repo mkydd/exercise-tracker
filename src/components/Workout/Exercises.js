@@ -16,6 +16,17 @@ function Exercises({ onClickFunction }) {
   // }, [])
 
   function filterExercise(bodyPart) {
+    if (bodyPart === selectedBodyPart) {
+      setSelectedBodyPart('')
+      if (searchQuery) {
+        setSelectedExercises(allExercises.filter((exercise) => {
+            return exercise.name.indexOf(searchQuery) !== -1
+        }))
+        return
+      }
+      setSelectedExercises(allExercises)
+      return
+    }
     setSelectedExercises(() => allExercises.filter((exercise) => {
       if (searchQuery) {
         return exercise.bodyPart === bodyPart && exercise.name.indexOf(searchQuery) !== -1
