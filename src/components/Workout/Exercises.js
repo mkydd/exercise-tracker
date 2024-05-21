@@ -54,18 +54,37 @@ function Exercises({ onClickFunction }) {
       <div className="search-exercises-wrapper">
         <input type="text" name="search" className='search-exercises' onChange={(e) => searchOnChange(e.target.value)}/>
       </div>
-      <button onClick={() => filterExercise('chest')}>Chest</button>
-      <button onClick={() => filterExercise('back')}>Back</button>
-      <button onClick={() => filterExercise('upper arms')}>Arms</button>
-      <button onClick={() => filterExercise('shoulders')}>Shoulders</button>
-      <button onClick={() => filterExercise('waist')}>Core</button>
-      <button onClick={() => filterExercise('upper legs')}>Legs</button>
+      <button 
+        onClick={() => filterExercise('chest')}
+        className={selectedBodyPart === 'chest' ? 'active exercise-button' : 'exercise-button'}
+      >Chest</button>
+      <button 
+        onClick={() => filterExercise('back')}
+        className={selectedBodyPart === 'back' ? 'active exercise-button' : 'exercise-button'}
+        >Back</button>
+      <button 
+        onClick={() => filterExercise('upper arms')}
+        className={selectedBodyPart === 'upper arms' ? 'active exercise-button' : 'exercise-button'}
+        >Arms</button>
+      <button 
+        onClick={() => filterExercise('shoulders')}
+        className={selectedBodyPart === 'shoulders' ? 'active exercise-button' : 'exercise-button'}
+        >Shoulders</button>
+      <button 
+        onClick={() => filterExercise('waist')}
+        className={selectedBodyPart === 'waist' ? 'active exercise-button' : 'exercise-button'}
+        >Core</button>
+      <button 
+        onClick={() => filterExercise('upper legs')}
+        className={selectedBodyPart === 'upper legs' ? 'active exercise-button' : 'exercise-button'}
+        >Legs</button>
       
       {selectedExercises && <ul className='selected-exercises'>
           {selectedExercises.map((exercise) => {
             return <li 
               key={exercise.id} 
-              onClick={() => onClickFunction(exercise)} 
+              
+                onClick={() => onClickFunction(exercise)} 
               className='selected-exercise'>
                 <div className="exercise-name">{exercise.name}</div>
                 <div className="exercise-bodypart">{exercise.bodyPart}</div>

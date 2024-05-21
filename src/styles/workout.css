@@ -23,7 +23,7 @@
 .add-exercise-button {
     border: none;
     background-color: rgba(55, 165, 215, 0.25);
-    color: rgb(55, 124, 215);
+    color: rgb(61, 158, 227);
     border-radius: 2px;
     width: 100%;
     font-weight: bold;
@@ -62,6 +62,18 @@
 .exercise-bodypart {
     text-transform: capitalize;
 }
+
+.exercise-button {
+    color: white;
+    background-color: rgb(61, 158, 227);
+    border: 1px solid white;
+    border-radius: 2px;
+}
+
+.active.exercise-button {
+    color: red;
+}
+
 
 
 /* Style CurrentExercises */
