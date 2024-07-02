@@ -13,3 +13,7 @@ const start = () => {
 }
 
 start()
+
+// Routes
+// user/workout -> Get, Post (all workouts)
+// user/workout/:id -> Get, Patch, Delete (specific workout)
