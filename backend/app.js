@@ -1,6 +1,11 @@
 const express = require('express');
 const app = express();
+const workouts = require('./routes/workouts')
 require('dotenv').config()
+
+
+// routes
+app.use('/api/v1/users/workouts', workouts)
 
 const port = process.env.PORT || 5001;
 
