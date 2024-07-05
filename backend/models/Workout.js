@@ -11,17 +11,15 @@ const WorkoutSchema = new mongoose.Schema({
     required: [true, 'must provide date']
   },
   location: {
-    street: {
-      type: String,
-      trim: true,
-      maxlength: [50, 'street can not be more than 50 characters']
-    },
-    city: {
-      type: String,
-      trim: true,
-      maxlength: [50, 'city can not be more than 50 characters']
-    },
-    
+    coordinates: {
+      latitude: {
+        type: Number
+      },
+      longitude: {
+        type: Number
+      }
+    }
+
 
   },
   // duration: {
