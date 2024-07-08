@@ -1,11 +1,11 @@
-
+const Workout = require('../models/Workout')
 
 const getAllWorkouts = (req, res) => {
   res.send('All Workouts')
 }
 
-const createWorkout = (req, res) => {
-  res.send('Create Workout')
+const createWorkout = async (req, res) => {
+  const workout = await Workout.create(req.body)
 }
 
 const getWorkout = (req, res) => {
