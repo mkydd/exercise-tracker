@@ -30,14 +30,13 @@ const WorkoutSchema = new mongoose.Schema({
     seconds: {
       type: Number
     },
-    required: [true, 'must provide workout duration']
   },
   exercises: [{
     exerciseId: {
       type: String,
       required: [true, 'each exercise must contain an id']
     },
-    sets: {
+    sets: [{
       setNumber: {
         type: Number,
         required: [true, 'each set must contain a set number']
@@ -50,7 +49,7 @@ const WorkoutSchema = new mongoose.Schema({
         type: Number,
         required: [true, 'each set must contain a weight number']
       }
-    }
+    }]
   }]
 });
 
