@@ -22,9 +22,17 @@ const WorkoutSchema = new mongoose.Schema({
 
 
   },
-  // duration: {
-
-  // },
+  duration: {
+    hours: {
+      type: Number
+    },
+    minutes: {
+      type: Number
+    },
+    seconds: {
+      type: Number
+    }
+  },
   // exercises: {
 
   // }
