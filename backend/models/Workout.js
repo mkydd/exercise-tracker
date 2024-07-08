@@ -19,8 +19,6 @@ const WorkoutSchema = new mongoose.Schema({
         type: Number
       }
     }
-
-
   },
   duration: {
     hours: {
@@ -33,9 +31,26 @@ const WorkoutSchema = new mongoose.Schema({
       type: Number
     }
   },
-  // exercises: {
-
-  // }
+  exercises: [{
+    exerciseId: {
+      type: String,
+      required: [true, 'each exercise must contain an id']
+    },
+    sets: {
+      setNumber: {
+        type: Number,
+        required: [true, 'each set must contain a set number']
+      },
+      reps: {
+        type: Number,
+        required: [true, 'each set must contain a reps number']
+      },
+      weight: {
+        type: Number,
+        required: [true, 'each set must contain a weight number']
+      }
+    }
+  }]
 });
 
 module.exports = mongoose.model('Workout', WorkoutSchema);
