@@ -29,7 +29,8 @@ const WorkoutSchema = new mongoose.Schema({
     },
     seconds: {
       type: Number
-    }
+    },
+    required: [true, 'must provide workout duration']
   },
   exercises: [{
     exerciseId: {
