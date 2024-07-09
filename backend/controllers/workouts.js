@@ -25,8 +25,9 @@ const updateWorkout = async (req, res) => {
   res.status(200).json({ workout })
 }
 
-const deleteWorkout = (req, res) => {
-  res.send(`Delete Workout (id: ${req.params.id})`)
+const deleteWorkout = async (req, res) => {
+  const workout = await Workout.findByIdAndDelete(req.params.id)
+  res.status(200).json({ workout })
 }
 
 module.exports = {
