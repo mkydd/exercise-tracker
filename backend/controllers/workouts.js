@@ -1,7 +1,8 @@
 const Workout = require('../models/Workout')
 
-const getAllWorkouts = (req, res) => {
-  res.send('All Workouts')
+const getAllWorkouts = async (req, res) => {
+  const workouts = await Workout.find({})
+  res.status(200).json({ workouts })
 }
 
 const createWorkout = async (req, res) => {
