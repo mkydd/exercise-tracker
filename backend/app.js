@@ -1,8 +1,11 @@
 const express = require('express');
+const bodyParser  = require('body-parser');
 const app = express();
 const workouts = require('./routes/workouts')
 const connectDB = require('./db/connect')
 require('dotenv').config()
+app.use(bodyParser.json());
+
 
 
 // routes
