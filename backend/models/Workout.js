@@ -7,8 +7,18 @@ const WorkoutSchema = new mongoose.Schema({
     maxlength: [50, 'name can not be more than 50 characters']
   },
   date: {
-    type: String,
-    required: [true, 'must provide date']
+    year: {
+      type: Number,
+      required: [true, 'provide the year']
+    },
+    month: {
+      type: Number,
+      required: [true, 'provide the month']
+    },
+    day: {
+      type: Number,
+      required: [true, 'provide the day']
+    }
   },
   location: {
     coordinates: {
