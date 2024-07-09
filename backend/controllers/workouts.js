@@ -10,12 +10,19 @@ const createWorkout = async (req, res) => {
   res.json({ workout })
 }
 
-const getWorkout = (req, res) => {
-  res.send(`Get Individual Workout (id: ${req.params.id})`)
+const getWorkout = async (req, res) => {
+  const workout = await Workout.findById(req.params.id)
+  res.status(200).json({ workout })
 }
 
-const updateWorkout = (req, res) => {
-  res.send(`Update Workout (id: ${req.params.id})`)
+const updateWorkout = async (req, res) => {
+  const workout = await Workout.findOneAndUpdate(
+    {_id: req.params.id},
+    req.body,
+    { new: true,
+    runValidators: true })
+
+  res.status(200).json({ workout })
 }
 
 const deleteWorkout = (req, res) => {
