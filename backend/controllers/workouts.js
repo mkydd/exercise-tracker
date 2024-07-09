@@ -6,6 +6,7 @@ const getAllWorkouts = (req, res) => {
 
 const createWorkout = async (req, res) => {
   const workout = await Workout.create(req.body)
+  res.json({ workout })
 }
 
 const getWorkout = (req, res) => {
