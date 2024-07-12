@@ -13,6 +13,12 @@ const createWorkout = asyncWrapper(async (req, res) => {
 
 const getWorkout = asyncWrapper(async (req, res) => {
   const workout = await Workout.findById(req.params.id)
+
+  if (!workout) {
+    res.status(404).json({ msg: 'no workout found matching given id'})
+    return
+  }
+
   res.status(200).json({ workout })
 })
 
@@ -23,11 +29,22 @@ const updateWorkout = asyncWrapper(async (req, res) => {
     { new: true,
     runValidators: true })
 
+  if (!workout) {
+    res.status(404).json({ msg: 'no workout found matching given id'})
+    return
+  }
+    
   res.status(200).json({ workout })
 })
 
 const deleteWorkout = asyncWrapper(async (req, res) => {
   const workout = await Workout.findByIdAndDelete(req.params.id)
+
+  if (!workout) {
+    res.status(404).json({ msg: 'no workout found matching given id'})
+    return
+  }
+
   res.status(200).json({ workout })
 })
 
