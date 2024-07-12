@@ -5,11 +5,13 @@ const workouts = require('./routes/workouts')
 const connectDB = require('./db/connect')
 require('dotenv').config()
 app.use(bodyParser.json());
+const errorHandlerMiddleware = require('./middleware/error-handling')
 
 
 
 // routes
 app.use('/api/v1/users/workouts', workouts)
+app.use(errorHandlerMiddleware)
 
 const port = process.env.PORT || 5001;
 
