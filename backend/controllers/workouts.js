@@ -1,6 +1,6 @@
 const Workout = require('../models/Workout')
 const asyncWrapper = require('../middleware/async')
-const { createCustomError, CustomAPIError } = require('../errors/custom-error')
+const { createCustomError } = require('../errors/custom-error')
 
 const getAllWorkouts = asyncWrapper(async (req, res) => {
   const workouts = await Workout.find({})
