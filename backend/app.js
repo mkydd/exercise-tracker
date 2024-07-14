@@ -14,7 +14,7 @@ const errorHandlerMiddleware = require('./middleware/error-handling')
 
 // routes
 app.use('/api/v1/users/workouts', workouts)
-app.use('api/v1/users', users)
+app.use('/api/v1/users', users)
 app.use(errorHandlerMiddleware)
 
 const port = process.env.PORT || 5001;
