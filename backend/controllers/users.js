@@ -36,7 +36,7 @@ const updateUser = asyncWrapper(async (req, res, next) => {
 })
 
 const deleteUser = asyncWrapper(async (req, res, next) => {
-  const user = await User.findOneAndDelete(req.params.id)
+  const user = await User.findOneAndDelete({ _id: req.params.id })
 
   if (!user) {
     return next(createCustomError(`No user with id: ${req.params.id}`, 404), req, res)

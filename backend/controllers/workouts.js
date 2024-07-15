@@ -37,7 +37,7 @@ const updateWorkout = asyncWrapper(async (req, res, next) => {
 })
 
 const deleteWorkout = asyncWrapper(async (req, res, next) => {
-  const workout = await Workout.findByIdAndDelete(req.params.id)
+  const workout = await Workout.findByIdAndDelete({ _id: req.params.id })
 
   if (!workout) {
     return next(createCustomError(`No task with id : ${req.params.id}`, 404))
