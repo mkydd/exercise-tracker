@@ -1,13 +1,19 @@
 import Workout from "./components/Workout/Workout";
-import LoginButton from "./components/Auth/Login";
-import LogoutButton from "./components/Auth/Logout";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import Home from "./components/Home";
+import PrivateRoute from "./components/Auth/PrivateRoute";
 
 function App() {
   return (
     <div className="App">
-      <Workout />
-      <LoginButton />
-      <LogoutButton />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />}/>
+          <Route element={<PrivateRoute />}>
+            <Route path="/workout" element={<Workout />}/>
+          </Route>
+        </Routes>
+      </Router>
     </div>
   );
 }
