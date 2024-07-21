@@ -5,10 +5,15 @@ const app = express();
 const connectDB = require('./db/connect')
 require('dotenv').config()
 app.use(bodyParser.json());
+const cors = require('cors');
 
 const workouts = require('./routes/workouts')
 const users = require('./routes/users')
 const errorHandlerMiddleware = require('./middleware/error-handling')
+
+// origins allowed to make api requests
+app.use(cors({origin: 'http://localhost:3000'}));
+
 
 
 
