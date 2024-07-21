@@ -5,4 +5,4 @@ const { loginUser } = require('../controllers/login')
 
 router.route('/').post(loginUser)
 
-module.exports = rotuer;
+module.exports = router;
