@@ -9,6 +9,7 @@ const cors = require('cors');
 
 const workouts = require('./routes/workouts')
 const users = require('./routes/users')
+const login = require('./routes/login')
 const errorHandlerMiddleware = require('./middleware/error-handling')
 
 // origins allowed to make api requests
@@ -20,6 +21,7 @@ app.use(cors({origin: 'http://localhost:3000'}));
 // routes
 app.use('/api/v1/users/workouts', workouts)
 app.use('/api/v1/users', users)
+app.use('/api/v1/login', login)
 app.use(errorHandlerMiddleware)
 
 const port = process.env.PORT || 5001;
