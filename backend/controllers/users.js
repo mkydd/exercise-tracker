@@ -1,6 +1,7 @@
 const User = require('../models/User')
 const asyncWrapper = require('../middleware/async')
 const { createCustomError } = require('../errors/custom-error')
+const bcrypt = require('bcrypt')
 
 const getAllUsers = asyncWrapper(async (req, res) => {
   const users = await User.find({})
@@ -8,8 +9,18 @@ const getAllUsers = asyncWrapper(async (req, res) => {
 })
 
 const createUser = asyncWrapper(async (req, res) => {
-  const user = await User.create(req.body)
-  res.status(201).json({ user })
+  let userData = req.body
+
+  bcrypt.hash(userData.password, 10, async function(err, hash) {
+    if (err) {
+      return next(createCustomError(`Issue encrypting password`, 400), req,res)
+    }
+    console.log('hash =', hash)
+    userData = {...userData, password: hash}
+
+    const user = await User.create(userData)
+    res.status(201).json({ user })
+  });
 })
 
 const getUser = asyncWrapper(async (req, res, next) => {
