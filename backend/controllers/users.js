@@ -8,7 +8,7 @@ const getAllUsers = asyncWrapper(async (req, res) => {
   res.status(200).json({ users })
 })
 
-const createUser = asyncWrapper(async (req, res) => {
+const createUser = asyncWrapper(async (req, res, next) => {
   let userData = req.body
 
   bcrypt.hash(userData.password, 10, async function(err, hash) {
