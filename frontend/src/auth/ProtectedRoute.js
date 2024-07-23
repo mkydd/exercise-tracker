@@ -12,7 +12,6 @@ const PrivateRoute = () => {
     if (isAuthenticated) {
       return <Outlet />
     } else {
-      console.log('not logged in')
       return <Navigate to={loginWithRedirect()} />;
     }
 };
