@@ -1,0 +1,8 @@
+.header {
+    display: flex;
+    justify-content: center;
+}
+
+.header .tracker {
+    color: rgb(61, 158, 227);
+}
