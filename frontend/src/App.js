@@ -2,7 +2,7 @@ import Workout from "./components/Workout/Workout";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import SignUp from "./pages/signUp";
 // import Login from "./pages/login";
-import UserHome from "./pages/user/userHome";
+import UserHome from "./pages/user/UserHome";
 import LoginButton from "./auth/login";
 import Home from "./pages/home";
 import PrivateRoute from "./auth/ProtectedRoute";
