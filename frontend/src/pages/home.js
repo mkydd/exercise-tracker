@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from '../auth/login';
 import LogoutButton from '../auth/logout';
+import Loading from '../util/Loading';
 import { Navigate } from "react-router-dom";
 import '../styles/home.css'
 
@@ -10,7 +11,7 @@ function Home() {
   const [goToWorkouts, setGoToWorkouts] = useState(false)
 
   if (isLoading) {
-    return <div>Loading ...</div>;
+    return <Loading />;
   }
 
   return (
