@@ -25,18 +25,18 @@ function Home() {
         <h2>Welcome</h2>
         <div className='message-btn-wrapper'>
           <div className='message'>Please click button below to access workouts</div>
-          <div className='btn-wrapper'><button onClick={() => setGoToWorkouts(true)}>Go to Workouts</button></div>
+          <div className='btn-wrapper'><button className='goTo' onClick={() => setGoToWorkouts(true)}>Go to Workouts</button></div>
         </div>
-        
+        { isAuthenticated && <LogoutButton /> }
+        { !isAuthenticated && <LoginButton /> }
       </div>
 
       {user && goToWorkouts && <Navigate to='/user'/>}
 
 
-      { !isAuthenticated && <LoginButton /> }
-      { isAuthenticated && <LogoutButton /> }
+      
 
-      { isAuthenticated && user.email }
+      {/* { isAuthenticated && user.email } */}
       
 
     </div>
