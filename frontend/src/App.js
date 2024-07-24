@@ -2,7 +2,7 @@ import Workout from "./components/Workout/Workout";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import SignUp from "./pages/signUp";
 // import Login from "./pages/login";
-import UserHome from "./pages/userHome";
+import UserHome from "./pages/user/userHome";
 import LoginButton from "./auth/login";
 import Home from "./pages/home";
 import PrivateRoute from "./auth/ProtectedRoute";
@@ -16,7 +16,12 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}/>
           <Route element={<PrivateRoute/>}>
-            <Route path="/user" element={<UserHome />}/>
+            <Route path="/user" element={<UserHome />}>
+              <Route path="/profile" element={<Home />}/>
+              <Route path="/history" element={<Home />}/>
+              <Route path="/startworkout" element={<Home />}/>
+              <Route path="/exercises" element={<Home />}/>
+            </Route>
           </Route>
           <Route path="/workout" element={<Workout />}/>
           <Route path="/signup" element={<SignUp />}/>
