@@ -12,7 +12,7 @@
     align-items: center;
 }
 
-.header {
+.home .header {
     display: flex;
     justify-content: center;
     margin: 1.5rem;
@@ -20,48 +20,48 @@
     top: 0;
 }
 
-.header .tracker {
+.home .header .tracker {
     color: rgb(61, 158, 227);
 }
 
-.welcome-message {
+.home .welcome-message {
     width: 100%;
     text-align: center;
     height: fit-content;
 }
 
-.welcome-wrapper {
+.home .welcome-wrapper {
     display: flex;
     justify-content: center;
 }
 
-.name {
+.home .name {
     color: rgb(61, 158, 227);
 }
 
-.welcome-message h2 {
+.home .welcome-message h2 {
     width: 100%;
     text-align: center;
     margin-bottom: 1rem;
     font-size: 1.7rem;
 }
 
-.message-btn-wrapper {
+.home .message-btn-wrapper {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-.message {
+.home .message {
     width: fit-content;
     margin-bottom: 1rem;
 }
 
-.btn-wrapper {
+.home .btn-wrapper {
     width: 92%;
 }
 
-.welcome-message .goTo {
+.home .welcome-message .goTo {
     background-color: rgb(61, 158, 227);
     color: white;
     border: none;
@@ -71,7 +71,7 @@
     margin-bottom: 1rem;
 }
 
-.auth-btn {
+.home .auth-btn {
     border: 1px solid black;
     background-color: white;
     border-radius: 3px;
