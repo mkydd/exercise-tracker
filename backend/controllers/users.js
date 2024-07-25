@@ -24,9 +24,9 @@ const createUser = asyncWrapper(async (req, res, next) => {
 })
 
 const getUser = asyncWrapper(async (req, res, next) => {
-  const email = req.params.id;
-  const user = await User.findOne({ email })
-  console.log('user =', user)
+  const id = req.params.id;
+  const user = await User.findOne({ _id: id })
+
   if (!user) {
     return next(createCustomError(`No user with id : ${req.params.id}`, 404), req,res)
   }
@@ -58,10 +58,25 @@ const deleteUser = asyncWrapper(async (req, res, next) => {
   res.status(200).json({ user })
 })
 
+const getSingleUser = asyncWrapper(async (req, res, next) => {
+  const { email } = req.body
+  console.log('email =', email)
+
+  let user = await User.findOne({ email })
+  user.password = undefined
+
+  if (!user) {
+    return next(createCustomError(`No user with email: ${email}`, 404), req, res)
+  }
+
+  res.status(200).json({ user })
+})
+
 module.exports = {
   getAllUsers,
   createUser,
   getUser,
   updateUser,
-  deleteUser
+  deleteUser,
+  getSingleUser
 }

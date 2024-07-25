@@ -6,7 +6,16 @@ function UserHome() {
   const [userData, setUserData] = useState()
 
   useEffect(() => {
-    fetch(`/api/v1/users/michael.kydd@outlook.com/`)
+    fetch(`/api/v1/users/data/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        email: 'michael.kydd@outlook.com'
+      })
+    })
       .then(res=>res.json())
       .then(res => console.log(res))
   }, [userData])
