@@ -60,7 +60,6 @@ const deleteUser = asyncWrapper(async (req, res, next) => {
 
 const getSingleUser = asyncWrapper(async (req, res, next) => {
   const { email } = req.body
-  console.log('email =', email)
 
   let user = await User.findOne({ email })
   user.password = undefined
