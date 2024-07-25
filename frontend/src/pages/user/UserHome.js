@@ -13,12 +13,12 @@ function UserHome() {
         'Accept': 'application/json'
       },
       body: JSON.stringify({
-        email: 'michael.kydd@outlook.com'
+        email: user.email
       })
     })
       .then(res=>res.json())
-      .then(res => console.log(res))
-  }, [userData])
+      .then(data => setUserData(data))
+  }, [userData, user])
 
   return (
     <div>
