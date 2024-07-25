@@ -1,23 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { useAuth0 } from "@auth0/auth0-react";
+import getData from '../../util/fetchUserData';
 
 function UserHome() {
   const { user } = useAuth0();
-  const [userData, setUserData] = useState()
+  const [userData, setUserData] = useState({})
 
   useEffect(() => {
-    fetch(`/api/v1/users/data/`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify({
-        email: user.email
-      })
-    })
-      .then(res=>res.json())
-      .then(data => setUserData(data))
+    setUserData(getData(user.email))
   }, [userData, user])
 
   return (
