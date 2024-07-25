@@ -24,12 +24,14 @@ const createUser = asyncWrapper(async (req, res, next) => {
 })
 
 const getUser = asyncWrapper(async (req, res, next) => {
-  const user = await User.findById(req.params.id)
+  const email = req.params.id;
+  const user = await User.findOne({ email })
+  console.log('user =', user)
   if (!user) {
     return next(createCustomError(`No user with id : ${req.params.id}`, 404), req,res)
   }
 
-  res.status(200).json({ user })
+  res.status(200).send( user )
 })
 
 const updateUser = asyncWrapper(async (req, res, next) => {

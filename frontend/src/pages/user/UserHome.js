@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { useAuth0 } from "@auth0/auth0-react";
 
 function UserHome() {
-  // useEffect(() => {
-  //   fetch(`https://localhost:5001/api/v1/users/${userId}`)
-  // }, [])
+  const { user } = useAuth0();
+  const [userData, setUserData] = useState()
+
+  useEffect(() => {
+    fetch(`/api/v1/users/michael.kydd@outlook.com/`)
+      .then(res=>res.json())
+      .then(res => console.log(res))
+  }, [userData])
+
   return (
     <div>
       UserHome
@@ -14,4 +21,4 @@ function UserHome() {
   )
 }
 
-export default UserHome
+export default UserHome;
