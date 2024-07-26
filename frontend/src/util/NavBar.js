@@ -1,18 +1,15 @@
 import React from 'react'
-import { NavLink, Outlet } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
+import '../styles/navbar.css'
 
 
 function NavBar() {
   return (
     <div className='nav-bar'>
       <NavLink to='./profile'>Profile</NavLink>
-      <br />
       <NavLink to='./history'>History</NavLink>
-      <br />
       <NavLink to='./exercises'>Exercises</NavLink>
-      <br />
       <NavLink to='./'>NewWorkout</NavLink>
-      <Outlet />
     </div>
   )
 }
