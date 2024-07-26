@@ -12,7 +12,6 @@ import PrivateRoute from "./auth/ProtectedRoute";
 import Exercises from "./pages/user/Exercises";
 import History from './pages/user/History';
 import Profile from './pages/user/Profile';
-import StartWorkout from './pages/user/StartWorkout';
 
 function App() {
   
@@ -26,7 +25,6 @@ function App() {
               <Route index element={<UserHome />} />
               <Route path="profile" element={<Profile />} />
               <Route path="history" element={<History />} />
-              <Route path="startworkout" element={<StartWorkout />} />
               <Route path="exercises" element={<Exercises />} />
             </Route>
           </Route>
