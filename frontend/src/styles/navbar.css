@@ -1,4 +1,16 @@
 .nav-bar {
-    /* width: 100%; */
+    width: 100%;
+    background-color: rgb(38, 38, 38);
+    position: fixed;
+    height: 4rem;
+    bottom: 0;
     border: 1px solid black;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.nav-link {
+    color: grey;
+    text-decoration: none;
 }
