@@ -13,7 +13,6 @@ import PrivateRoute from "./auth/ProtectedRoute";
 import Exercises from "./pages/user/Exercises";
 import History from './pages/user/History';
 import Profile from './pages/user/Profile';
-import NavBar from "./util/NavBar";
 
 function App() {
   
