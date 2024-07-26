@@ -23,7 +23,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route element={<PrivateRoute/>}>
             <Route path="user" element={<User />}>
-              <Route index element={<UserHome />} />
+              <Route path="home" element={<UserHome />} />
               <Route path="profile" element={<Profile />} />
               <Route path="history" element={<History />} />
               <Route path="exercises" element={<Exercises />} />

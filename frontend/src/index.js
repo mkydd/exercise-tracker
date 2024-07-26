@@ -10,7 +10,7 @@ root.render(
       domain={process.env.REACT_APP_AUTH_DOMAIN}
       clientId={process.env.REACT_APP_AUTH_CLIENT_ID}
       authorizationParams={{
-        redirect_uri: 'http://localhost:3000/user/'
+        redirect_uri: 'http://localhost:3000/user/home/'
     }}>
       <App />
     </Auth0Provider>
