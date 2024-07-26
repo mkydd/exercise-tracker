@@ -12,6 +12,7 @@ import PrivateRoute from "./auth/ProtectedRoute";
 import Exercises from "./pages/user/Exercises";
 import History from './pages/user/History';
 import Profile from './pages/user/Profile';
+import NavBar from "./util/NavBar";
 
 function App() {
   
@@ -21,7 +22,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route element={<PrivateRoute/>}>
-            <Route path="user">
+            <Route path="user" element={<NavBar />}>
               <Route index element={<UserHome />} />
               <Route path="profile" element={<Profile />} />
               <Route path="history" element={<History />} />
