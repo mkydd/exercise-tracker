@@ -1,16 +1,16 @@
 import React from 'react'
 import '../../styles/template.css'
 
-function Template() {
+function Template( {workout} ) {
   return (
     <div className="workout-template-wrapper">
       <div className='workout-template'>
-        <h4>Arms & Shoulders</h4>
+        <h4>{workout.name}</h4>
         <div className="exercises">
-          Seted Overhead Press (barbell), Skull Crushers
+          {workout.exercises.join(", ")}
         </div>
         <div className="date">
-          Jul 26, 2024
+          {workout.date}
         </div>
       </div>
     </div>
