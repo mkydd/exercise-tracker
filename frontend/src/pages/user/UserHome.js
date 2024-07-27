@@ -21,7 +21,16 @@ function UserHome() {
         <h2>Templates</h2>
         <button>+Template</button>
       </div>
-      <Template />
+      <div className="templates">
+        <Template workout={{name: 'Push', exercises: ['bench press', 'cable fly', 'tricep dip'], date: 'Jul 26 2024'}}/>
+        <Template workout={{name: 'Push', exercises: ['bench press', 'cable fly', 'tricep dip'], date: 'Jul 26 2024'}}/>
+        <Template workout={{name: 'Push', exercises: ['bench press', 'cable fly', 'tricep dip'], date: 'Jul 26 2024'}}/>
+        <Template workout={{name: 'Push', exercises: ['bench press', 'cable fly', 'tricep dip'], date: 'Jul 26 2024'}}/>
+        <Template workout={{name: 'Push', exercises: ['bench press', 'cable fly', 'tricep dip'], date: 'Jul 26 2024'}}/>
+        <Template workout={{name: 'Push', exercises: ['bench press', 'cable fly', 'tricep dip'], date: 'Jul 26 2024'}}/>
+      </div>
+      
+
 
     </div>
   )
