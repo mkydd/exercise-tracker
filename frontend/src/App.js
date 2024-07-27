@@ -17,7 +17,7 @@ import Profile from './pages/user/Profile';
 function App() {
   
   return (
-    <div className="App">
+    <div className="app">
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
