@@ -1,17 +1,26 @@
 .user-home {
     margin: 1rem;
+    overflow-y: scroll;
+    margin-bottom: 5rem;
 }
 
-.template-header {
+.user-home .template-header {
     display: flex;
     justify-content: space-between;
 }
 
-.template-header button {
+.user-home .template-header button {
     color: rgb(61, 158, 227);
     background-color: rgba(61, 158, 227, 0.207);
     border: none;
     border-radius: 0.5rem;
     padding-inline: 0.5rem;
     font-weight: 600;
+}
+
+.user-home .templates {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 0.25rem;
 }
