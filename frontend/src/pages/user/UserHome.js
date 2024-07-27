@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useAuth0 } from "@auth0/auth0-react";
 import getData from '../../util/fetchUserData';
+import '../../styles/userHome.css'
+import Template from '../../components/user/Template';
 
 function UserHome() {
   const { user } = useAuth0();
@@ -11,10 +13,15 @@ function UserHome() {
   }, [userData, user])
 
   return (
-    <div>
+    <div className='user-home'>
       UserHome
       <button>Start New Workout</button>
-      <h2>Previous Workout</h2>
+      <h1>Previous Workout</h1>
+      <div className="template-header">
+        <h2>Templates</h2>
+        <button>+Template</button>
+      </div>
+      <Template />
 
     </div>
   )

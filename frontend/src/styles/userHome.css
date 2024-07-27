@@ -1,0 +1,17 @@
+.user-home {
+    margin: 1rem;
+}
+
+.template-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.template-header button {
+    color: rgb(61, 158, 227);
+    background-color: rgba(61, 158, 227, 0.207);
+    border: none;
+    border-radius: 0.5rem;
+    padding-inline: 0.5rem;
+    font-weight: 600;
+}
