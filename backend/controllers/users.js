@@ -1,4 +1,5 @@
 const User = require('../models/User')
+const Workout = require('../models/Workout')
 const asyncWrapper = require('../middleware/async')
 const { createCustomError } = require('../errors/custom-error')
 const bcrypt = require('bcrypt')
@@ -19,6 +20,7 @@ const createUser = asyncWrapper(async (req, res, next) => {
     userData = {...userData, password: hash}
 
     const user = await User.create(userData)
+    const userWorkouts = await Workout.create({ userId: user._id, workouts: []})
     res.status(201).json({ user })
   });
 })
