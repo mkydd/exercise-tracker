@@ -20,7 +20,6 @@ function UserHome() {
   }, [user])
 
   useEffect(() => {
-    console.log('userData =', userData)
     async function getData() {
       let { workout } = await getWorkoutData('66a5244d870c3d3f05a80621')
       setUserWorkouts(workout.workouts)
@@ -29,11 +28,6 @@ function UserHome() {
       getData()
     }
   }, [userData])
-
-  useEffect(() => {
-    console.log('userWorkouts =', userWorkouts)
-  }, [userWorkouts])
-
 
 
   return (

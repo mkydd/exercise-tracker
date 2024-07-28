@@ -14,7 +14,6 @@ async function getUserData(userEmail) {
       return data
     })
 
-  console.log('the user data =', userData)
   return userData
 }
 
