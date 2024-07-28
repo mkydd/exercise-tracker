@@ -13,9 +13,11 @@ const createWorkout = asyncWrapper(async (req, res) => {
 })
 
 const getWorkout = asyncWrapper(async (req, res, next) => {
-  const workout = await Workout.findById(req.params.id)
+  console.log('id =', req.params.id)
+  const workout = await Workout.findOne({ userId: req.params.id })
 
   if (!workout) {
+    console.log('!!!ERROR!!!')
     return next(createCustomError(`No workout with id : ${req.params.id}`, 404), req,res)
   }
 
