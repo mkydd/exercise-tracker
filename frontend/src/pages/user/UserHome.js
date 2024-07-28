@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useAuth0 } from "@auth0/auth0-react";
-import getData from '../../util/fetchUserData';
+import getUserData from '../../util/fetchUserData';
 import '../../styles/userHome.css'
 import Template from '../../components/user/Template';
 
@@ -9,7 +9,7 @@ function UserHome() {
   const [userData, setUserData] = useState({})
 
   useEffect(() => {
-    setUserData(getData(user.email))
+    setUserData(getUserData(user.email))
   }, [userData, user])
 
   return (

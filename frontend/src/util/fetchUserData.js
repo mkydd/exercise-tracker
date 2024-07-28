@@ -1,4 +1,4 @@
-function getData(userEmail) {
+function getUserData(userEmail) {
   let userData;
   fetch(`/api/v1/users/data/`, {
     method: 'POST',
@@ -17,4 +17,4 @@ function getData(userEmail) {
   return userData
 }
 
-export default getData;
+export default getUserData;
