@@ -1,6 +1,5 @@
-function getUserData(userEmail) {
-  let userData;
-  fetch(`/api/v1/users/data/`, {
+async function getUserData(userEmail) {
+  const userData = await fetch(`/api/v1/users/data/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -11,9 +10,11 @@ function getUserData(userEmail) {
     })
   })
     .then(res => res.json())
-    .then(data => userData = data)
-    .then(() => console.log(userData))
-  
+    .then(data => {
+      return data
+    })
+
+  console.log('the user data =', userData)
   return userData
 }
 
