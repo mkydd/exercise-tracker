@@ -63,12 +63,17 @@ const deleteUser = asyncWrapper(async (req, res, next) => {
 const getSingleUser = asyncWrapper(async (req, res, next) => {
   const { email } = req.body
 
-  let user = await User.findOne({ email })
-  user.password = undefined
+  if (!email) {
+    return next(createCustomError(`No email provided in request body`, 400), req, res)
+  }
 
+  const user = await User.findOne({ email })
+  
   if (!user) {
     return next(createCustomError(`No user with email: ${email}`, 404), req, res)
   }
+  
+  user.password = undefined
 
   res.status(200).json({ user })
 })
