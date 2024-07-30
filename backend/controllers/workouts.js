@@ -16,7 +16,7 @@ const getWorkout = asyncWrapper(async (req, res, next) => {
   const workout = await Workout.findOne({ userId: req.params.id })
 
   if (!workout) {
-    return next(createCustomError(`No workout with id : ${req.params.id}`, 404), req,res)
+    return next(createCustomError(`No workouts for user with id : ${req.params.id}`, 404), req,res)
   }
 
   res.status(200).json({ workout })
