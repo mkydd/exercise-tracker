@@ -51,6 +51,10 @@ const WorkoutSchema = new mongoose.Schema({
         type: String,
         required: [true, 'each exercise must contain an id']
       },
+      exerciseName: {
+        type: String,
+        required: [true, 'provide exercise name']
+      },
       sets: [{
         setNumber: {
           type: Number,
