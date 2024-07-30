@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 // import { useEffect, useState } from 'react';
-// import { getData } from '../util/getExercises';
 import { allExercises } from '../../util/Data';
 
 function Exercises({ onClickFunction }) {
@@ -8,12 +7,6 @@ function Exercises({ onClickFunction }) {
   const [selectedExercises, setSelectedExercises] = useState(allExercises)
   const [selectedBodyPart, setSelectedBodyPart] = useState(null)
   const [searchQuery, setSearchQuery] = useState('')
-
-  // useEffect(() => {
-  //   getData().then(results => {
-  //     setExercises(results)
-  //   })
-  // }, [])
 
   function filterExercise(bodyPart) {
     if (bodyPart === selectedBodyPart) {
