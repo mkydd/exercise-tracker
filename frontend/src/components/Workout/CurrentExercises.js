@@ -35,7 +35,15 @@ function CurrentExercises({ exercises, removeExercise }) {
     })
 
     if (!updated) {
-      setAllSets([...allSets, {exerciseId: exercise.id, sets: [{setNumber: 1, reps: 0, weight: 0}]}])
+      console.log('exercise =', {
+        exerciseId: exercise.id, 
+        exerciseName: exercise.name,
+        sets: [{setNumber: 1, reps: 0, weight: 0}]})
+      setAllSets([...allSets, {
+        exerciseId: exercise.id, 
+        exerciseName: exercise.name,
+        sets: [{setNumber: 1, reps: 0, weight: 0}]}
+      ])
     }
   }
 
