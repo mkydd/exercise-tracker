@@ -32,7 +32,7 @@ function Home() {
         { !isAuthenticated && <LoginButton /> }
       </div>
 
-      {user && goToWorkouts && <Navigate to='/user'/>}
+      {user && goToWorkouts && <Navigate to='/user/home'/>}
 
 
       
