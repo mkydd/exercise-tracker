@@ -39,14 +39,14 @@ function UserHome() {
         <h2>Templates</h2>
         <button>+Template</button>
       </div>
-      <div className="templates">
-        <ul>
-        {userWorkouts.map((workout) => {
-          return (
-            <li key={workout._id}>
-              <Template workout={workout} />
-            </li>)
-        })}
+      <div>
+        <ul className="templates">
+          {userWorkouts.map((workout) => {
+            return (
+              <li key={workout._id}>
+                <Template workout={workout} />
+              </li>)
+          })}
         </ul>
       </div>
       
