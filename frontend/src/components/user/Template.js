@@ -4,16 +4,13 @@ import '../../styles/template.css'
 function Template( {workout} ) {
   const [exerciseNames, setExerciseNames] = useState([])
 
-  function getExerciseNames() {
+  useEffect(() => {
     let temp = []
     workout.exercises.forEach(exercise => {
       temp.push(exercise.exerciseName)
-    });
-    return temp
-  } 
+    })
 
-  useEffect(() => {
-    setExerciseNames(getExerciseNames())
+    setExerciseNames(temp)
   }, [workout])
 
   useEffect(() => {
