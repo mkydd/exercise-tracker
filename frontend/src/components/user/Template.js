@@ -13,9 +13,11 @@ function Template( {workout} ) {
     setExerciseNames(temp)
   }, [workout])
 
-  useEffect(() => {
-    console.log('exerciseNames =', exerciseNames)
-  }, [exerciseNames])
+  // USED FOR TESTING
+  // useEffect(() => {
+  //   console.log('exerciseNames =', exerciseNames)
+  // }, [exerciseNames])
+
   return (
     <div className="workout-template-wrapper">
       <div className='workout-template'>
