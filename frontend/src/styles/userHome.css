@@ -4,6 +4,16 @@
     margin-bottom: 5rem;
 }
 
+.user-home .start-workout {
+    background-color: rgb(61, 158, 227);
+    color: white;
+    border: none;
+    width: 100%;
+    border-radius: 3px;
+    padding: 0.25rem;
+    margin-bottom: 1rem;
+}
+
 .user-home .template-header {
     display: flex;
     justify-content: space-between;
