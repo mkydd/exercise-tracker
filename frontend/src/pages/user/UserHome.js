@@ -32,9 +32,8 @@ function UserHome() {
 
   return (
     <div className='user-home'>
-      UserHome
-      <button>Start New Workout</button>
-      <h1>Previous Workout</h1>
+      <h1>Start Workout</h1>
+      <button className='start-workout'>Start an Empty Workout</button>
       <div className="template-header">
         <h2>Templates</h2>
         <button>+Template</button>
