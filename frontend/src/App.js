@@ -4,6 +4,7 @@ import SignUp from "./pages/signUp";
 import UserHome from "./pages/user/UserHome";
 import Home from "./pages/home";
 import User from "./pages/user/User";
+import './styles/app.css'
 
 
 import LoginButton from "./auth/login";
