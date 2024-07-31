@@ -21,7 +21,7 @@ function UserHome() {
 
   useEffect(() => {
     async function getData() {
-      let { workout } = await getWorkoutData('66a5244d870c3d3f05a80621')
+      let { workout } = await getWorkoutData('66a9001db450b4d2f58b8a16')
       setUserWorkouts(workout.workouts)
     }
     if (userData) {
@@ -40,12 +40,14 @@ function UserHome() {
         <button>+Template</button>
       </div>
       <div className="templates">
-        <Template workout={{name: 'Push', exercises: ['bench press', 'cable fly', 'tricep dip'], date: 'Jul 26 2024'}}/>
-        <Template workout={{name: 'Push', exercises: ['bench press', 'cable fly', 'tricep dip'], date: 'Jul 26 2024'}}/>
-        <Template workout={{name: 'Push', exercises: ['bench press', 'cable fly', 'tricep dip'], date: 'Jul 26 2024'}}/>
-        <Template workout={{name: 'Push', exercises: ['bench press', 'cable fly', 'tricep dip'], date: 'Jul 26 2024'}}/>
-        <Template workout={{name: 'Push', exercises: ['bench press', 'cable fly', 'tricep dip'], date: 'Jul 26 2024'}}/>
-        <Template workout={{name: 'Push', exercises: ['bench press', 'cable fly', 'tricep dip'], date: 'Jul 26 2024'}}/>
+        <ul>
+        {userWorkouts.map((workout) => {
+          return (
+            <li key={workout._id}>
+              <Template workout={workout} />
+            </li>)
+        })}
+        </ul>
       </div>
       
 
