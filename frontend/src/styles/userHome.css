@@ -17,6 +17,7 @@
 .user-home .template-header {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 1rem;
 }
 
 .user-home .template-header button {
