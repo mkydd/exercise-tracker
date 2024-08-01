@@ -1,9 +1,7 @@
 .nav-bar {
     width: 100%;
     background-color: rgb(38, 38, 38);
-    position: fixed;
-    height: 4rem;
-    bottom: 0;
+    height: 10vh;
     border: 1px solid black;
     display: flex;
     justify-content: space-around;
