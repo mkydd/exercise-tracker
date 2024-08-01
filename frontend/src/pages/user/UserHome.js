@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useAuth0 } from "@auth0/auth0-react";
 import getUserData from '../../util/fetchUserData';
 import getWorkoutData from '../../util/fetchUserWorkouts';
-import '../../styles/userHome.css'
+import '../../styles/user/userHome.css'
 import Template from '../../components/user/Template';
 
 function UserHome() {

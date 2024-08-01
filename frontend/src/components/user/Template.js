@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import '../../styles/template.css'
+import '../../styles/user/template.css'
 
 function Template( {workout} ) {
   const [exerciseNames, setExerciseNames] = useState([])
