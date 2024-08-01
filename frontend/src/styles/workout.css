@@ -63,11 +63,18 @@
     text-transform: capitalize;
 }
 
+.exercise-buttons-wrapper {
+    display: flex;
+    column-gap: 0.25rem;
+    margin-bottom: 0.5rem;
+}
+
 .exercise-button {
     color: white;
     background-color: rgb(61, 158, 227);
-    border: 1px solid white;
-    border-radius: 2px;
+    border: none;
+    border-radius: 5px;
+    padding: 0.25rem;
 }
 
 .active.exercise-button {
