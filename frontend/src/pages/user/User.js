@@ -1,13 +1,39 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { useAuth0 } from "@auth0/auth0-react";
+import getUserData from '../../util/fetchUserData';
+import getWorkoutData from '../../util/fetchUserWorkouts';
 import NavBar from '../../util/NavBar'
 import { Outlet } from 'react-router-dom'
 import '../../styles/user/user.css'
 
 function User() {
+  const { user } = useAuth0();
+  const [userData, setUserData] = useState()
+  const [userWorkouts, setUserWorkouts] = useState([])
+
+  useEffect(() => {
+    async function getData() {
+      let data = await getUserData(user.email)
+      setUserData(data.user)
+    }
+    getData()
+  }, [user])
+
+  useEffect(() => {
+    async function getData() {
+      let { workout } = await getWorkoutData('66a9001db450b4d2f58b8a16')
+      setUserWorkouts(workout.workouts)
+    }
+    if (userData) {
+      getData()
+    }
+  }, [userData])
+
+
   return (
     <div className="user">
       <div className="user-page-wrapper">
-        <Outlet />
+        {user && userData && userWorkouts && <Outlet context={{ user, userData, userWorkouts }}/>}
       </div>
       <NavBar />
     </div>

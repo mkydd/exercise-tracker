@@ -1,35 +1,18 @@
-import React, { useState, useEffect } from 'react'
-import { useAuth0 } from "@auth0/auth0-react";
-import getUserData from '../../util/fetchUserData';
-import getWorkoutData from '../../util/fetchUserWorkouts';
+import React, { useEffect, useState } from 'react'
+import { useOutletContext } from 'react-router-dom'
 import '../../styles/user/userHome.css'
 import Template from '../../components/user/Template';
 
 function UserHome() {
-  const { user } = useAuth0();
-  const [userData, setUserData] = useState()
-  const [userWorkouts, setUserWorkouts] = useState([])
-
+  const { userWorkouts } = useOutletContext()
+  const [templates, setTemplates] = useState([])
 
   useEffect(() => {
-    async function getData() {
-      let data = await getUserData(user.email)
-      setUserData(data.user)
+    if (userWorkouts) {
+      setTemplates(userWorkouts)
     }
-    getData()
-  }, [user])
-
-  useEffect(() => {
-    async function getData() {
-      let { workout } = await getWorkoutData('66a9001db450b4d2f58b8a16')
-      setUserWorkouts(workout.workouts)
-    }
-    if (userData) {
-      getData()
-    }
-  }, [userData])
-
-
+  }, [userWorkouts])
+  
   return (
     <div className='user-home'>
       <h1>Start Workout</h1>
@@ -40,7 +23,7 @@ function UserHome() {
       </div>
       <div>
         <ul className="templates">
-          {userWorkouts.map((workout) => {
+          {templates.map((workout) => {
             return (
               <li key={workout._id}>
                 <Template workout={workout} />
@@ -48,9 +31,6 @@ function UserHome() {
           })}
         </ul>
       </div>
-      
-
-
     </div>
   )
 }
