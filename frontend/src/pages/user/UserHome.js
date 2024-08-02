@@ -45,11 +45,6 @@ function UserHome() {
               <li key={workout._id}>
                 <Template workout={workout} />
               </li>)
-          })}{userWorkouts.map((workout) => {
-            return (
-              <li key={workout._id}>
-                <Template workout={workout} />
-              </li>)
           })}
         </ul>
       </div>
