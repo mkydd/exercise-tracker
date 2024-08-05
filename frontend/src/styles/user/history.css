@@ -1,0 +1,15 @@
+.history {
+    margin: 6vw;
+}
+
+.history li {
+    list-style: none;
+}
+
+.previous-workout {
+    border: 1px solid rgb(180, 180, 180);
+    border-radius: 0.5rem;
+    margin-block: 1rem;
+    padding: 0.5rem;
+}
+
