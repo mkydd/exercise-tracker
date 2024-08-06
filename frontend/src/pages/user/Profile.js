@@ -22,6 +22,15 @@ function Profile() {
   return (
     <div className='profile'>
       <h1>Profile</h1>
+      <div className="profile-header">
+        <div className="initials">
+          {user && user.name.firstName.charAt(0)}
+          {user && user.name.lastName.charAt(0)}
+        </div>
+        <div className="email">
+          {user && user.email}
+        </div>
+      </div>
     </div>
   )
 }
