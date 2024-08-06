@@ -32,6 +32,7 @@ function Profile() {
         </div>
       </div>
       <div className="stats">
+      <h2>Stats</h2>
         <div className="stat total-workouts">
           Total Workouts: <div>{workouts.length}</div>
         </div>
