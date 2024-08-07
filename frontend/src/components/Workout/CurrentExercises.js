@@ -6,7 +6,6 @@ function CurrentExercises({ exercises, removeExercise }) {
   function addSet(exercise) {
     let updated = false;
     allSets.forEach((exerciseSets, index) => {
-      // console.log('looooop')
       if (exerciseSets.exerciseId === exercise.id) {
         if (exerciseSets.sets.length > 0) {
           let lastSet = exerciseSets.sets.reduce(
@@ -16,18 +15,15 @@ function CurrentExercises({ exercises, removeExercise }) {
           )
   
           let lastSetNum = lastSet.setNumber
-          // console.log('lastSetNum =', lastSetNum)
           let newArr = [...allSets]
           newArr[index].sets = [...exerciseSets.sets, {setNumber: lastSetNum+1, reps: 0, weight: 0}]
           setAllSets(newArr);
-          // console.log('after update')
           updated = true;
           return
         } else {
           let newArr = [...allSets]
           newArr[index].sets = [{setNumber: 1, reps: 0, weight: 0}]
           setAllSets(newArr);
-          // console.log('after update')
           updated = true;
           return
         }
@@ -66,15 +62,9 @@ function CurrentExercises({ exercises, removeExercise }) {
     let sets
 
     if (exerciseSets.length > 0) {
-      // console.log(9999)
       sets = exerciseSets[0].sets.map((set) => {
         return (
           <li key={`${exercise.id}-${set.setNumber}`} className='current-exercise-set'>
-            <div className="set-header">
-              <div className="set">Set</div>
-              <div className="weight">lbs</div>
-              <div className="Reps">Reps</div>
-            </div>
             <div className="set-data">
               <div className="set-number">{set.setNumber}</div>
               <div className="weight">
@@ -96,15 +86,11 @@ function CurrentExercises({ exercises, removeExercise }) {
                 </input>
               </div>
             </div>
-            <div className="set-buttons-wrapper">
+            {/* <div className="set-buttons-wrapper">
               <div className="remove-button">
                 <button onClick={() => removeSet(exercise, set.setNumber)}>Remove Set</button>
               </div>
-              {/* <div className="rep-buttons">
-                <button onClick={() => incrementReps(exercise, set.setNumber)}>+</button>
-                <button onClick={() => decrementReps(exercise, set.setNumber)}>-</button>
-              </div> */}
-            </div>
+            </div> */}
             
           </li>)
       })
@@ -121,46 +107,12 @@ function CurrentExercises({ exercises, removeExercise }) {
         set.reps = reps
       }
     })
-    // console.log('cloneSetData =', cloneSetData)
-    // console.log('allSets.filter((sets) => sets.exerciseId !== exercise.id) =', allSets.filter((sets) => sets.exerciseId !== exercise.id))
 
     let newArr = allSets.filter((sets) => sets.exerciseId !== exercise.id)
     newArr.push(cloneSetData)
     console.log('New Reps =', newArr)
     setAllSets(newArr)
   }
-
-  // function incrementReps(exercise, setNumber) {
-  //   let setData = {...allSets.filter((sets) => sets.exerciseId === exercise.id)[0]}
-  //   let cloneSetData = Object.assign({}, setData)
-  //   cloneSetData.sets.forEach((set) => {
-  //     if (set.setNumber === setNumber) {
-  //       set.reps++
-  //     }
-  //   })
-  //   // console.log('cloneSetData =', cloneSetData)
-  //   // console.log('allSets.filter((sets) => sets.exerciseId !== exercise.id) =', allSets.filter((sets) => sets.exerciseId !== exercise.id))
-
-  //   let newArr = allSets.filter((sets) => sets.exerciseId !== exercise.id)
-  //   newArr.push(cloneSetData)
-  //   setAllSets(newArr)
-  // }
-
-  // function decrementReps(exercise, setNumber) {
-  //   let setData = {...allSets.filter((sets) => sets.exerciseId === exercise.id)[0]}
-  //   let cloneSetData = Object.assign({}, setData)
-  //   cloneSetData.sets.forEach((set) => {
-  //     if (set.setNumber === setNumber && set.reps > 0) {
-  //       set.reps--
-  //     }
-  //   })
-  //   // console.log('cloneSetData =', cloneSetData)
-  //   // console.log('allSets.filter((sets) => sets.exerciseId !== exercise.id) =', allSets.filter((sets) => sets.exerciseId !== exercise.id))
-
-  //   let newArr = allSets.filter((sets) => sets.exerciseId !== exercise.id)
-  //   newArr.push(cloneSetData)
-  //   setAllSets(newArr)
-  // }
 
   function removeExerciseOnClick(exercise) {
     removeExercise(exercise)
@@ -201,7 +153,12 @@ function CurrentExercises({ exercises, removeExercise }) {
         {exercises.map((exercise) => {
           return (
               <li key={exercise.id} className='current-exercise'>
-                <div onClick={() => removeExerciseOnClick(exercise)} >{exercise.name}</div>
+                <div onClick={() => removeExerciseOnClick(exercise)} className='name'>{exercise.name}</div>
+                <div className="set-header">
+                  <div className="set">Set</div>
+                  <div className="weight">lbs</div>
+                  <div className="Reps">Reps</div>
+                </div>
                 <ul className='sets'>
                   {allSets.length > 0 ? displaySets(exercise) : null}
                 </ul>
