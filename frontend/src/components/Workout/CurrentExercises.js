@@ -65,6 +65,9 @@ function CurrentExercises({ exercises, removeExercise }) {
       sets = exerciseSets[0].sets.map((set) => {
         return (
           <li key={`${exercise.id}-${set.setNumber}`} className='current-exercise-set'>
+            <div className="remove-button">
+              <button onClick={() => removeSet(exercise, set.setNumber)}>X</button>
+            </div>
             <div className="set-data">
               <div className="set-number">{set.setNumber}</div>
               <div className="weight">

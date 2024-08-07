@@ -92,12 +92,27 @@
 }
 
 .current-exercise {
-    display: flex;
-    flex-wrap: wrap;
+    margin-block: 1rem;
+}
+
+.remove-button {
+    position: fixed;
+}
+
+.remove-button button {
+    background-color: white;
+    border: none;
+}
+
+.current-exercise .name {
+    color: rgb(61, 158, 227);
+    text-transform: capitalize;
+    font-weight: 500;
 }
 
 .current-exercise-set {
-list-style: none;
+    list-style: none;
+    margin-block: 0.5rem;
 }
 
 .sets {
@@ -120,7 +135,6 @@ list-style: none;
 .set-data {
     display: flex;
     justify-content: space-between;
-    /* border: 1px solid black; */
 }
 
 .set-data input {
@@ -130,7 +144,6 @@ list-style: none;
 
 .set-data div {
     min-width: 33%;
-    /* border: 1px solid red; */
     display: flex;
     justify-content: center;
 }
@@ -147,7 +160,6 @@ list-style: none;
 .set-buttons-wrapper {
     display: flex;
     justify-content: space-between;
-    /* border: 1px solid black; */
     box-sizing: border-box;
 }
 
