@@ -10,6 +10,7 @@ import '../../styles/workout.css'
 
 function Workout() {
   const [currentExercises, setCurrentExercises] = useState([])
+  const [time, setTime] = useState({hours: 0, minutes: 0, seconds:0})
 
   function exerciseOnClick(exercise) {
     if (currentExercises.includes(exercise)) return;
@@ -28,10 +29,11 @@ function Workout() {
     setCurrentExercises(newArr)
     // console.log('Removed ', exercise.name)
   }
+  
   return (
     <div className='workout'>
       <WorkoutHeader />
-      <Stopwatch />
+      <Stopwatch onStop={(time) => {setTime(time)}}/>
       <CurrentExercises exercises={currentExercises} removeExercise={removeExercise} />
       <AddExerciseButton onClickFunction={exerciseOnClick} />
     </div>

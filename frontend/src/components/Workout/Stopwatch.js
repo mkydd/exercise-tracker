@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-function Stopwatch() {
+function Stopwatch({ onStop }) {
   const [time, setTime] = useState({hours: 0, minutes: 0, seconds:0})
   const [start, setStart] = useState(true)
 
@@ -39,7 +39,10 @@ function Stopwatch() {
       <div className="time">
         {displayTime()}
       </div>
-      <button onClick={() => {setStart(false)}}>End Workout</button>
+      <button onClick={() => {
+        setStart(false)
+        onStop(time)
+        }}>End Workout</button>
     </div>
   )
 }
