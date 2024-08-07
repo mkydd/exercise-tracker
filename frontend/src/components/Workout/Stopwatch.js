@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 
 function Stopwatch() {
-  const [time, setTime] = useState({hours: 0, minutes: 0, seconds:57})
-  const [start, setStart] = useState(false)
+  const [time, setTime] = useState({hours: 0, minutes: 0, seconds:0})
+  const [start, setStart] = useState(true)
 
   useEffect(() => {
     if (!start) return
