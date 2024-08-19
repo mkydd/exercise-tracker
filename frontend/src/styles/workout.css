@@ -95,57 +95,29 @@
     margin-block: 1rem;
 }
 
-.remove-button {
-    position: fixed;
-}
-
-.remove-button button {
-    background-color: white;
-    border: none;
-}
-
 .current-exercise .name {
     color: rgb(61, 158, 227);
     text-transform: capitalize;
     font-weight: 500;
 }
 
-.current-exercise-set {
-    list-style: none;
-    margin-block: 0.5rem;
-}
-
-.sets {
-    margin: 0;
-    padding: 0;
-    max-width: 100%;
-}
-
-.set-header {
-    display: flex;
-    justify-content: space-between;
-}
-
-.set-header div {
-    min-width: 33%;
-    display: flex;
-    justify-content: center;
-}
-
-.set-data {
-    display: flex;
-    justify-content: space-between;
-}
-
-.set-data input {
-    max-width: 33%;
+.current-exercise-table {
+    width: 100%;
     text-align: center;
 }
 
-.set-data div {
-    min-width: 33%;
+.current-exercise-table input {
+    text-align: center;
+}
+
+.current-exercise-table .weight {
     display: flex;
-    justify-content: center;
+}
+
+.remove-button button {
+    background-color: white;
+    color: red;
+    border: none;
 }
 
 .add-set-button {
@@ -155,23 +127,4 @@
     padding: 0.25rem;
     font-weight: bold;
     background-color: rgb(226, 226, 226);
-}
-
-.set-buttons-wrapper {
-    display: flex;
-    justify-content: space-between;
-    box-sizing: border-box;
-}
-
-.set-buttons-wrapper .rep-buttons {
-    max-width: 33%;
-}
-
-.set-buttons-wrapper .remove-button {
-    min-width: 66%;
-}
-
-.set-wrapper {
-    display: flex;
-    max-width: 100%;
 }

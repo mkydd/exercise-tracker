@@ -64,38 +64,38 @@ function CurrentExercises({ exercises, removeExercise }) {
     if (exerciseSets.length > 0) {
       sets = exerciseSets[0].sets.map((set) => {
         return (
-          <li key={`${exercise.id}-${set.setNumber}`} className='current-exercise-set'>
-            <div className="remove-button">
-              <button onClick={() => removeSet(exercise, set.setNumber)}>X</button>
-            </div>
-            <div className="set-data">
-              <div className="set-number">{set.setNumber}</div>
-              <div className="weight">
-                <input 
-                  type="number" 
-                  id={`weight-${exercise.id}-${set.setNumber}`} 
-                  name="weight" 
-                  onChange={(e) => weightOnChange(exercise, set.setNumber, e.target.value)}
-                  value={set.weight}>
-                </input>
-              </div>
-              <div className="reps">
-                <input 
-                  type="number" 
-                  id={`reps-${exercise.id}-${set.setNumber}`} 
-                  name="reps" 
-                  onChange={(e) => repsOnChange(exercise, set.setNumber, e.target.value)}
-                  value={set.reps}>
-                </input>
-              </div>
-            </div>
-            {/* <div className="set-buttons-wrapper">
-              <div className="remove-button">
-                <button onClick={() => removeSet(exercise, set.setNumber)}>Remove Set</button>
-              </div>
-            </div> */}
-            
-          </li>)
+            <tr>
+              <td>
+                <div className="remove-button">
+                  <button onClick={() => removeSet(exercise, set.setNumber)}>X</button>
+                </div>
+              </td>
+              <td>
+                <div className="set-number">{set.setNumber}</div>
+              </td>
+              <td>
+                <div className="weight">
+                  <input 
+                    type="number" 
+                    id={`weight-${exercise.id}-${set.setNumber}`} 
+                    name="weight" 
+                    onChange={(e) => weightOnChange(exercise, set.setNumber, e.target.value)}
+                    value={set.weight}>
+                  </input>
+                </div>
+              </td>
+              <td>
+                <div className="reps">
+                  <input 
+                    type="number" 
+                    id={`reps-${exercise.id}-${set.setNumber}`} 
+                    name="reps" 
+                    onChange={(e) => repsOnChange(exercise, set.setNumber, e.target.value)}
+                    value={set.reps}>
+                  </input>
+                </div>
+              </td>
+            </tr>)
       })
     }
 
@@ -157,14 +157,13 @@ function CurrentExercises({ exercises, removeExercise }) {
           return (
               <li key={exercise.id} className='current-exercise'>
                 <div onClick={() => removeExerciseOnClick(exercise)} className='name'>{exercise.name}</div>
-                <div className="set-header">
-                  <div className="set">Set</div>
-                  <div className="weight">lbs</div>
-                  <div className="Reps">Reps</div>
-                </div>
-                <ul className='sets'>
+                <table className='current-exercise-table'>
+                  <th></th>
+                  <th>Set</th>
+                  <th>lbs</th>
+                  <th>Reps</th>
                   {allSets.length > 0 ? displaySets(exercise) : null}
-                </ul>
+                </table>
                 <button className='add-set-button' onClick={() => addSet(exercise)}>+ Add Set</button>
               </li>)
         })}
