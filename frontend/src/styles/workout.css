@@ -108,10 +108,7 @@
 
 .current-exercise-table input {
     text-align: center;
-}
-
-.current-exercise-table .weight {
-    display: flex;
+    max-width: 50px;
 }
 
 .remove-button button {
