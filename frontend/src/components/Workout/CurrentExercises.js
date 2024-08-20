@@ -64,7 +64,7 @@ function CurrentExercises({ exercises, removeExercise }) {
     if (exerciseSets.length > 0) {
       sets = exerciseSets[0].sets.map((set) => {
         return (
-            <tr>
+            <tr key={`${exercise.id}-${set.setNumber}`}>
               <td>
                 <div className="remove-button">
                   <button onClick={() => removeSet(exercise, set.setNumber)}>X</button>
@@ -158,11 +158,16 @@ function CurrentExercises({ exercises, removeExercise }) {
               <li key={exercise.id} className='current-exercise'>
                 <div onClick={() => removeExerciseOnClick(exercise)} className='name'>{exercise.name}</div>
                 <table className='current-exercise-table'>
-                  <th></th>
-                  <th>Set</th>
-                  <th>lbs</th>
-                  <th>Reps</th>
-                  {allSets.length > 0 ? displaySets(exercise) : null}
+                  <tbody>
+                    <tr>
+                      <th></th>
+                      <th>Set</th>
+                      <th>lbs</th>
+                      <th>Reps</th>
+                    </tr>
+                    
+                    {allSets.length > 0 ? displaySets(exercise) : null}
+                  </tbody>
                 </table>
                 <button className='add-set-button' onClick={() => addSet(exercise)}>+ Add Set</button>
               </li>)
