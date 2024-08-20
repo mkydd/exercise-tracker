@@ -156,7 +156,10 @@ function CurrentExercises({ exercises, removeExercise }) {
         {exercises.map((exercise) => {
           return (
               <li key={exercise.id} className='current-exercise'>
-                <div onClick={() => removeExerciseOnClick(exercise)} className='name'>{exercise.name}</div>
+                <div className='name'>
+                  {exercise.name}
+                  <button className="remove-exercise" onClick={() => removeExerciseOnClick(exercise)}>(Remove)</button>
+                </div>
                 <table className='current-exercise-table'>
                   <tbody>
                     <tr>

@@ -106,10 +106,19 @@
     margin-block: 1rem;
 }
 
+.current-exercise .remove-exercise {
+    background-color: white;
+    color: red;
+    border: none;
+}
+
 .current-exercise .name {
     color: rgb(61, 158, 227);
     text-transform: capitalize;
     font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .current-exercise-table {
