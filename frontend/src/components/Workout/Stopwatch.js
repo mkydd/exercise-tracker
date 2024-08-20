@@ -35,13 +35,14 @@ function Stopwatch({ onStop }) {
 
   return (
     <div className='stopwatch'>
-      <button onClick={() => {setStart(true)}}>Start Workout</button>
       <div className="time">
         {displayTime()}
       </div>
-      <button onClick={() => {
-        setStart(false)
-        onStop(time)
+      <button 
+        className="end-workout-button"
+        onClick={() => {
+          setStart(false)
+          onStop(time)
         }}>End Workout</button>
     </div>
   )

@@ -32,6 +32,17 @@
     margin-block: 1rem;
 }
 
+.end-workout-button {
+    border: none;
+    background-color: rgba(215, 55, 55, 0.25);
+    color: rgb(227, 80, 61);
+    border-radius: 2px;
+    width: 100%;
+    font-weight: bold;
+    padding: 0.25rem;
+    margin-top: 1rem;
+}
+
 /* Style Search Bar */
 .search-exercises {
     width: 100%;
