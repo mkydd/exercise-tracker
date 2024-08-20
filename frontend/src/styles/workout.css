@@ -44,15 +44,23 @@
 }
 
 /* Style Search Bar */
+.search-exercises-wrapper {
+    display: flex;
+    background-color: rgb(226, 226, 226);
+    border-radius: 2px;
+    margin-bottom: 1rem;
+}
+
+.search-icon {
+    padding: 0.1rem;
+}
+
 .search-exercises {
     width: 100%;
-    padding: 0;
+    padding: 0.25rem;
     box-sizing: border-box;
     border: none;
     background-color: rgb(226, 226, 226);
-    border-radius: 2px;
-    padding: 0.25rem;
-    margin-bottom: 1rem;
 }
 
 /* Style Exercises */

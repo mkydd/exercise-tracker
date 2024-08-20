@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 // import { useEffect, useState } from 'react';
 import { allExercises } from '../../util/Data';
+import SearchIcon from '@mui/icons-material/Search';
 
 function Exercises({ onClickFunction }) {
   // const [exercises, setExercises] = useState([])
@@ -45,6 +46,7 @@ function Exercises({ onClickFunction }) {
   return (
     <div>
       <div className="search-exercises-wrapper">
+        <SearchIcon className='search-icon'/>
         <input type="text" name="search" className='search-exercises' onChange={(e) => searchOnChange(e.target.value)}/>
       </div>
 
