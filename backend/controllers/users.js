@@ -20,7 +20,6 @@ const createUser = asyncWrapper(async (req, res, next) => {
     userData = {...userData, password: hash}
 
     const user = await User.create(userData)
-    const userWorkouts = await Workout.create({ userId: user._id, workouts: []})
     res.status(201).json({ user })
   });
 })
