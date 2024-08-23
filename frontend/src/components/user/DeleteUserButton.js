@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import ConfirmationPrompt from '../ConfirmationPrompt'
+import '../../styles/components/deleteUserButton.css'
 
 export default function DeleteUserButton() {
   const [showPrompt, setShowPrompt] = useState(false)
@@ -8,9 +9,9 @@ export default function DeleteUserButton() {
   function deleteAccount() {
 
   }
-  
+
   return (
-    <div>
+    <div className='delete-user-button'>
       <button className="delete-user" onClick={() => setShowPrompt(true)}>Delete Account</button>
       {showPrompt && 
       <ConfirmationPrompt 
