@@ -4,7 +4,7 @@ import '../../styles/components/deleteUserButton.css'
 
 export default function DeleteUserButton() {
   const [showPrompt, setShowPrompt] = useState(false)
-  const message = "Are you sure you want to delete your account. This is an irreversible action"
+  const message = "Are you sure you want to delete your account? This is an irreversible action"
 
   function deleteAccount() {
 
