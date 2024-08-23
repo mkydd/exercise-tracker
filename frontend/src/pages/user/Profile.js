@@ -48,7 +48,7 @@ function Profile() {
         </div>
       </div>
       <div>
-        <DeleteUserAccount />
+        {user && <DeleteUserAccount user={user}/>}
       </div>
     </div>
   )
