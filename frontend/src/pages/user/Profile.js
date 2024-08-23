@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import '../../styles/user/profile.css'
 import { useOutletContext } from 'react-router-dom'
+import DeleteUserAccount from '../../components/user/DeleteUserButton'
 
 function Profile() {
   const { userWorkouts, userData } = useOutletContext()
@@ -45,6 +46,9 @@ function Profile() {
         <div className="stat height">
           Height:&nbsp;<div>{user && user.stats.height}</div><div className='unit'>cm</div>
         </div>
+      </div>
+      <div>
+        <DeleteUserAccount />
       </div>
     </div>
   )
