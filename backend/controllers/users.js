@@ -2,6 +2,7 @@ const User = require('../models/User')
 const Workout = require('../models/Workout')
 const asyncWrapper = require('../middleware/async')
 const { createCustomError } = require('../errors/custom-error')
+const deleteAuthUser = require('../middleware/auth0-delete-user')
 const bcrypt = require('bcrypt')
 
 const getAllUsers = asyncWrapper(async (req, res) => {
@@ -50,13 +51,16 @@ const updateUser = asyncWrapper(async (req, res, next) => {
 })
 
 const deleteUser = asyncWrapper(async (req, res, next) => {
-  const user = await User.findOneAndDelete({ _id: req.params.id })
+  // const user = await User.findOneAndDelete({ _id: req.params.id })
 
-  if (!user) {
-    return next(createCustomError(`No user with id: ${req.params.id}`, 404), req, res)
-  }
+  // if (!user) {
+  //   return next(createCustomError(`No user with id: ${req.params.id}`, 404), req, res)
+  // }
+  console.log(999)
+  deleteAuthUser(req.params.id)
+  console.log(888)
 
-  res.status(200).json({ user })
+  res.status(200).json({ msg: 'deleted user' })
 })
 
 const getSingleUser = asyncWrapper(async (req, res, next) => {
