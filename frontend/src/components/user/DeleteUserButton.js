@@ -2,12 +2,22 @@ import React, { useState } from 'react'
 import ConfirmationPrompt from '../ConfirmationPrompt'
 import '../../styles/components/deleteUserButton.css'
 
-export default function DeleteUserButton() {
+export default function DeleteUserButton({ auth0UserId }) {
   const [showPrompt, setShowPrompt] = useState(false)
   const message = "Are you sure you want to delete your account? This is an irreversible action."
 
-  function deleteAccount() {
-
+  async function deleteAccount(auth0UserId) {
+    await fetch(`/api/v1/users/${auth0UserId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    })
+      .then(res => res.json())
+      .then(data => {
+        return data
+      })
   }
 
   return (
@@ -16,7 +26,7 @@ export default function DeleteUserButton() {
       {showPrompt && 
       <ConfirmationPrompt 
         msg={message} 
-        onConfirm={() => deleteAccount()} 
+        onConfirm={() => deleteAccount(auth0UserId)} 
         closePrompt={() => setShowPrompt(false)}
         display={showPrompt}/>
       }
