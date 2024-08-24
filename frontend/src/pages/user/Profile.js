@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import '../../styles/user/profile.css'
 import { useOutletContext } from 'react-router-dom'
-import DeleteUserAccount from '../../components/user/DeleteUserButton'
+import DeleteUserButton from '../../components/user/DeleteUserButton'
 
 function Profile() {
-  const { userWorkouts, userData } = useOutletContext()
+  const { userWorkouts, userData, auth0UserId } = useOutletContext()
   const [workouts, setWorkouts] = useState([])
   const [user, setUser] = useState()
+  const [auth0Id, setAuth0Id] = useState('')
 
   useEffect(() => {
     if (userWorkouts) {
@@ -16,10 +17,15 @@ function Profile() {
 
   useEffect(() => {
     if (userData) {
-      userData.firstName = ''
       setUser(userData)
     }
   }, [userData])
+
+  useEffect(() => {
+    if (auth0UserId) {
+      setAuth0Id(auth0UserId)
+    }
+  }, [auth0UserId])
 
   return (
     <div className='profile'>
@@ -49,7 +55,7 @@ function Profile() {
         </div>
       </div>
       <div>
-        {user && <DeleteUserAccount user={user}/>}
+        {user && <DeleteUserButton user={user} auth0UserId={auth0Id}/>}
       </div>
     </div>
   )

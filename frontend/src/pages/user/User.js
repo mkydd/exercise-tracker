@@ -8,6 +8,7 @@ import '../../styles/user/user.css'
 
 function User() {
   const { user } = useAuth0();
+  const [auth0UserId, setAuth0UserId] = useState('')
   const [userData, setUserData] = useState()
   const [userWorkouts, setUserWorkouts] = useState([])
 
@@ -29,11 +30,17 @@ function User() {
     }
   }, [userData])
 
+  useEffect(() => {
+    if (user) {
+      setAuth0UserId(user.sub)
+    }
+  }, [user])
+
 
   return (
     <div className="user">
       <div className="user-page-wrapper">
-        {user && userData && userWorkouts && <Outlet context={{ user, userData, userWorkouts }}/>}
+        {user && userData && userWorkouts && <Outlet context={{ user, userData, userWorkouts, auth0UserId }}/>}
       </div>
       <NavBar />
     </div>
