@@ -20,6 +20,7 @@ function Workout() {
   }
 
   function removeExercise(exercise) {
+    console.log('time =', time)
     let newArr = []
     for (let i=0; i<currentExercises.length; i++) {
       if (currentExercises[i].id !== exercise.id) {
