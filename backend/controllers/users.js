@@ -54,14 +54,27 @@ const updateUser = asyncWrapper(async (req, res, next) => {
 })
 
 const deleteUser = asyncWrapper(async (req, res, next) => {
-  // const user = await User.findOneAndDelete({ _id: req.params.id })
+  const user_auth0Id = req.params.id
 
-  // if (!user) {
-  //   return next(createCustomError(`No user with id: ${req.params.id}`, 404), req, res)
-  // }
-  console.log(999)
-  deleteAuthUser(req.params.id)
-  console.log(888)
+  // get user from database
+  const user = await User.findOne({ auth0Id: user_auth0Id })
+  if (!user) {
+    return next(createCustomError(`Error (find): No user with id: ${user_auth0Id}`, 404), req, res)
+  }
+
+  // delete user from database
+  const deletedUser = await User.findOneAndDelete({ auth0Id: user_auth0Id })
+  if (!deletedUser) {
+    return next(createCustomError(`Error (delete): No user with id: ${user_auth0Id}`, 404), req, res)
+  }
+
+  // delete user workouts from database 
+  const workoutList = await Workout.findOneAndDelete({ userId: user._id })
+  if (!workoutList) {
+    return next(createCustomError(`No workoutList for id: ${user_auth0Id}`, 404), req, res)
+  }
+
+  deleteAuthUser(user_auth0Id)
 
   res.status(200).json({ msg: 'deleted user' })
 })
