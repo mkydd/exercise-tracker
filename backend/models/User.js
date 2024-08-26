@@ -3,12 +3,10 @@ const mongoose = require('mongoose');
 const UserSchema = new mongoose.Schema({
   name: {
     firstName: {
-      type: String,
-      required: [true, 'provide a firstName for user']
+      type: String
     },
     lastName: {
-      type: String,
-      required: [true, 'provide a lastName for user']
+      type: String
     }
   },
   email: {
@@ -16,8 +14,7 @@ const UserSchema = new mongoose.Schema({
     required: [true, 'provide a email for user']
   },
   password: {
-    type: String,
-    required: [true, 'provide a user password']
+    type: String
   },
   stats: {
     weight: {
