@@ -12,7 +12,7 @@ const createWorkout = asyncWrapper(async (req, res) => {
   res.status(201).json({ workout })
 })
 
-const getWorkout = asyncWrapper(async (req, res, next) => {
+const getWorkouts = asyncWrapper(async (req, res, next) => {
   const workout = await Workout.findOne({ userId: req.params.id })
 
   if (!workout) {
@@ -81,7 +81,7 @@ const addWorkout = asyncWrapper(async (req, res, next) => {
 module.exports = {
   getAllWorkouts,
   createWorkout,
-  getWorkout,
+  getWorkouts,
   updateWorkout,
   deleteWorkout,
   addWorkout,
