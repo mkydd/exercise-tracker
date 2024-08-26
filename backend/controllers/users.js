@@ -11,15 +11,21 @@ const getAllUsers = asyncWrapper(async (req, res) => {
 })
 
 const createUser = asyncWrapper(async (req, res, next) => {
-  let userData = req.body
+  let userData = { email: req.body.email }
 
   const user = await User.create(userData)
 
   if (!user) {
-    return next(createCustomError(`Error creating user please try again`, 500), req,res)
+    return next(createCustomError(`Error creating user, please try again`, 500), req,res)
   }
 
-  res.status(201).json({ user })
+  const workoutList = await Workout.create({ userId: user._id, workouts: [] })
+
+  if (!workoutList) {
+    return next(createCustomError(`Error creating users workoutList, please try again`, 500), req,res)
+  }
+
+  res.status(201).json({ user, workoutList })
 })
 
 const getUser = asyncWrapper(async (req, res, next) => {
