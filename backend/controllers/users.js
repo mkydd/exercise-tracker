@@ -13,16 +13,13 @@ const getAllUsers = asyncWrapper(async (req, res) => {
 const createUser = asyncWrapper(async (req, res, next) => {
   let userData = req.body
 
-  bcrypt.hash(userData.password, 10, async function(err, hash) {
-    if (err) {
-      return next(createCustomError(`Issue encrypting password`, 400), req,res)
-    }
-    console.log('hash =', hash)
-    userData = {...userData, password: hash}
+  const user = await User.create(userData)
 
-    const user = await User.create(userData)
-    res.status(201).json({ user })
-  });
+  if (!user) {
+    return next(createCustomError(`Error creating user please try again`, 500), req,res)
+  }
+
+  res.status(201).json({ user })
 })
 
 const getUser = asyncWrapper(async (req, res, next) => {
