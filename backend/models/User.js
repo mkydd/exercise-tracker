@@ -16,6 +16,10 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String
   },
+  auth0Id: {
+    type: String,
+    required: [true, 'provide auth0Id for user']
+  },
   stats: {
     weight: {
       type: Number,

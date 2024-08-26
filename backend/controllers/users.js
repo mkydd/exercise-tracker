@@ -11,7 +11,7 @@ const getAllUsers = asyncWrapper(async (req, res) => {
 })
 
 const createUser = asyncWrapper(async (req, res, next) => {
-  let userData = { email: req.body.email }
+  let userData = { email: req.body.email, auth0Id: req.body.auth0Id }
 
   const user = await User.create(userData)
 
