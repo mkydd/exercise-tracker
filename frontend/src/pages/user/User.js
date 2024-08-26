@@ -22,7 +22,8 @@ function User() {
 
   useEffect(() => {
     async function getData() {
-      let { workout } = await getWorkoutData('66a9001db450b4d2f58b8a16')
+      console.log('userData =', userData)
+      let { workout } = await getWorkoutData(userData._id)
       setUserWorkouts(workout.workouts)
     }
     if (userData) {
