@@ -16,7 +16,7 @@ const createUser = asyncWrapper(async (req, res, next) => {
     auth0Id: req.body.auth0Id,
     name: {
       firstName: null,
-      lasName: null
+      lastName: null
     },
     stats: {
       weight: null,
