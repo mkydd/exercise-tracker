@@ -9,6 +9,7 @@ function Profile() {
   const [workouts, setWorkouts] = useState([])
   const [user, setUser] = useState()
   const [auth0Id, setAuth0Id] = useState('')
+  const [displayUserInputPrompt, setDisplayUserInputPrompt] = useState(false)
 
   useEffect(() => {
     if (userWorkouts) {
@@ -40,6 +41,10 @@ function Profile() {
     })
 
     console.log("res.status =", res.status)
+
+    if (res.status == 200) {
+      setUser({...user, ...userInfo})
+    }
   }
 
   return (
