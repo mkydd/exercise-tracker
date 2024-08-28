@@ -21,8 +21,6 @@ function UserInfoInput({ user, onConfirm, display }) {
     const formData = new FormData(form);
     let formJson = Object.fromEntries(formData.entries());
 
-    console.log('formData =', formJson)
-
     try {
       formJson = {
         ...formJson,
@@ -47,11 +45,7 @@ function UserInfoInput({ user, onConfirm, display }) {
       }
     }
 
-    console.log("newUserInfo =", newUserInfo)
-
     onConfirm(newUserInfo)
-
-
   }
 
   return (
