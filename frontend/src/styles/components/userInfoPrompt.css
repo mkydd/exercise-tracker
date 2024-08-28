@@ -1,0 +1,25 @@
+.user-info-prompt-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100dvh;
+    width: 100dvw;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-info-prompt {
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 0.25rem;
+    width: 70%;
+    height: fit-content;
+}
+
+.user-info-prompt input {
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
