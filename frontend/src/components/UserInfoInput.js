@@ -1,7 +1,7 @@
 import React from 'react'
 import '../styles/components/userInfoPrompt.css'
 
-function UserInfoInput({ user, onConfirm, display }) {
+function UserInfoInput({ user, onConfirm, setDisplay }) {
   // let userInfo = {
   //   name: {
   //     firstName: user.name.firstName,
@@ -46,6 +46,7 @@ function UserInfoInput({ user, onConfirm, display }) {
     }
 
     onConfirm(newUserInfo)
+    setDisplay(false)
   }
 
   return (
@@ -68,9 +69,9 @@ function UserInfoInput({ user, onConfirm, display }) {
           <input type="number" name="age" id="age" min="0" defaultValue={user.stats.age ? user.stats.age : ''}/>
           
           <button type="submit">Update Info</button>
+          <button type="button" onClick={() => setDisplay(false)}>Close</button>
         </form>
       </div>
-      
     </div>
   )
 }

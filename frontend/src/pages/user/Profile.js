@@ -62,10 +62,11 @@ function Profile() {
     <div className='profile'>
       <h1>Profile</h1>
 
-      {user && (!user.stats.height || !user.stats.weight || !user.stats.age || !user.name.firstName || !user.name.lastName) && 
+      {user && (!user.stats.height || !user.stats.weight || !user.stats.age || !user.name.firstName || !user.name.lastName || displayUserInputPrompt) && 
       <UserInfoInput 
         user={user} 
-        onConfirm={updateUserInfo}/>}
+        onConfirm={updateUserInfo}
+        setDisplay={setDisplayUserInputPrompt}/>}
 
       <div className="profile-header">
         <div className="initials">
@@ -89,6 +90,9 @@ function Profile() {
         <div className="stat height">
           Height:&nbsp;<div>{user && user.stats.height}</div><div className='unit'>cm</div>
         </div>
+      </div>
+      <div className="update-user-info">
+        <button onClick={() => setDisplayUserInputPrompt(true)}>Update User Information</button>
       </div>
       <div>
         {user && <DeleteUserButton user={user} auth0UserId={auth0Id}/>}
