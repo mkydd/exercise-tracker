@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import '../../styles/user/profile.css'
 import { useOutletContext } from 'react-router-dom'
 import DeleteUserButton from '../../components/user/DeleteUserButton'
+import UserInfoInput from '../../components/UserInfoInput'
 
 function Profile() {
   const { userWorkouts, userData, auth0UserId } = useOutletContext()
@@ -19,6 +20,7 @@ function Profile() {
     if (userData) {
       setUser(userData)
     }
+    console.log('userData =', userData)
   }, [userData])
 
   useEffect(() => {
@@ -27,13 +29,32 @@ function Profile() {
     }
   }, [auth0UserId])
 
+  async function updateUserInfo(userInfo) {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const res = await fetch(`/api/v1/users/${userData._id}`, {
+      method: "PATCH",
+      body: JSON.stringify(userInfo),
+      headers: myHeaders
+    })
+
+    console.log("res.status =", res.status)
+  }
+
   return (
     <div className='profile'>
       <h1>Profile</h1>
+
+      {user && (!user.stats.height || !user.stats.weight || !user.stats.age || !user.name.firstName || !user.name.lastName) && 
+      <UserInfoInput 
+        user={user} 
+        onConfirm={updateUserInfo}/>}
+
       <div className="profile-header">
         <div className="initials">
-          {user && (user.name.firstName.charAt(0) || '-')}
-          {user && (user.name.lastName.charAt(0) || '-')}
+          {/* {user && (user.name.firstName.charAt(0) || '-')}
+          {user && (user.name.lastName.charAt(0) || '-')} */}
         </div>
         <div className="email">
           {user && user.email}
