@@ -53,7 +53,7 @@ function Profile() {
     try {
       new_initials = newUserData.name.firstName.charAt(0) + newUserData.name.lastName.charAt(0)
     } catch(e) {
-      new_initials = initials
+      new_initials = newUserData.email.slice(0, 2)
     }
     return new_initials
   }
