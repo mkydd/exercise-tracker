@@ -10,6 +10,7 @@ function Profile() {
   const [user, setUser] = useState()
   const [auth0Id, setAuth0Id] = useState('')
   const [displayUserInputPrompt, setDisplayUserInputPrompt] = useState(false)
+  const [initials, setInitials] = useState('')
 
   useEffect(() => {
     if (userWorkouts) {
@@ -20,8 +21,8 @@ function Profile() {
   useEffect(() => {
     if (userData) {
       setUser(userData)
+      setInitials(newInitials(userData))
     }
-    console.log('userData =', userData)
   }, [userData])
 
   useEffect(() => {
@@ -47,6 +48,16 @@ function Profile() {
     }
   }
 
+  function newInitials(newUserData) {
+    let new_initials
+    try {
+      new_initials = newUserData.name.firstName.charAt(0) + newUserData.name.lastName.charAt(0)
+    } catch(e) {
+      new_initials = initials
+    }
+    return new_initials
+  }
+
   return (
     <div className='profile'>
       <h1>Profile</h1>
@@ -58,8 +69,7 @@ function Profile() {
 
       <div className="profile-header">
         <div className="initials">
-          {/* {user && (user.name.firstName.charAt(0) || '-')}
-          {user && (user.name.lastName.charAt(0) || '-')} */}
+          {initials}
         </div>
         <div className="email">
           {user && user.email}
