@@ -43,7 +43,7 @@ function Profile() {
 
     console.log("res.status =", res.status)
 
-    if (res.status == 200) {
+    if (res.status === 200) {
       setUser({...user, ...userInfo})
     }
   }
