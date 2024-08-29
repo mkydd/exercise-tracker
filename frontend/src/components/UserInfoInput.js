@@ -53,6 +53,9 @@ function UserInfoInput({ user, onConfirm, setDisplay }) {
     <div className="user-info-prompt-wrapper">
       <div className="user-info-prompt">
         <form onSubmit={(e) => handleSubmit(e)}>
+          <div className="form-header">
+            <div>Please Enter Your Information</div>
+          </div>
           <label htmlFor="firstName">First Name*</label>
           <input type="text" name="firstName" id="firstName" required defaultValue={user.name.firstName ? user.name.firstName : ''} />
 
@@ -68,8 +71,10 @@ function UserInfoInput({ user, onConfirm, setDisplay }) {
           <label htmlFor="age">Age</label>
           <input type="number" name="age" id="age" min="0" defaultValue={user.stats.age ? user.stats.age : ''}/>
           
-          <button type="submit">Update Info</button>
-          <button type="button" onClick={() => setDisplay(false)}>Close</button>
+          <div className="form-buttons">
+            <button className="update-info" type="submit">Update Info</button>
+            <button className="close" type="button" onClick={() => setDisplay(false)}>Close</button>
+          </div>
         </form>
       </div>
     </div>
