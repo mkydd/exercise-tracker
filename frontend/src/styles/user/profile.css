@@ -36,3 +36,13 @@
     align-self: flex-end;
     font-size: small;
 }
+
+.update-user-info button {
+    color: white;
+    background-color: rgb(61, 158, 227);
+    border: none;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    width: 100%;
+    margin-top: 1rem;
+}
