@@ -1,10 +1,16 @@
 import React, { useState } from 'react'
 import ConfirmationPrompt from '../ConfirmationPrompt'
 import '../../styles/components/deleteUserButton.css'
+import { Navigate } from 'react-router-dom'
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function DeleteUserButton({ auth0UserId }) {
   const [showPrompt, setShowPrompt] = useState(false)
   const message = "Are you sure you want to delete your account? This is an irreversible action."
+  const [redirect, setRedirect] = useState(false)
+  const { logout } = useAuth0();
+
+
 
   async function deleteAccount(auth0UserId) {
     await fetch(`/api/v1/users/${auth0UserId}`, {
@@ -18,6 +24,12 @@ export default function DeleteUserButton({ auth0UserId }) {
       .then(data => {
         return data
       })
+    
+    logout()
+    
+    setTimeout(() => {
+      setRedirect(true)
+    }, 1000);
   }
 
   return (
@@ -30,6 +42,7 @@ export default function DeleteUserButton({ auth0UserId }) {
         closePrompt={() => setShowPrompt(false)}
         display={showPrompt}/>
       }
+      {redirect && <Navigate to='/' />}
     </div>
   )
 }
