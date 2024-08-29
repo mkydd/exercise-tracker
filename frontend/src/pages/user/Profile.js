@@ -58,14 +58,23 @@ function Profile() {
     return new_initials
   }
 
+  function onClose() {
+    if (!user.name.firstName || !user.name.lastName) {
+      alert("Please enter a valid First Name and Last Name")
+      return
+    }
+    setDisplayUserInputPrompt(false)
+  }
+
   return (
     <div className='profile'>
       <h1>Profile</h1>
 
-      {user && (!user.stats.height || !user.stats.weight || !user.stats.age || !user.name.firstName || !user.name.lastName || displayUserInputPrompt) && 
+      {user && (!user.name.firstName || !user.name.lastName || displayUserInputPrompt) && 
       <UserInfoInput 
         user={user} 
         onConfirm={updateUserInfo}
+        closePrompt={onClose}
         setDisplay={setDisplayUserInputPrompt}/>}
 
       <div className="profile-header">

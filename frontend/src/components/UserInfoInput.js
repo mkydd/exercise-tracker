@@ -1,7 +1,7 @@
 import React from 'react'
 import '../styles/components/userInfoPrompt.css'
 
-function UserInfoInput({ user, onConfirm, setDisplay }) {
+function UserInfoInput({ user, onConfirm, closePrompt, setDisplay }) {
   // let userInfo = {
   //   name: {
   //     firstName: user.name.firstName,
@@ -31,6 +31,7 @@ function UserInfoInput({ user, onConfirm, setDisplay }) {
     } catch (e) {
       console.log("err =", e)
       alert("Invalid form input: height, weight, age must be positive numbers")
+      return
     }
 
     let newUserInfo = {
@@ -39,9 +40,9 @@ function UserInfoInput({ user, onConfirm, setDisplay }) {
         lastName: formJson.lastName
       },
       stats: {
-        height: formJson.height,
-        weight: formJson.weight,
-        age: formJson.age
+        height: (!formJson.height ? '' : formJson.height),
+        weight: (!formJson.weight ? '' : formJson.weight),
+        age: (!formJson.age ? '' : formJson.age)
       }
     }
 
@@ -73,7 +74,7 @@ function UserInfoInput({ user, onConfirm, setDisplay }) {
           
           <div className="form-buttons">
             <button className="update-info" type="submit">Update Info</button>
-            <button className="close" type="button" onClick={() => setDisplay(false)}>Close</button>
+            <button className="close" type="button" onClick={() => closePrompt()}>Close</button>
           </div>
         </form>
       </div>
