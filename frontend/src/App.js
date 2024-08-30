@@ -28,9 +28,9 @@ function App() {
               <Route path="profile" element={<Profile />} />
               <Route path="history" element={<History />} />
               <Route path="exercises" element={<Exercises />} />
+              <Route path="workout" element={<Workout />} />
             </Route>
           </Route>
-          <Route path="/workout" element={<Workout />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<LoginButton />} />
         </Routes>
