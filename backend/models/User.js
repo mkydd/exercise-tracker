@@ -9,6 +9,9 @@ const UserSchema = new mongoose.Schema({
       type: String
     }
   },
+  isVerified: {
+    type: Boolean
+  },
   email: {
     type: String,
     required: [true, 'provide a email for user']

@@ -14,6 +14,7 @@ const createUser = asyncWrapper(async (req, res, next) => {
   let userData = { 
     email: req.body.email, 
     auth0Id: req.body.auth0Id,
+    isVerified: req.body.isVerified,
     name: {
       firstName: null,
       lastName: null
