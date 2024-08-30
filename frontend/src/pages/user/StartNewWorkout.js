@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { useOutletContext } from 'react-router-dom'
+import { useOutletContext, Navigate } from 'react-router-dom'
 import '../../styles/user/startNewWorkout.css'
 import Template from '../../components/user/Template';
 
 function StartNewWorkout() {
   const { userWorkouts } = useOutletContext()
   const [templates, setTemplates] = useState([])
+  const [startWorkout, setStartWorkout] = useState(false)
 
   useEffect(() => {
     if (userWorkouts) {
@@ -16,7 +17,8 @@ function StartNewWorkout() {
   return (
     <div className='user-home'>
       <h1>Start Workout</h1>
-      <button className='start-workout'>Start an Empty Workout</button>
+      {startWorkout && <Navigate to='/user/workout'/>}
+      <button className='start-workout' onClick={() => setStartWorkout(true)}>Start an Empty Workout</button>
       <div className="template-header">
         <h2>Templates</h2>
         <button>+Template</button>
