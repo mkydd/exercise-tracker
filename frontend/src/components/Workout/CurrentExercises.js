@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 
-function CurrentExercises({ exercises, removeExercise }) {
-  const [allSets, setAllSets] = useState([])
+function CurrentExercises({ allSets, setAllSets, exercises, removeExercise }) {
 
   function addSet(exercise) {
     let updated = false;

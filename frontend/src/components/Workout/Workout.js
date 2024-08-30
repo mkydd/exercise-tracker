@@ -11,6 +11,7 @@ import '../../styles/workout.css'
 function Workout() {
   const [currentExercises, setCurrentExercises] = useState([])
   const [time, setTime] = useState({hours: 0, minutes: 0, seconds:0})
+  const [allSets, setAllSets] = useState([])
 
   function exerciseOnClick(exercise) {
     if (currentExercises.includes(exercise)) return;
@@ -35,7 +36,11 @@ function Workout() {
     <div className='workout'>
       <WorkoutHeader />
       <Stopwatch onStop={(time) => {setTime(time)}}/>
-      <CurrentExercises exercises={currentExercises} removeExercise={removeExercise} />
+      <CurrentExercises 
+        exercises={currentExercises} 
+        removeExercise={removeExercise} 
+        allSets={allSets}
+        setAllSets={setAllSets}/>
       <AddExerciseButton onClickFunction={exerciseOnClick} />
     </div>
   )
