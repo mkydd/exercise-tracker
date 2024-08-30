@@ -1,7 +1,7 @@
 import Workout from "./components/Workout/Workout";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import SignUp from "./pages/signUp";
-import UserHome from "./pages/user/UserHome";
+import UserHome from "./pages/user/StartNewWorkout";
 import Home from "./pages/home";
 import User from "./pages/user/User";
 import './styles/app.css'
