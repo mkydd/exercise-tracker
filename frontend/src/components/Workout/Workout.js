@@ -5,9 +5,12 @@ import Stopwatch from './Stopwatch';
 import AddExerciseButton from './AddExerciseButton';
 import CurrentExercises from './CurrentExercises';
 
+import { useOutletContext } from 'react-router-dom';
+
 import '../../styles/workout.css'
 
 function Workout() {
+  const { userData } = useOutletContext()
   const [currentExercises, setCurrentExercises] = useState([])
   const [time, setTime] = useState({hours: 0, minutes: 0, seconds:0})
   const [allSets, setAllSets] = useState([])
@@ -44,7 +47,7 @@ function Workout() {
   }
 
   async function saveWorkout() {
-    const workout = await fetch('/api/v1/users/workouts/66d131725301b6a0fe11da70', {
+    const workout = await fetch(`/api/v1/users/workouts/${userData._id}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
