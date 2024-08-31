@@ -39,14 +39,37 @@ const updateWorkout = asyncWrapper(async (req, res, next) => {
 })
 
 const deleteWorkout = asyncWrapper(async (req, res, next) => {
-  const workout = await Workout.findByIdAndDelete({ _id: req.params.id })
+  // const workout = await Workout.findByIdAndDelete({ _id: req.params.id })
+  const { userId } = req.body
 
-  if (!workout) {
+  const workoutList = await Workout.findOne({ userId })
+
+  if (!workoutList) {
+    return next(createCustomError(`No workouts for user with id : ${userId}`, 404))
+  }
+
+  const workoutCount = workoutList.workouts.length
+
+  const workouts = workoutList.workouts.filter((workout) => workout._id.toString() !== req.params.id)
+
+  if (workoutCount === workouts.length) {
     return next(createCustomError(`No workout with id : ${req.params.id}`, 404))
   }
 
-  res.status(200).json({ workout })
+  const newWorkoutList = await Workout.findOneAndUpdate(
+    { userId: userId },
+    { workouts },
+    { new: true,
+        runValidators: true })
+
+  res.status(200).json({ newWorkoutList })
 })
+
+  // const workout = await Workout.findOneAndUpdate(
+  //   {_id: req.params.id},
+  //   req.body,
+  //   { new: true,
+  //   runValidators: true })
 
 const addWorkout = asyncWrapper(async (req, res, next) => {
   const user = await Workout.findOne({ userId: req.params.id })
