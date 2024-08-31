@@ -17,7 +17,9 @@
 
 .workout-template h4 {
     width: 75%;
+    white-space: nowrap;
     overflow-x: scroll;
+    padding-bottom: 0.25rem;
 }
 
 .remove-template-button {
