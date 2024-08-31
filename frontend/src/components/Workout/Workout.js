@@ -22,7 +22,7 @@ function Workout() {
     const today = new Date();
     setCurrDate({
       day: today.getDate(),
-      month: today.getMonth(),
+      month: today.getMonth()+1,
       year: today.getFullYear()
     })
   }, [])
