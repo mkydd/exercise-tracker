@@ -39,7 +39,6 @@ const updateWorkout = asyncWrapper(async (req, res, next) => {
 })
 
 const deleteWorkout = asyncWrapper(async (req, res, next) => {
-  // const workout = await Workout.findByIdAndDelete({ _id: req.params.id })
   const { userId } = req.body
 
   const workoutList = await Workout.findOne({ userId })
@@ -52,6 +51,7 @@ const deleteWorkout = asyncWrapper(async (req, res, next) => {
 
   const workouts = workoutList.workouts.filter((workout) => workout._id.toString() !== req.params.id)
 
+  // verifies a workout was deleted
   if (workoutCount === workouts.length) {
     return next(createCustomError(`No workout with id : ${req.params.id}`, 404))
   }
