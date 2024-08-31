@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react'
 
 import WorkoutHeader from "./WorkoutHeader";
 import Stopwatch from './Stopwatch';
@@ -12,6 +11,18 @@ function Workout() {
   const [currentExercises, setCurrentExercises] = useState([])
   const [time, setTime] = useState({hours: 0, minutes: 0, seconds:0})
   const [allSets, setAllSets] = useState([])
+  const [workoutName, setWorkoutName] = useState('Workout')
+
+  const [currDate, setCurrDate] = useState({ day: '', month: '', year: '' })
+
+  useEffect(() => {
+    const today = new Date();
+    setCurrDate({
+      day: today.getDate(),
+      month: today.getMonth(),
+      year: today.getFullYear()
+    })
+  }, [])
 
   function exerciseOnClick(exercise) {
     if (currentExercises.includes(exercise)) return;
@@ -41,7 +52,8 @@ function Workout() {
       },
       body: JSON.stringify({
         exercises: allSets,
-        name: 'temp'
+        name: workoutName,
+        date: currDate
       })
     })
       .then(res => res.json())
@@ -54,19 +66,25 @@ function Workout() {
 
   function endWorkout(time) {
     setTime(time)
-    console.log('setData =', allSets)
+    // console.log('name =', workoutName)
+    // console.log('setData =', allSets)
     saveWorkout()
   }
   
   return (
     <div className='workout'>
-      <WorkoutHeader />
+      <WorkoutHeader 
+        workoutName={workoutName} 
+        setWorkoutName={setWorkoutName}/>
+
       <Stopwatch onStop={(time) => endWorkout(time)}/>
+
       <CurrentExercises 
         exercises={currentExercises} 
         removeExercise={removeExercise} 
         allSets={allSets}
         setAllSets={setAllSets}/>
+
       <AddExerciseButton onClickFunction={exerciseOnClick} />
     </div>
   )
