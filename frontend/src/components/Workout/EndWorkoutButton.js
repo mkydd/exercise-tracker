@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Loading from '../../util/Loading';
 
 function EndWorkoutButton({ onFinish }) {
+  const [loading, setLoading] = useState(false)
 
   function endWorkout() {
     onFinish()
@@ -12,12 +14,14 @@ function EndWorkoutButton({ onFinish }) {
         className="end-workout-button"
         onClick={() => {
           endWorkout()
-          setTimeout(() => {
-            window.location.replace('http://localhost:3000/user/home')
-          }, 1000);
+          setLoading(true)
+          window.location.replace('http://localhost:3000/user/home')
         }}>
         End Workout
       </button>
+
+      { loading && <Loading /> }
+
     </div>
   )
 }
