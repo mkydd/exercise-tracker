@@ -31,11 +31,37 @@ function Workout() {
     setCurrentExercises(newArr)
     // console.log('Removed ', exercise.name)
   }
+
+  async function saveWorkout() {
+    const workout = await fetch('/api/v1/users/workouts/66d131725301b6a0fe11da70', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        exercises: allSets,
+        name: 'temp'
+      })
+    })
+      .then(res => res.json())
+      .then(data => {
+        return data
+      })
+    
+    console.log(workout)
+  }
+
+  function endWorkout(time) {
+    setTime(time)
+    console.log('setData =', allSets)
+    saveWorkout()
+  }
   
   return (
     <div className='workout'>
       <WorkoutHeader />
-      <Stopwatch onStop={(time) => {setTime(time)}}/>
+      <Stopwatch onStop={(time) => endWorkout(time)}/>
       <CurrentExercises 
         exercises={currentExercises} 
         removeExercise={removeExercise} 
