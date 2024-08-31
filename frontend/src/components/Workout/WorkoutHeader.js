@@ -1,8 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-function WorkoutHeader() {
-  const [workoutName, setWorkoutName] = useState('Workout')
-
+function WorkoutHeader({ workoutName, setWorkoutName }) {
   return (
     <div className='workout-header'>
       <input 
