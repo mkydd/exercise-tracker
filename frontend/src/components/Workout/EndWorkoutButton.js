@@ -1,6 +1,6 @@
 import React from 'react'
 
-function EndWorkoutButton({ time, onFinish }) {
+function EndWorkoutButton({ onFinish }) {
 
   function endWorkout() {
     onFinish()
@@ -10,7 +10,12 @@ function EndWorkoutButton({ time, onFinish }) {
     <div>
       <button 
         className="end-workout-button"
-        onClick={() => endWorkout()}>
+        onClick={() => {
+          endWorkout()
+          setTimeout(() => {
+            window.location.replace('http://localhost:3000/user/home')
+          }, 1000);
+        }}>
         End Workout
       </button>
     </div>
