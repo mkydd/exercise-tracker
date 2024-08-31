@@ -20,7 +20,7 @@
     margin-bottom: 1rem;
 }
 
-.user-home .template-header button {
+.user-home .template-header .new-template {
     color: rgb(61, 158, 227);
     background-color: rgba(61, 158, 227, 0.207);
     border: none;

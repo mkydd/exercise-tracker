@@ -16,7 +16,17 @@
 }
 
 .workout-template h4 {
-    width: 50%;
+    width: 75%;
+    overflow-x: scroll;
+}
+
+.remove-template-button {
+    color: rgb(227, 80, 61);
+    background-color: rgba(215, 55, 55, 0.25);
+    border: none;
+    border-radius: 0.5rem;
+    padding-inline: 0.5rem;
+    font-weight: 600;
 }
 
 .workout-template .exercises {

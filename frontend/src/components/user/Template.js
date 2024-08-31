@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import '../../styles/user/template.css'
 
-function Template( {workout} ) {
+function Template( {workout, deleteWorkout} ) {
   const [exerciseNames, setExerciseNames] = useState([])
 
   useEffect(() => {
@@ -21,7 +21,10 @@ function Template( {workout} ) {
   return (
     <div className="workout-template-wrapper">
       <div className='workout-template'>
-        <h4>{workout.name}</h4>
+        <div className="template-header">
+          <h4>{workout.name}</h4>
+          <button className='remove-template-button' onClick={deleteWorkout}>X</button>
+        </div>
         <div className="exercises">
           {exerciseNames.join(", ")}
         </div>
