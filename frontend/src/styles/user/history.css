@@ -19,6 +19,10 @@
     align-items: center;
 }
 
+.previous-workout-header .name {
+    font-size: large;
+}
+
 .previous-workout .delete-previous-workout-button {
     color: rgb(227, 80, 61);
     background-color: rgba(215, 55, 55, 0.25);
@@ -27,4 +31,44 @@
     padding-inline: 0.5rem;
     font-weight: 600;
     padding: 0.2rem 0.5rem;
+}
+
+.previous-workout .date {
+    margin-bottom: 0.25rem;
+    font-size: small;
+    font-style: italic;
+}
+
+.previous-workout .exercise-name {
+    font-weight: 400;
+}
+
+.previous-workout li {
+    margin-block: 1rem;
+}
+
+.previous-workout-sets-table {
+    width: 100%;
+    text-align: center;
+}
+
+.previous-workout .weight-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.previous-workout .units {
+    font-size: small;
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.previous-workout .exercise-name {
+    font-weight: bold;
+}
+
+.previous-workout-sets-table th {
+    color: rgb(61, 158, 227);
 }

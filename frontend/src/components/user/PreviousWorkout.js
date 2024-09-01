@@ -55,13 +55,12 @@ function PreviousWorkout({ workout, allWorkouts, updateWorkouts }) {
         {workout.date.year}
       </div>
       <div className="exercises">
-        Exercises
         <ul>
           {workout.exercises.map((exercise) => {
             return (
               <li key={`prev-workout ${exercise._id}`}>
                 <div className="exercise-name">{exercise.exerciseName}</div>
-                <table>
+                <table className='previous-workout-sets-table'>
                   <thead>
                     <tr>
                       <th>Set</th>
@@ -75,7 +74,7 @@ function PreviousWorkout({ workout, allWorkouts, updateWorkouts }) {
                         <tr key={`prev-workout-set ${exercise.exerciseName} ${set._id}`}>
                           <td>{set.setNumber}</td>
                           <td>{set.reps}</td>
-                          <td>{set.weight}</td>
+                          <td><div className="weight-wrapper">{set.weight}<div className='units'>lbs</div></div></td>
                         </tr>
                       )
                     })}
