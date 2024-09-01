@@ -39,9 +39,25 @@
     -webkit-box-orient: vertical;
 }
 
+.template-date-start-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .workout-template .date {
     font-size: small;
     font-weight: 100;
+}
+
+.workout-template .start-template-button {
+    color: rgb(61, 158, 227);
+    border-radius: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    font-weight: 600;
+    border: none;
+    background-color: rgba(61, 158, 227, 0.20);
+    text-transform: uppercase;
 }
 
 .templates li {

@@ -33,7 +33,7 @@ function Template( {workout, deleteWorkout} ) {
         <div className="exercises">
           {exerciseNames.join(", ")}
         </div>
-        <div>
+        <div className='template-date-start-wrapper'>
           <div className="date">
             {workout.date.day}
             &nbsp;
@@ -41,9 +41,11 @@ function Template( {workout, deleteWorkout} ) {
             &nbsp;
             {workout.date.year}
           </div>
-          <div className="start">
-            <button onClick={() => setDisplayTemplateWorkout(true)}>start</button>
-        </div>
+          <div className="start-template-button-wrapper">
+            <button 
+              className="start-template-button"
+              onClick={() => setDisplayTemplateWorkout(true)}>start</button>
+          </div>
         </div>
       </div>
       <ConfirmationPrompt 
