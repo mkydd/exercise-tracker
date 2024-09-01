@@ -21,7 +21,10 @@ function History() {
         {workouts.map((workout) => {
           return (
             <li key={`history ${workout._id}`}>
-              <PreviousWorkout workout={workout}/>
+              <PreviousWorkout
+               workout={workout}
+               allWorkouts={workouts}
+               updateWorkouts={setWorkouts}/>
             </li>
           )
         })}
