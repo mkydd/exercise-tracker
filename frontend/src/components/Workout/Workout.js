@@ -5,7 +5,7 @@ import Stopwatch from './Stopwatch';
 import AddExerciseButton from './AddExerciseButton';
 import CurrentExercises from './CurrentExercises';
 
-import { useOutletContext } from 'react-router-dom';
+import { useOutletContext, useLocation } from 'react-router-dom';
 
 import '../../styles/workout.css'
 
@@ -16,7 +16,24 @@ function Workout() {
   const [allSets, setAllSets] = useState([])
   const [workoutName, setWorkoutName] = useState('Workout')
 
+  const { state } = useLocation();
+
   const [currDate, setCurrDate] = useState({ day: '', month: '', year: '' })
+
+  useEffect(() => {
+    if (state && state.workout) {
+    console.log('state =', state)
+      setAllSets(state.workout.exercises)
+      let allExercises = []
+      state.workout.exercises.forEach((exercise) => {
+        allExercises.push({
+          id: exercise.exerciseId,
+          name: exercise.exerciseName
+        })
+      })
+      setCurrentExercises(allExercises)
+    }
+  }, [state])
 
   useEffect(() => {
     const today = new Date();
@@ -26,6 +43,11 @@ function Workout() {
       year: today.getFullYear()
     })
   }, [])
+
+  ////////////////
+  useEffect(() => {
+    console.log('exercises =', currentExercises)
+  }, [currentExercises])
 
   function exerciseOnClick(exercise) {
     if (currentExercises.includes(exercise)) return;
