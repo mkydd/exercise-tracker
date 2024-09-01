@@ -13,3 +13,18 @@
     padding: 0.5rem;
 }
 
+.previous-workout-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.previous-workout .delete-previous-workout-button {
+    color: rgb(227, 80, 61);
+    background-color: rgba(215, 55, 55, 0.25);
+    border: none;
+    border-radius: 0.5rem;
+    padding-inline: 0.5rem;
+    font-weight: 600;
+    padding: 0.2rem 0.5rem;
+}

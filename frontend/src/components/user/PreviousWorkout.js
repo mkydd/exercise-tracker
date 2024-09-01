@@ -33,10 +33,12 @@ function PreviousWorkout({ workout, allWorkouts, updateWorkouts }) {
   
   return (
     <div className='previous-workout'>
-      <div className='name'>{workout.name}</div>
-      <button 
-        className='remove-template-button' 
-        onClick={() => setDisplayPrompt(true)}>X</button>
+      <div className="previous-workout-header">
+        <div className='name'>{workout.name}</div>
+        <button 
+          className='delete-previous-workout-button' 
+          onClick={() => setDisplayPrompt(true)}>X</button>
+      </div>
       <div className='date'>
         {workout.day}
         &nbsp;
