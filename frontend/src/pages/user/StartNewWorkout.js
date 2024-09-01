@@ -4,7 +4,7 @@ import '../../styles/user/startNewWorkout.css'
 import Template from '../../components/user/Template';
 
 function StartNewWorkout() {
-  const { userWorkouts, userData } = useOutletContext()
+  const { userWorkouts } = useOutletContext()
   const [templates, setTemplates] = useState([])
   const [startWorkout, setStartWorkout] = useState(false)
 
@@ -13,25 +13,6 @@ function StartNewWorkout() {
       setTemplates(userWorkouts)
     }
   }, [userWorkouts])
-
-  async function deleteWorkout(workoutId, userId) {
-    const workout = await fetch(`/api/v1/users/workouts/${workoutId}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify({
-        userId
-      })
-    })
-      .then(res => res.json())
-      .then(data => {
-        return data
-      })
-    
-    console.log(workout) 
-  }
   
   return (
     <div className='user-home'>
@@ -48,8 +29,7 @@ function StartNewWorkout() {
             return (
               <li key={workout._id}>
                 <Template 
-                  workout={workout} 
-                  deleteWorkout={() => deleteWorkout(workout._id, userData._id)}/>
+                  workout={workout} />
               </li>)
           })}
         </ul>
