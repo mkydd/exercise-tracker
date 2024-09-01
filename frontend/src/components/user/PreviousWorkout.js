@@ -1,12 +1,18 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import ConfirmationPrompt from '../ConfirmationPrompt'
+import months from '../../util/months'
 
 function PreviousWorkout({ workout, allWorkouts, updateWorkouts }) {
   const { userData } = useOutletContext()
 
   const [promptDisplay, setDisplayPrompt] = useState(false)
   const msg = 'Are you sre you want to delete this template?'
+
+  // FOR TESTING
+  useEffect(() => {
+    console.log('workout =', workout)
+  }, [workout])
 
   async function deleteWorkout(workoutId, userId) {
     console.log('workout =', workout)
@@ -34,24 +40,47 @@ function PreviousWorkout({ workout, allWorkouts, updateWorkouts }) {
   return (
     <div className='previous-workout'>
       <div className="previous-workout-header">
-        <div className='name'>{workout.name}</div>
+        <div className='name'>
+          <h3>{workout.name}</h3>
+        </div>
         <button 
           className='delete-previous-workout-button' 
           onClick={() => setDisplayPrompt(true)}>X</button>
       </div>
       <div className='date'>
-        {workout.day}
+        {workout.date.day}
         &nbsp;
-        {workout.month}
+        {months[workout.date.month]}
         &nbsp;
-        {workout.year}
+        {workout.date.year}
       </div>
       <div className="exercises">
+        Exercises
         <ul>
           {workout.exercises.map((exercise) => {
             return (
               <li key={`prev-workout ${exercise._id}`}>
-                {exercise.sets.length} &nbsp; x &nbsp; {exercise.exerciseName}
+                <div className="exercise-name">{exercise.exerciseName}</div>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Set</th>
+                      <th>Reps</th>
+                      <th>Weight</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {exercise.sets.map((set) => {
+                      return (
+                        <tr key={`prev-workout-set ${exercise.exerciseName} ${set._id}`}>
+                          <td>{set.setNumber}</td>
+                          <td>{set.reps}</td>
+                          <td>{set.weight}</td>
+                        </tr>
+                      )
+                    })}
+                  </tbody>
+                </table>
               </li>
             )
           })}
