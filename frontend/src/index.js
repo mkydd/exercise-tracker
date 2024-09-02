@@ -10,7 +10,7 @@ root.render(
       domain={process.env.REACT_APP_AUTH_DOMAIN}
       clientId={process.env.REACT_APP_AUTH_CLIENT_ID}
       authorizationParams={{
-        redirect_uri: 'https://mk-exercise-tracker.netlify.app/user/home/' || 'http://localhost:3000/user/home/'
+        redirect_uri: 'https://mk-exercise-tracker.netlify.app/user/home/'
     }}>
       <App />
     </Auth0Provider>
