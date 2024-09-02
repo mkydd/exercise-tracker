@@ -1,18 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useOutletContext, Navigate } from 'react-router-dom'
 import '../../styles/user/startNewWorkout.css'
 import Template from '../../components/user/Template';
 
 function StartNewWorkout() {
   const { userWorkouts } = useOutletContext()
-  const [templates, setTemplates] = useState([])
   const [startWorkout, setStartWorkout] = useState(false)
-
-  useEffect(() => {
-    if (userWorkouts) {
-      setTemplates(userWorkouts)
-    }
-  }, [userWorkouts])
   
   return (
     <div className='user-home'>
@@ -25,7 +18,7 @@ function StartNewWorkout() {
       </div>
       <div>
         <ul className="templates">
-          {templates.map((workout) => {
+          {userWorkouts.map((workout) => {
             return (
               <li key={workout._id}>
                 <Template 

@@ -22,7 +22,6 @@ function User() {
 
   useEffect(() => {
     async function getData() {
-      // console.log('userData =', userData)
       let { workout } = await getWorkoutData(userData._id)
       setUserWorkouts(workout.workouts)
     }
@@ -41,7 +40,7 @@ function User() {
   return (
     <div className="user">
       <div className="user-page-wrapper">
-        {user && userData && userWorkouts && <Outlet context={{ user, userData, userWorkouts, auth0UserId }}/>}
+        {user && userData && userWorkouts && <Outlet context={{ user, userData, userWorkouts, setUserWorkouts, auth0UserId }}/>}
       </div>
       <NavBar />
     </div>

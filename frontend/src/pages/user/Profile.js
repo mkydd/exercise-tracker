@@ -6,17 +6,10 @@ import UserInfoInput from '../../components/UserInfoInput'
 
 function Profile() {
   const { userWorkouts, userData, auth0UserId } = useOutletContext()
-  const [workouts, setWorkouts] = useState([])
   const [user, setUser] = useState()
   const [auth0Id, setAuth0Id] = useState('')
   const [displayUserInputPrompt, setDisplayUserInputPrompt] = useState(false)
   const [initials, setInitials] = useState('')
-
-  useEffect(() => {
-    if (userWorkouts) {
-      setWorkouts(userWorkouts)
-    }
-  }, [userWorkouts])
 
   useEffect(() => {
     if (userData) {
@@ -32,16 +25,15 @@ function Profile() {
   }, [auth0UserId])
 
   async function updateUserInfo(userInfo) {
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
     const res = await fetch(`/api/v1/users/${userData._id}`, {
       method: "PATCH",
-      body: JSON.stringify(userInfo),
-      headers: myHeaders
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(userInfo)
     })
 
-    console.log("res.status =", res.status)
+    console.log("UpdateUserInfo status =", res.status)
 
     if (res.status === 200) {
       setUser({...user, ...userInfo})
@@ -88,7 +80,7 @@ function Profile() {
       <div className="stats">
       <h2>Stats</h2>
         <div className="stat total-workouts">
-          Total Workouts: <div>{workouts.length}</div>
+          Total Workouts: <div>{userWorkouts.length}</div>
         </div>
         <div className="stat age">
           Age:&nbsp;<div>{user && user.stats.age}</div>
