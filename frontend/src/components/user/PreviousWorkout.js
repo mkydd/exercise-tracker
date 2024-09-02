@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import ConfirmationPrompt from '../ConfirmationPrompt'
 import months from '../../util/months'
@@ -12,9 +12,9 @@ function PreviousWorkout({ workout, allWorkouts, updateWorkouts }) {
   const msg = 'Are you sre you want to delete this template?'
 
   // FOR TESTING
-  useEffect(() => {
-    console.log('workout =', workout)
-  }, [workout])
+  // useEffect(() => {
+  //   console.log('workout =', workout)
+  // }, [workout])
 
   async function deleteWorkout(workoutId, userId) {
     console.log('workout =', workout)
