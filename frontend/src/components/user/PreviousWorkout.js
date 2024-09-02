@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import ConfirmationPrompt from '../ConfirmationPrompt'
 import months from '../../util/months'
+import DetailedWorkoutHistory from './DetailedWorkoutHistory'
+import BasicWorkoutHistory from './BasicWorkoutHistory'
 
 function PreviousWorkout({ workout, allWorkouts, updateWorkouts }) {
   const { userData } = useOutletContext()
-
+  const [showMore, setShowMore] = useState(false)
   const [promptDisplay, setDisplayPrompt] = useState(false)
   const msg = 'Are you sre you want to delete this template?'
 
@@ -55,36 +57,17 @@ function PreviousWorkout({ workout, allWorkouts, updateWorkouts }) {
         {workout.date.year}
       </div>
       <div className="exercises">
-        <ul>
-          {workout.exercises.map((exercise) => {
-            return (
-              <li key={`prev-workout ${exercise._id}`}>
-                <div className="exercise-name">{exercise.exerciseName}</div>
-                <table className='previous-workout-sets-table'>
-                  <thead>
-                    <tr>
-                      <th>Set</th>
-                      <th>Reps</th>
-                      <th>Weight</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {exercise.sets.map((set) => {
-                      return (
-                        <tr key={`prev-workout-set ${exercise.exerciseName} ${set._id}`}>
-                          <td>{set.setNumber}</td>
-                          <td>{set.reps}</td>
-                          <td><div className="weight-wrapper">{set.weight}<div className='units'>lbs</div></div></td>
-                        </tr>
-                      )
-                    })}
-                  </tbody>
-                </table>
-              </li>
-            )
-          })}
-        </ul>
+        { !showMore && 
+          <BasicWorkoutHistory 
+            workout={workout}
+            onClick={setShowMore}/> }
+
+        { showMore &&
+          <DetailedWorkoutHistory 
+            workout={workout}
+            onClick={setShowMore}/> }
       </div>
+
       <ConfirmationPrompt 
         display={promptDisplay}
         msg={msg}

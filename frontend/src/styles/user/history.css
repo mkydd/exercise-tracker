@@ -72,3 +72,12 @@
 .previous-workout-sets-table th {
     color: rgb(61, 158, 227);
 }
+
+.exercise-set-text {
+    display: flex;
+    text-transform: capitalize;
+}
+
+.exercise-set-text .sets-of {
+    color: rgb(61, 158, 227);
+}
