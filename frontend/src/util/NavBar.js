@@ -10,7 +10,9 @@ function NavBar() {
   useEffect(() => {
     if (pathname === '/user/workout') {
       setDisplayNavBar(false)
-    } 
+    } else {
+      setDisplayNavBar(true)
+    }
   }, [pathname])
 
   function styleActiveLink(isActive) {
