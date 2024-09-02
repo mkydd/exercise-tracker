@@ -22,7 +22,7 @@ function User() {
 
   useEffect(() => {
     async function getData() {
-      console.log('userData =', userData)
+      // console.log('userData =', userData)
       let { workout } = await getWorkoutData(userData._id)
       setUserWorkouts(workout.workouts)
     }
