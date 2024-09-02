@@ -15,7 +15,7 @@ function EndWorkoutButton({ onFinish }) {
         onClick={() => {
           endWorkout()
           setLoading(true)
-          window.location.replace('http://localhost:3000/user/home')
+          window.location.replace('https://mk-exercise-tracker.netlify.app/user/home')
         }}>
         End Workout
       </button>
