@@ -81,3 +81,16 @@
 .exercise-set-text .sets-of {
     color: rgb(61, 158, 227);
 }
+
+.show-more-wrapper {
+    text-align: center;
+}
+
+.previous-workout .show-more-wrapper button {
+    border: none;
+    color: rgb(61, 158, 227);
+    padding: 0.25rem;
+    border-radius: 0.5rem;
+    background-color: rgba(61, 158, 227, 0.2);
+    font-weight: bold;
+}
