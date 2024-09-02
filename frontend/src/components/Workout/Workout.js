@@ -69,7 +69,7 @@ function Workout() {
   }
 
   async function saveWorkout() {
-    const workout = await fetch(`/api/v1/users/workouts/${userData._id}`, {
+    const workout = await fetch(`https://exercise-tracker-ne9k.onrender.com/api/v1/users/workouts/${userData._id}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

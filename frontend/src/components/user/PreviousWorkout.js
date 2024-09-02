@@ -18,7 +18,7 @@ function PreviousWorkout({ workout, allWorkouts, updateWorkouts }) {
 
   async function deleteWorkout(workoutId, userId) {
     console.log('workout =', workout)
-    const workoutRes = await fetch(`/api/v1/users/workouts/${workoutId}`, {
+    const workoutRes = await fetch(`https://exercise-tracker-ne9k.onrender.com/api/v1/users/workouts/${workoutId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

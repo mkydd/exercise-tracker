@@ -13,7 +13,7 @@ export default function DeleteUserButton({ auth0UserId }) {
 
 
   async function deleteAccount(auth0UserId) {
-    await fetch(`/api/v1/users/${auth0UserId}`, {
+    await fetch(`https://exercise-tracker-ne9k.onrender.com/api/v1/users/${auth0UserId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

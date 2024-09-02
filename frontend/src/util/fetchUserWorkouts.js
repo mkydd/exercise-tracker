@@ -1,5 +1,5 @@
 async function getWorkoutData(userId) {
-  const workoutData = await fetch(`/api/v1/users/workouts/${userId}`, {
+  const workoutData = await fetch(`https://exercise-tracker-ne9k.onrender.com/api/v1/users/workouts/${userId}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
