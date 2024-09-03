@@ -28,14 +28,49 @@ const updateWorkout = asyncWrapper(async (req, res, next) => {
   //   req.body,
   //   { new: true,
   //   runValidators: true })
+  // body = {
+  //   workoutId: '12345',
+  //   newFields: {
 
-  const workout = await Workout.findOne({ userId: req.params.id })
+  //   }
+  // }
+  const newWorkout = req.body
 
-  if (!workout) {
-    return next(createCustomError(`No workout with id : ${req.params.id}`, 404))
+  const workoutsData = await Workout.findOne({ userId: req.params.id })
+
+  if (!workoutsData) {
+    return next(createCustomError(`No workoutList with id : ${req.params.id}`, 404))
   }
+
+  let newWorkoutList = []
+  workoutsData.workouts.forEach((workout) => {
+    if (workout.id !== req.body.workoutId) {
+      newWorkoutList.push(workout)
+      return
+    }
+    // console.log('id = ', workout.id)
+    newWorkoutList.push(newWorkout)
+  })
+  let newWorkoutData;
+  try {
+    newWorkoutData = await Workout.findOneAndUpdate(
+      { userId: req.params.id },
+      { workouts: newWorkoutList },
+      { new: true,
+        runValidators: true 
+      })
+  } catch (error) {
+    return next(createCustomError(`Error : ${error}`, 404))
+  }
+
+  // const newWorkoutData = await Workout.findOneAndUpdate(
+  //   { userId: req.params.id },
+  //   { workouts: newWorkoutList },
+  //   { new: true,
+  //     runValidators: true 
+  //   })
     
-  res.status(200).json({ workout })
+  res.status(200).json({ newWorkoutData })
 })
 
 const deleteWorkout = asyncWrapper(async (req, res, next) => {
