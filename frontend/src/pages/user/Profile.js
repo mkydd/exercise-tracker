@@ -25,7 +25,7 @@ function Profile() {
   }, [auth0UserId])
 
   async function updateUserInfo(userInfo) {
-    const res = await fetch(`https://exercise-tracker-ne9k.onrender.com/api/v1/users/${userData._id}`, {
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/users/${userData._id}`, {
       method: "PATCH",
       headers: {
         'Content-Type': 'application/json'

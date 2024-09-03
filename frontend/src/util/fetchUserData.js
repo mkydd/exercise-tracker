@@ -1,5 +1,5 @@
 async function getUserData(userEmail) {
-  const userData = await fetch(`https://exercise-tracker-ne9k.onrender.com/api/v1/users/data/`, {
+  const userData = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/users/data/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
