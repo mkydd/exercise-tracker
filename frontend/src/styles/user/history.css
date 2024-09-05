@@ -94,3 +94,12 @@
     background-color: rgba(61, 158, 227, 0.2);
     font-weight: bold;
 }
+
+.history td {
+    width: 33%;
+}
+
+.history td input {
+    width: 33%;
+    text-align: center;
+}

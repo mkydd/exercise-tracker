@@ -36,6 +36,10 @@ function User() {
     }
   }, [user])
 
+  useEffect(() => {
+    console.log('updated workout =', userWorkouts)
+  }, [userWorkouts])
+
 
   return (
     <div className="user">

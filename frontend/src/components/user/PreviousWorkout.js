@@ -4,9 +4,11 @@ import ConfirmationPrompt from '../ConfirmationPrompt'
 import months from '../../util/months'
 import DetailedWorkoutHistory from './DetailedWorkoutHistory'
 import BasicWorkoutHistory from './BasicWorkoutHistory'
+import UpdateWorkoutPrompt from '../UpdateWorkoutPrompt'
 
-function PreviousWorkout({ workout, allWorkouts, updateWorkouts }) {
-  const { userData } = useOutletContext()
+function PreviousWorkout({ workout, allWorkouts, updateWorkouts, workoutIndex }) {
+  const { userData, setUserWorkouts } = useOutletContext()
+  const [showUpdatePrompt, setShowUpdatePrompt] = useState(false)
   const [showMore, setShowMore] = useState(false)
   const [promptDisplay, setDisplayPrompt] = useState(false)
   const msg = 'Are you sre you want to delete this template?'
@@ -57,16 +59,28 @@ function PreviousWorkout({ workout, allWorkouts, updateWorkouts }) {
         {workout.date.year}
       </div>
       <div className="exercises">
-        { !showMore && 
+        { !showMore && !showUpdatePrompt &&
           <BasicWorkoutHistory 
             workout={workout}
             onClick={setShowMore}/> }
 
-        { showMore &&
+        { showMore && !showUpdatePrompt &&
           <DetailedWorkoutHistory 
             workout={workout}
             onClick={setShowMore}/> }
       </div>
+
+      { !showUpdatePrompt && 
+        <button onClick={() => setShowUpdatePrompt(true)}>Update Workout</button>}
+
+      <UpdateWorkoutPrompt 
+        displayUpdate={showUpdatePrompt}
+        closePrompt={() => setShowUpdatePrompt(false)}
+        workout={workout}
+        setUserWorkouts={setUserWorkouts}
+        allWorkouts={allWorkouts}
+        workoutIndex={workoutIndex}
+        />
 
       <ConfirmationPrompt 
         display={promptDisplay}
