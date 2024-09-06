@@ -103,3 +103,16 @@
     width: 33%;
     text-align: center;
 }
+
+.history .delete-set-button-wrapper {
+    width: auto;
+}
+
+.delete-set-button {
+    color: rgb(227, 80, 61);
+    background-color: rgba(215, 55, 55, 0.25);
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.1rem 0.3rem;
+    font-weight: bold;
+}
