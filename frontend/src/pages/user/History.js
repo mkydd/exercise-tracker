@@ -4,7 +4,7 @@ import PreviousWorkout from '../../components/user/PreviousWorkout'
 import '../../styles/user/history.css'
 
 function History() {
-  const { userWorkouts, setUserWorkouts } = useOutletContext()
+  const { userData, userWorkouts, setUserWorkouts } = useOutletContext()
 
   useEffect(() => {
     console.log('this is userWorkout = ', userWorkouts)
@@ -21,7 +21,8 @@ function History() {
                workout={workout}
                allWorkouts={userWorkouts}
                updateWorkouts={setUserWorkouts}
-               workoutIndex={index}/>
+               workoutIndex={index}
+               userId={userData._id}/>
             </li>
           )
         })}

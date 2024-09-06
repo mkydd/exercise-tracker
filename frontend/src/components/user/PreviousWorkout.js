@@ -6,7 +6,7 @@ import DetailedWorkoutHistory from './DetailedWorkoutHistory'
 import BasicWorkoutHistory from './BasicWorkoutHistory'
 import UpdateWorkoutPrompt from '../UpdateWorkoutPrompt'
 
-function PreviousWorkout({ workout, allWorkouts, updateWorkouts, workoutIndex }) {
+function PreviousWorkout({ userId, workout, allWorkouts, updateWorkouts, workoutIndex }) {
   const { userData, setUserWorkouts } = useOutletContext()
   const [showUpdatePrompt, setShowUpdatePrompt] = useState(false)
   const [showMore, setShowMore] = useState(false)
@@ -85,6 +85,7 @@ function PreviousWorkout({ workout, allWorkouts, updateWorkouts, workoutIndex })
         setUserWorkouts={setUserWorkouts}
         allWorkouts={allWorkouts}
         workoutIndex={workoutIndex}
+        userId={userId}
         />
 
       <ConfirmationPrompt 
