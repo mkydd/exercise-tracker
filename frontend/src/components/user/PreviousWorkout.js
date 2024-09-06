@@ -71,8 +71,12 @@ function PreviousWorkout({ workout, allWorkouts, updateWorkouts, workoutIndex })
             onClick={setShowMore}/> }
       </div>
 
-      { !showUpdatePrompt && 
-        <button onClick={() => setShowUpdatePrompt(true)}>Update Workout</button>}
+      <div className="show-update-prompt-button-wrapper">
+        { !showUpdatePrompt && 
+          <button 
+            className='show-update-prompt-button'
+            onClick={() => setShowUpdatePrompt(true)}>Update Workout</button>}
+      </div>
 
       <UpdateWorkoutPrompt 
         displayUpdate={showUpdatePrompt}
