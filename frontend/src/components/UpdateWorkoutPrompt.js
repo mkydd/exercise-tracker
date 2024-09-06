@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import '../styles/updateWorkoutPrompt.css'
 
-function UpdateWorkoutPrompt({ displayUpdate, closePrompt, workout, setUserWorkouts, allWorkouts, workoutIndex }) {
+function UpdateWorkoutPrompt({ displayUpdate, closePrompt, userId, setUserWorkouts, allWorkouts, workoutIndex }) {
   const [newWorkouts, setNewWorkouts] = useState(allWorkouts)
 
   function deleteSet(exerciseIndex, setIndex) {
@@ -37,6 +37,26 @@ function UpdateWorkoutPrompt({ displayUpdate, closePrompt, workout, setUserWorko
       .exercises = newExercises
 
     setNewWorkouts(tempWorkouts)
+  }
+
+  async function updateWorkout() {
+    const updatedWorkout = newWorkouts[workoutIndex]
+
+    await fetch(`${process.env.REACT_APP_API_URL}/api/v1/users/workouts/${userId}`, {
+      method: 'put',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        workoutIndex,
+        workout: updatedWorkout
+      })
+    }) 
+      .then(res => res.status)
+      .then(status => {
+        console.log(`workout updated (${status})`)
+      })
   }
 
   return (
@@ -115,6 +135,7 @@ function UpdateWorkoutPrompt({ displayUpdate, closePrompt, workout, setUserWorko
             <button 
               className='update-button'
               onClick={() => {
+                updateWorkout()
                 setUserWorkouts(newWorkouts)
                 closePrompt()
               }}
