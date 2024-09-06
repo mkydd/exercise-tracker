@@ -3,13 +3,39 @@ import React, { useState } from 'react'
 function UpdateWorkoutPrompt({ displayUpdate, closePrompt, workout, setUserWorkouts, allWorkouts, workoutIndex }) {
   const [newWorkouts, setNewWorkouts] = useState(allWorkouts)
 
+  function deleteSet(exerciseIndex, setIndex) {
+    let tempWorkout = [...newWorkouts] // creat copy of newWorkouts
+    
+    // filter set out set
+    let newSets = tempWorkout[workoutIndex]
+      .exercises[exerciseIndex]
+      .sets.filter((_, currIndex) => {
+        console.log(`currIndex = ${currIndex}\nsetIndex = ${setIndex}`)
+        return currIndex !== setIndex
+      })
+
+    // update setNumber values
+    newSets.forEach((currSet, currIndex) => {
+      currSet.setNumber = currIndex + 1
+    });
+
+    // update tempWorkout with newSets
+    tempWorkout[workoutIndex]
+      .exercises[exerciseIndex]
+      .sets = newSets
+    
+    console.log('tempWorkout =', tempWorkout)
+    
+    setNewWorkouts(tempWorkout)
+  }
+
   return (
     <div>
       { displayUpdate && 
         <div>
           UpdateWorkoutPrompt
           <ul>
-            {workout.exercises.map((exercise, exerciseIndex) => {
+            {newWorkouts[workoutIndex].exercises.map((exercise, exerciseIndex) => {
               return (
                 <li key={`prev-workout ${exercise._id}`}>
                   <div className="exercise-name">{exercise.exerciseName}</div>
@@ -29,7 +55,7 @@ function UpdateWorkoutPrompt({ displayUpdate, closePrompt, workout, setUserWorko
                             <td className='delete-set-button-wrapper'>
                               <button 
                                 className='delete-set-button'
-                                >X</button>
+                                onClick={() => deleteSet(exerciseIndex, setIndex)}>X</button>
                             </td>
                             <td>
                               <div>{set.setNumber}</div>
