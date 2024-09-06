@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
+import '../styles/updateWorkoutPrompt.css'
 
 function UpdateWorkoutPrompt({ displayUpdate, closePrompt, workout, setUserWorkouts, allWorkouts, workoutIndex }) {
   const [newWorkouts, setNewWorkouts] = useState(allWorkouts)
 
   function deleteSet(exerciseIndex, setIndex) {
-    let tempWorkout = [...newWorkouts] // creat copy of newWorkouts
+    let tempWorkout = [...newWorkouts] // create copy of newWorkouts
     
     // filter set out set
     let newSets = tempWorkout[workoutIndex]
       .exercises[exerciseIndex]
       .sets.filter((_, currIndex) => {
-        // console.log(`currIndex = ${currIndex}\nsetIndex = ${setIndex}`)
         return currIndex !== setIndex
       })
 
@@ -23,8 +23,6 @@ function UpdateWorkoutPrompt({ displayUpdate, closePrompt, workout, setUserWorko
     tempWorkout[workoutIndex]
       .exercises[exerciseIndex]
       .sets = newSets
-    
-    // console.log('tempWorkout =', tempWorkout)
     
     setNewWorkouts(tempWorkout)
   }
@@ -45,7 +43,6 @@ function UpdateWorkoutPrompt({ displayUpdate, closePrompt, workout, setUserWorko
     <div>
       { displayUpdate && 
         <div className='update-workout-prompt'>
-          UpdateWorkoutPrompt
           <ul>
             {newWorkouts[workoutIndex].exercises.map((exercise, exerciseIndex) => {
               return (
@@ -114,14 +111,17 @@ function UpdateWorkoutPrompt({ displayUpdate, closePrompt, workout, setUserWorko
               )
             })}
           </ul>  
-          <div className="buttons-wrapper">
+          <div className="button-wrapper">
             <button 
+              className='update-button'
               onClick={() => {
                 setUserWorkouts(newWorkouts)
                 closePrompt()
               }}
             >Update</button>
-            <button onClick={closePrompt}>Cancel</button>
+            <button 
+              className='cancel-button'
+              onClick={closePrompt}>Cancel</button>
           </div>
         </div>
       }
