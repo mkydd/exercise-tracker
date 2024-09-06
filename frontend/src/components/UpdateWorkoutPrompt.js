@@ -16,6 +16,7 @@ function UpdateWorkoutPrompt({ displayUpdate, closePrompt, workout, setUserWorko
                   <table className='previous-workout-sets-table'>
                     <thead>
                       <tr>
+                        <th></th>
                         <th>Set</th>
                         <th>Reps</th>
                         <th>Weight</th>
@@ -25,6 +26,11 @@ function UpdateWorkoutPrompt({ displayUpdate, closePrompt, workout, setUserWorko
                       {exercise.sets.map((set, setIndex) => {
                         return (
                           <tr key={`prev-workout-set ${exercise.exerciseName} ${set._id}`}>
+                            <td className='delete-set-button-wrapper'>
+                              <button 
+                                className='delete-set-button'
+                                >X</button>
+                            </td>
                             <td>
                               <div>{set.setNumber}</div>
                             </td>
