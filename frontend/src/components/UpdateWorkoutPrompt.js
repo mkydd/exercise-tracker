@@ -10,7 +10,7 @@ function UpdateWorkoutPrompt({ displayUpdate, closePrompt, workout, setUserWorko
     let newSets = tempWorkout[workoutIndex]
       .exercises[exerciseIndex]
       .sets.filter((_, currIndex) => {
-        console.log(`currIndex = ${currIndex}\nsetIndex = ${setIndex}`)
+        // console.log(`currIndex = ${currIndex}\nsetIndex = ${setIndex}`)
         return currIndex !== setIndex
       })
 
@@ -24,21 +24,38 @@ function UpdateWorkoutPrompt({ displayUpdate, closePrompt, workout, setUserWorko
       .exercises[exerciseIndex]
       .sets = newSets
     
-    console.log('tempWorkout =', tempWorkout)
+    // console.log('tempWorkout =', tempWorkout)
     
     setNewWorkouts(tempWorkout)
+  }
+
+  function deleteExercise(exerciseIndex) {
+    let tempWorkouts = [...newWorkouts]
+
+    let newExercises = tempWorkouts[workoutIndex].exercises.filter((_, currIndex) => currIndex !== exerciseIndex)
+    console.log('newExercises =', newExercises)
+
+    tempWorkouts[workoutIndex]
+      .exercises = newExercises
+
+    setNewWorkouts(tempWorkouts)
   }
 
   return (
     <div>
       { displayUpdate && 
-        <div>
+        <div className='update-workout-prompt'>
           UpdateWorkoutPrompt
           <ul>
             {newWorkouts[workoutIndex].exercises.map((exercise, exerciseIndex) => {
               return (
                 <li key={`prev-workout ${exercise._id}`}>
-                  <div className="exercise-name">{exercise.exerciseName}</div>
+                  <div className='exercise-header'>
+                    <div className="exercise-name">{exercise.exerciseName}</div>
+                    <button
+                      className='delete-button'
+                      onClick={() => deleteExercise(exerciseIndex)}>X</button>
+                  </div>
                   <table className='previous-workout-sets-table'>
                     <thead>
                       <tr>
@@ -54,7 +71,7 @@ function UpdateWorkoutPrompt({ displayUpdate, closePrompt, workout, setUserWorko
                           <tr key={`prev-workout-set ${exercise.exerciseName} ${set._id}`}>
                             <td className='delete-set-button-wrapper'>
                               <button 
-                                className='delete-set-button'
+                                className='delete-button'
                                 onClick={() => deleteSet(exerciseIndex, setIndex)}>X</button>
                             </td>
                             <td>
