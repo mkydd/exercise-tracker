@@ -23,52 +23,28 @@ const getWorkouts = asyncWrapper(async (req, res, next) => {
 })
 
 const updateWorkout = asyncWrapper(async (req, res, next) => {
-  // const workout = await Workout.findOneAndUpdate(
-  //   {_id: req.params.id},
-  //   req.body,
-  //   { new: true,
-  //   runValidators: true })
-  // body = {
-  //   workoutId: '12345',
-  //   newFields: {
+  const newWorkout = req.body.workout
+  const workoutIndex = parseInt(req.body.workoutIndex)
 
-  //   }
-  // }
-  const newWorkout = req.body
-
-  const workoutsData = await Workout.findOne({ userId: req.params.id })
+  let workoutsData = await Workout.findOne({ userId: req.params.id }).lean()
 
   if (!workoutsData) {
     return next(createCustomError(`No workoutList with id : ${req.params.id}`, 404))
   }
 
-  let newWorkoutList = []
-  workoutsData.workouts.forEach((workout) => {
-    if (workout.id !== req.body.workoutId) {
-      newWorkoutList.push(workout)
-      return
-    }
-    // console.log('id = ', workout.id)
-    newWorkoutList.push(newWorkout)
-  })
+  workoutsData.workouts[workoutIndex] = newWorkout
+
   let newWorkoutData;
   try {
     newWorkoutData = await Workout.findOneAndUpdate(
       { userId: req.params.id },
-      { workouts: newWorkoutList },
+      { $set: { workouts: workoutsData.workouts }},
       { new: true,
         runValidators: true 
       })
   } catch (error) {
-    return next(createCustomError(`Error : ${error}`, 404))
+    return next(createCustomError(`Update Error : ${error}`, 404))
   }
-
-  // const newWorkoutData = await Workout.findOneAndUpdate(
-  //   { userId: req.params.id },
-  //   { workouts: newWorkoutList },
-  //   { new: true,
-  //     runValidators: true 
-  //   })
     
   res.status(200).json({ newWorkoutData })
 })
