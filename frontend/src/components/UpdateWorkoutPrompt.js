@@ -8,7 +8,6 @@ function UpdateWorkoutPrompt({ displayUpdate, closePrompt, workout, setUserWorko
       { displayUpdate && 
         <div>
           UpdateWorkoutPrompt
-          <button onClick={closePrompt}>Cancel</button>
           <ul>
             {workout.exercises.map((exercise, exerciseIndex) => {
               return (
@@ -38,7 +37,6 @@ function UpdateWorkoutPrompt({ displayUpdate, closePrompt, workout, setUserWorko
                                     let tempWorkouts = [...newWorkouts]
                                     tempWorkouts[workoutIndex].exercises[exerciseIndex].sets[setIndex].reps = e.target.value
                                     setNewWorkouts(tempWorkouts)
-                                    setUserWorkouts(tempWorkouts)
                                   }}
                                   required/>
                               </div>
@@ -53,7 +51,6 @@ function UpdateWorkoutPrompt({ displayUpdate, closePrompt, workout, setUserWorko
                                     let tempWorkouts = [...newWorkouts]
                                     tempWorkouts[workoutIndex].exercises[exerciseIndex].sets[setIndex].weight = e.target.value
                                     setNewWorkouts(tempWorkouts)
-                                    setUserWorkouts(tempWorkouts)
                                   }}
                                   required/>
                               </div>
@@ -68,6 +65,15 @@ function UpdateWorkoutPrompt({ displayUpdate, closePrompt, workout, setUserWorko
               )
             })}
           </ul>  
+          <div className="buttons-wrapper">
+            <button 
+              onClick={() => {
+                setUserWorkouts(newWorkouts)
+                closePrompt()
+              }}
+            >Update</button>
+            <button onClick={closePrompt}>Cancel</button>
+          </div>
         </div>
       }
     </div>
