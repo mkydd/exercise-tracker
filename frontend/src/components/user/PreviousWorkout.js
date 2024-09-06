@@ -47,9 +47,10 @@ function PreviousWorkout({ workout, allWorkouts, updateWorkouts, workoutIndex })
         <div className='name'>
           <h3>{workout.name}</h3>
         </div>
-        <button 
-          className='delete-previous-workout-button' 
-          onClick={() => setDisplayPrompt(true)}>X</button>
+        { !showUpdatePrompt &&
+          <button 
+            className='delete-previous-workout-button' 
+            onClick={() => setDisplayPrompt(true)}>X</button>}
       </div>
       <div className='date'>
         {workout.date.day}
