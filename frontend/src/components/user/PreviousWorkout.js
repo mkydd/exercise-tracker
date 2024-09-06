@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import ConfirmationPrompt from '../ConfirmationPrompt'
 import months from '../../util/months'
@@ -77,16 +77,15 @@ function PreviousWorkout({ userId, workout, allWorkouts, updateWorkouts, workout
             className='show-update-prompt-button'
             onClick={() => setShowUpdatePrompt(true)}>Update Workout</button>}
       </div>
-
-      <UpdateWorkoutPrompt 
-        displayUpdate={showUpdatePrompt}
-        closePrompt={() => setShowUpdatePrompt(false)}
-        workout={workout}
-        setUserWorkouts={setUserWorkouts}
-        allWorkouts={allWorkouts}
-        workoutIndex={workoutIndex}
-        userId={userId}
-        />
+      { showUpdatePrompt &&
+        <UpdateWorkoutPrompt 
+          closePrompt={() => setShowUpdatePrompt(false)}
+          setUserWorkouts={setUserWorkouts}
+          allWorkouts={allWorkouts}
+          workoutIndex={workoutIndex}
+          userId={userId}
+          />
+      }
 
       <ConfirmationPrompt 
         display={promptDisplay}

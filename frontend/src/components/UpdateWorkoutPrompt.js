@@ -1,8 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../styles/updateWorkoutPrompt.css'
 
-function UpdateWorkoutPrompt({ displayUpdate, closePrompt, userId, setUserWorkouts, allWorkouts, workoutIndex }) {
-  const [newWorkouts, setNewWorkouts] = useState(allWorkouts)
+function UpdateWorkoutPrompt({ closePrompt, userId, setUserWorkouts, allWorkouts, workoutIndex }) {
+  const [newWorkouts, setNewWorkouts] = useState(structuredClone(allWorkouts))
+
+  useEffect(() => {
+    console.log('!!!newWorkouts =', newWorkouts)
+  }, [newWorkouts])
 
   function deleteSet(exerciseIndex, setIndex) {
     let tempWorkout = [...newWorkouts] // create copy of newWorkouts
@@ -31,7 +35,6 @@ function UpdateWorkoutPrompt({ displayUpdate, closePrompt, userId, setUserWorkou
     let tempWorkouts = [...newWorkouts]
 
     let newExercises = tempWorkouts[workoutIndex].exercises.filter((_, currIndex) => currIndex !== exerciseIndex)
-    console.log('newExercises =', newExercises)
 
     tempWorkouts[workoutIndex]
       .exercises = newExercises
@@ -59,93 +62,92 @@ function UpdateWorkoutPrompt({ displayUpdate, closePrompt, userId, setUserWorkou
       })
   }
 
-  return (
-    <div>
-      { displayUpdate && 
-        <div className='update-workout-prompt'>
-          <ul>
-            {newWorkouts[workoutIndex].exercises.map((exercise, exerciseIndex) => {
-              return (
-                <li key={`prev-workout ${exercise._id}`}>
-                  <div className='exercise-header'>
-                    <div className="exercise-name">{exercise.exerciseName}</div>
-                    <button
-                      className='delete-button'
-                      onClick={() => deleteExercise(exerciseIndex)}>X</button>
-                  </div>
-                  <table className='previous-workout-sets-table'>
-                    <thead>
-                      <tr>
-                        <th></th>
-                        <th>Set</th>
-                        <th>Reps</th>
-                        <th>Weight</th>
+  return ( 
+    <div className='update-workout-prompt'>
+      <ul>
+        {newWorkouts[workoutIndex].exercises.map((exercise, exerciseIndex) => {
+          return (
+            <li key={`prev-workout ${exercise._id} updatePrompt`}>
+              <div className='exercise-header'>
+                <div className="exercise-name">{exercise.exerciseName}</div>
+                <button
+                  className='delete-button'
+                  onClick={() => deleteExercise(exerciseIndex)}>X</button>
+              </div>
+              <table className='previous-workout-sets-table'>
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Set</th>
+                    <th>Reps</th>
+                    <th>Weight</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {exercise.sets.map((set, setIndex) => {
+                    return (
+                      <tr key={`prev-workout-set ${exercise.exerciseName} ${set._id}`}>
+                        <td className='delete-set-button-wrapper'>
+                          <button 
+                            className='delete-button'
+                            onClick={() => deleteSet(exerciseIndex, setIndex)}>X</button>
+                        </td>
+                        <td>
+                          <div>{set.setNumber}</div>
+                        </td>
+                        <td>
+                          <div>
+                            <input 
+                              type="number" 
+                              value={{...exercise}.sets[setIndex].reps}
+                              onChange={(e) => {
+                                let tempWorkouts = [...newWorkouts]
+                                tempWorkouts[workoutIndex].exercises[exerciseIndex].sets[setIndex].reps = e.target.value
+                                setNewWorkouts(tempWorkouts)
+                              }}
+                              required/>
+                          </div>
+                          
+                        </td>
+                        <td>
+                          <div>
+                            <input 
+                              type="number" 
+                              value={{...exercise}.sets[setIndex].weight}
+                              onChange={(e) => {
+                                let tempWorkouts = [...newWorkouts]
+                                tempWorkouts[workoutIndex].exercises[exerciseIndex].sets[setIndex].weight = e.target.value
+                                setNewWorkouts(tempWorkouts)
+                              }}
+                              required/>
+                          </div>
+                          
+                        </td>
                       </tr>
-                    </thead>
-                    <tbody>
-                      {exercise.sets.map((set, setIndex) => {
-                        return (
-                          <tr key={`prev-workout-set ${exercise.exerciseName} ${set._id}`}>
-                            <td className='delete-set-button-wrapper'>
-                              <button 
-                                className='delete-button'
-                                onClick={() => deleteSet(exerciseIndex, setIndex)}>X</button>
-                            </td>
-                            <td>
-                              <div>{set.setNumber}</div>
-                            </td>
-                            <td>
-                              <div>
-                                <input 
-                                  type="number" 
-                                  value={newWorkouts[workoutIndex].exercises[exerciseIndex].sets[setIndex].reps}
-                                  onChange={(e) => {
-                                    let tempWorkouts = [...newWorkouts]
-                                    tempWorkouts[workoutIndex].exercises[exerciseIndex].sets[setIndex].reps = e.target.value
-                                    setNewWorkouts(tempWorkouts)
-                                  }}
-                                  required/>
-                              </div>
-                              
-                            </td>
-                            <td>
-                              <div>
-                                <input 
-                                  type="number" 
-                                  value={exercise.sets[setIndex].weight}
-                                  onChange={(e) => {
-                                    let tempWorkouts = [...newWorkouts]
-                                    tempWorkouts[workoutIndex].exercises[exerciseIndex].sets[setIndex].weight = e.target.value
-                                    setNewWorkouts(tempWorkouts)
-                                  }}
-                                  required/>
-                              </div>
-                              
-                            </td>
-                          </tr>
-                        )
-                      })}
-                    </tbody>
-                  </table>
-                </li>
-              )
-            })}
-          </ul>  
-          <div className="button-wrapper">
-            <button 
-              className='update-button'
-              onClick={() => {
-                updateWorkout()
-                setUserWorkouts(newWorkouts)
-                closePrompt()
-              }}
-            >Update</button>
-            <button 
-              className='cancel-button'
-              onClick={closePrompt}>Cancel</button>
-          </div>
-        </div>
-      }
+                    )
+                  })}
+                </tbody>
+              </table>
+            </li>
+          )
+        })}
+      </ul>  
+      <div className="button-wrapper">
+        <button 
+          className='update-button'
+          onClick={() => {
+            updateWorkout()
+            setUserWorkouts(newWorkouts)
+            closePrompt()
+          }}
+        >Update</button>
+        <button 
+          className='cancel-button'
+          onClick={() => {
+            console.log('og allWorkout =', allWorkouts)
+            closePrompt()
+          }}>Cancel</button>
+      </div>
     </div>
   )
 }
