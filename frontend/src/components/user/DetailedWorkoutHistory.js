@@ -6,7 +6,7 @@ function DetailedWorkoutHistory({ workout, onClick }) {
       <ul>
         {workout.exercises.map((exercise) => {
           return (
-            <li key={`prev-workout ${exercise._id}`}>
+            <li key={`prev-workout ${exercise._id} detailed`}>
               <div className="exercise-name">{exercise.exerciseName}</div>
               <table className='previous-workout-sets-table'>
                 <thead>
