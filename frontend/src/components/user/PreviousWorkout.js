@@ -11,7 +11,7 @@ function PreviousWorkout({ userId, workout, allWorkouts, updateWorkouts, workout
   const [showUpdatePrompt, setShowUpdatePrompt] = useState(false)
   const [showMore, setShowMore] = useState(false)
   const [promptDisplay, setDisplayPrompt] = useState(false)
-  const msg = 'Are you sre you want to delete this template?'
+  const msg = 'Are you sre you want to delete this workout?'
 
   // FOR TESTING
   // useEffect(() => {
