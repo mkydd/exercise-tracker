@@ -5,7 +5,7 @@ import DeleteUserButton from '../../components/user/DeleteUserButton'
 import UserInfoInput from '../../components/UserInfoInput'
 
 function Profile() {
-  const { userWorkouts, userData, auth0UserId } = useOutletContext()
+  const { userWorkouts, userData, auth0UserId, setUserData } = useOutletContext()
   const [user, setUser] = useState()
   const [auth0Id, setAuth0Id] = useState('')
   const [displayUserInputPrompt, setDisplayUserInputPrompt] = useState(false)
@@ -36,7 +36,7 @@ function Profile() {
     console.log("UpdateUserInfo status =", res.status)
 
     if (res.status === 200) {
-      setUser({...user, ...userInfo})
+      setUserData({...user, ...userInfo})
     }
   }
 
