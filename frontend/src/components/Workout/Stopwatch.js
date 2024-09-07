@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import EndWorkoutButton from './EndWorkoutButton'
 
-function Stopwatch({ onStop }) {
+function Stopwatch({ saveWorkout }) {
   const [time, setTime] = useState({hours: 0, minutes: 0, seconds:0})
   const [start, setStart] = useState(true)
 
@@ -40,10 +40,9 @@ function Stopwatch({ onStop }) {
         {displayTime()}
       </div>
       <EndWorkoutButton 
-        time={time}
         onFinish={() => {
           setStart(false)
-          onStop(time)
+          saveWorkout(time)
         }}/>
     </div>
   )

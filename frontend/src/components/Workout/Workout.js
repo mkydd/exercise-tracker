@@ -12,7 +12,6 @@ import '../../styles/workout.css'
 function Workout() {
   const { userData } = useOutletContext()
   const [currentExercises, setCurrentExercises] = useState([])
-  const [time, setTime] = useState({hours: 0, minutes: 0, seconds:0})
   const [allSets, setAllSets] = useState([])
   const [workoutName, setWorkoutName] = useState('Workout')
 
@@ -44,10 +43,10 @@ function Workout() {
     })
   }, [])
 
-  ////////////////
-  useEffect(() => {
-    console.log('exercises =', currentExercises)
-  }, [currentExercises])
+  // USED FOR TESTING
+  // useEffect(() => {
+  //   console.log('time W =', time)
+  // }, [time])
 
   function exerciseOnClick(exercise) {
     if (currentExercises.includes(exercise)) return;
@@ -57,7 +56,6 @@ function Workout() {
   }
 
   function removeExercise(exercise) {
-    console.log('time =', time)
     let newArr = []
     for (let i=0; i<currentExercises.length; i++) {
       if (currentExercises[i].id !== exercise.id) {
@@ -68,7 +66,8 @@ function Workout() {
     // console.log('Removed ', exercise.name)
   }
 
-  async function saveWorkout() {
+  async function saveWorkout(time) {
+    console.log('(save) time =', time)
     const workout = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/users/workouts/${userData._id}`, {
       method: 'POST',
       headers: {
@@ -78,7 +77,8 @@ function Workout() {
       body: JSON.stringify({
         exercises: allSets,
         name: workoutName,
-        date: currDate
+        date: currDate,
+        duration: time
       })
     })
       .then(res => res.json())
@@ -88,13 +88,6 @@ function Workout() {
     
     console.log(workout)
   }
-
-  function endWorkout(time) {
-    setTime(time)
-    // console.log('name =', workoutName)
-    // console.log('setData =', allSets)
-    saveWorkout()
-  }
   
   return (
     <div className='workout'>
@@ -102,7 +95,7 @@ function Workout() {
         workoutName={workoutName} 
         setWorkoutName={setWorkoutName}/>
 
-      <Stopwatch onStop={(time) => endWorkout(time)}/>
+      <Stopwatch saveWorkout={saveWorkout}/>
 
       <CurrentExercises 
         exercises={currentExercises} 
