@@ -20,6 +20,7 @@ function Workout() {
   const [currDate, setCurrDate] = useState({ day: '', month: '', year: '' })
 
   useEffect(() => {
+    // used to recieve props from previous page when user starts from old workout
     if (state && state.workout) {
     console.log('state =', state)
       setAllSets(state.workout.exercises)
