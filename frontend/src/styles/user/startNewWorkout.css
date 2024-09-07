@@ -14,19 +14,10 @@
     margin-bottom: 1rem;
 }
 
-.user-home .template-header {
+.user-home .recent-workouts-header {
     display: flex;
     justify-content: space-between;
     margin-bottom: 1rem;
-}
-
-.user-home .template-header .new-template {
-    color: rgb(61, 158, 227);
-    background-color: rgba(61, 158, 227, 0.207);
-    border: none;
-    border-radius: 0.5rem;
-    padding-inline: 0.5rem;
-    font-weight: 600;
 }
 
 .user-home .templates {

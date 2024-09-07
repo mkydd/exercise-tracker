@@ -12,9 +12,8 @@ function StartNewWorkout() {
       <h1>Start Workout</h1>
       {startWorkout && <Navigate to='/user/workout'/>}
       <button className='start-workout' onClick={() => setStartWorkout(true)}>Start an Empty Workout</button>
-      <div className="template-header">
-        <h2>Templates</h2>
-        <button className='new-template'>+Template</button>
+      <div className="recent-workouts-header">
+        <h2>Recent Workouts</h2>
       </div>
       <div>
         <ul className="templates">
