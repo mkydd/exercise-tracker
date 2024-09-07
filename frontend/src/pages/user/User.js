@@ -44,7 +44,7 @@ function User() {
   return (
     <div className="user">
       <div className="user-page-wrapper">
-        {user && userData && userWorkouts && <Outlet context={{ user, userData, userWorkouts, setUserWorkouts, auth0UserId }}/>}
+        {user && userData && userWorkouts && <Outlet context={{ setUserData, user, userData, userWorkouts, setUserWorkouts, auth0UserId }}/>}
       </div>
       <NavBar />
     </div>
