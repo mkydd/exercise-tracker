@@ -5,6 +5,7 @@ import months from '../../util/months'
 import DetailedWorkoutHistory from './DetailedWorkoutHistory'
 import BasicWorkoutHistory from './BasicWorkoutHistory'
 import UpdateWorkoutPrompt from '../UpdateWorkoutPrompt'
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 function PreviousWorkout({ userId, workout, allWorkouts, updateWorkouts, workoutIndex }) {
   const { userData, setUserWorkouts } = useOutletContext()
@@ -58,6 +59,14 @@ function PreviousWorkout({ userId, workout, allWorkouts, updateWorkouts, workout
         {months[workout.date.month]}
         &nbsp;
         {workout.date.year}
+      </div>
+      <div className="time-wrapper">
+        <AccessTimeIcon style={{fontSize: 'small'}}/>
+        <div className="time">
+          {workout.duration.hours ? `${workout.duration.hours}h `: ''}
+          {workout.duration.minutes ? `${workout.duration.minutes}m `: ''}
+          {workout.duration.seconds ? `${workout.duration.seconds}s`: ''}
+          </div>
       </div>
       <div className="exercises">
         { !showMore && !showUpdatePrompt &&
