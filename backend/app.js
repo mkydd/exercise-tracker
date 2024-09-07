@@ -13,7 +13,7 @@ const login = require('./routes/login')
 const errorHandlerMiddleware = require('./middleware/error-handling')
 
 // origins allowed to make api requests
-app.use(cors({ origin: ['https://mk-exercise-tracker.netlify.app', 'http://localhost:3000'] }));
+app.use(cors({ origin: ['https://mk-exercise-tracker.netlify.app', 'http://localhost:3000', 'https://falls-alexandria-fcc-nb.trycloudflare.com'] }));
 
 // parse application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
