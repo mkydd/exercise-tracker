@@ -46,7 +46,7 @@ function NavBar() {
           <NavLink 
             style={({ isActive }) => styleActiveLink(isActive)} 
             to='./home' 
-            className='nav-link'>NewWorkout</NavLink>
+            className='nav-link'>Start Workout</NavLink>
         </div> }
     </div>
   )
