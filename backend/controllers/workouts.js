@@ -90,7 +90,7 @@ const addWorkout = asyncWrapper(async (req, res, next) => {
   }
 
   const { workouts } = user
-  workouts.push(req.body)
+  workouts.unshift(req.body)
 
   let userWorkouts;
   
