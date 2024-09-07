@@ -16,7 +16,7 @@ function EndWorkoutButton({ onFinish }) {
           endWorkout()
           setLoading(true)
           setTimeout(() => {
-            window.location.replace('https://mk-exercise-tracker.netlify.app/user/home')
+            window.location.replace(process.env.REACT_APP_HOME_URL)
           }, 500);
         }}>
         End Workout
