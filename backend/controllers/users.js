@@ -37,11 +37,11 @@ const createUser = asyncWrapper(async (req, res, next) => {
   if (userTokenId !== req.body.auth0Id) { 
     // if someone makes api request with stolen token, they will not know
     //    what the appropriate auth0Id is
-    return next(createCustomError(`Error creating user, please try again`, 500), req,res)
+    return next(createCustomError(`\nuserTokenId = ${userTokenId}\nreq.body.auth0Id = ${req.body.auth0Id}\n1 Error creating user, please try again`, 500), req,res)
   }
 
   let user;
-  
+
   try {
     user = await User.create(userData)
   } catch (error) {
@@ -49,7 +49,7 @@ const createUser = asyncWrapper(async (req, res, next) => {
   }
 
   if (!user) {
-    return next(createCustomError(`Error creating user, please try again`, 500), req,res)
+    return next(createCustomError(`3 Error creating user, please try again`, 500), req,res)
   }
 
   const workoutList = await Workout.create({ userId: user._id, workouts: [] })
