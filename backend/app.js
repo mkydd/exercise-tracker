@@ -11,6 +11,7 @@ const workouts = require('./routes/workouts')
 const users = require('./routes/users')
 const login = require('./routes/login')
 const errorHandlerMiddleware = require('./middleware/error-handling')
+const checkJWT = require('./middleware/checkJWT')
 
 // origins allowed to make api requests
 app.use(cors({ origin: ['https://mk-exercise-tracker.netlify.app', 'http://localhost:3000', 'https://outlets-millennium-interesting-scanners.trycloudflare.com'] }));
@@ -20,6 +21,20 @@ app.use(express.urlencoded({ extended: true }));
 
 // parse application/json
 app.use(express.json());
+
+// Authorization
+// const checkJwt = auth({
+//   audience: process.env.ISSUER_BASE_URL,
+//   issuerBaseURL: `https:${process.env.AUTH0_DOMAIN}`,
+// });
+
+// app.use((req, res, next) => {
+//   const authHeader = req.headers['authorization'];
+//   console.log('Authorization Header:', authHeader);
+//   next(); // Call the next middleware or route handler
+// });
+
+app.use(checkJWT)
 
 
 // routes
