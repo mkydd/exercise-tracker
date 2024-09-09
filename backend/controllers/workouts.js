@@ -11,7 +11,8 @@ const getAllWorkouts = asyncWrapper(async (req, res) => {
     return next(createCustomError(`unauthorized: can not access route`, 403), req,res)
   }
   const workouts = await Workout.find({})
-  res.status(200).json({ workouts })
+
+  return res.status(200).json({ workouts })
 })
 
 const createWorkoutList = asyncWrapper(async (req, res) => {
