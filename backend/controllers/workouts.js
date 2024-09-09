@@ -89,12 +89,6 @@ const deleteWorkout = asyncWrapper(async (req, res, next) => {
   res.status(200).json({ newWorkoutList })
 })
 
-  // const workout = await Workout.findOneAndUpdate(
-  //   {_id: req.params.id},
-  //   req.body,
-  //   { new: true,
-  //   runValidators: true })
-
 const addWorkout = asyncWrapper(async (req, res, next) => {
   const user = await Workout.findOne({ userId: req.params.id })
   
