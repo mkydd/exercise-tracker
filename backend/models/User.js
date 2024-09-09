@@ -21,7 +21,8 @@ const UserSchema = new mongoose.Schema({
   },
   auth0Id: {
     type: String,
-    required: [true, 'provide auth0Id for user']
+    required: [true, 'provide auth0Id for user'],
+    unique: true
   },
   stats: {
     weight: {
