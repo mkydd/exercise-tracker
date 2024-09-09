@@ -16,8 +16,9 @@ const getAllWorkouts = asyncWrapper(async (req, res) => {
 })
 
 const createWorkoutList = asyncWrapper(async (req, res) => {
-  const workout = await Workout.create(req.body)
-  res.status(201).json({ workout })
+  // const workout = await Workout.create(req.body)
+  // res.status(201).json({ workout })
+  return next(createCustomError(`route does not exist`, 404), req,res)
 })
 
 const getWorkouts = asyncWrapper(async (req, res, next) => {
