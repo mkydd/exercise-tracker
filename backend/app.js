@@ -13,7 +13,7 @@ const errorHandlerMiddleware = require('./middleware/error-handling')
 const checkJWT = require('./middleware/checkJWT')
 
 // origins allowed to make api requests
-app.use(cors({ origin: ['https://mk-exercise-tracker.netlify.app', 'http://localhost:3000', 'https://outlets-millennium-interesting-scanners.trycloudflare.com'] }));
+app.use(cors({ origin: ['https://mk-exercise-tracker.netlify.app', 'http://localhost:3000'] }));
 
 // parse application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
@@ -21,18 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 // parse application/json
 app.use(express.json());
 
-// Authorization
-// const checkJwt = auth({
-//   audience: process.env.ISSUER_BASE_URL,
-//   issuerBaseURL: `https:${process.env.AUTH0_DOMAIN}`,
-// });
-
-// app.use((req, res, next) => {
-//   const authHeader = req.headers['authorization'];
-//   console.log('Authorization Header:', authHeader);
-//   next(); // Call the next middleware or route handler
-// });
-
+// authorize user
 app.use(checkJWT)
 
 
