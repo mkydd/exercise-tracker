@@ -90,13 +90,16 @@ const deleteWorkout = asyncWrapper(async (req, res, next) => {
 })
 
 const addWorkout = asyncWrapper(async (req, res, next) => {
-  const user = await Workout.findOne({ userId: req.params.id })
-  
-  if (!user) {
+  const userTokenId = req.auth.payload.sub;
+
+  const userWorkoutData = await Workout.findOne({ userId: req.params.id })
+  const user = await User.findOne({ _id: req.params.id})
+
+  if (!userWorkoutData || userTokenId != user.auth0Id) {
     return next(createCustomError(`No user with id : ${req.params.id}`, 404), req, res)
   }
 
-  const { workouts } = user
+  const { workouts } = userWorkoutData
   workouts.unshift(req.body)
 
   let userWorkouts;
