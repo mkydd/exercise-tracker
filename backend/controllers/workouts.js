@@ -66,17 +66,19 @@ const updateWorkout = asyncWrapper(async (req, res, next) => {
 })
 
 const deleteWorkout = asyncWrapper(async (req, res, next) => {
+  const userTokenId = req.auth.payload.sub;
   const { userId } = req.body
 
   const workoutList = await Workout.findOne({ userId })
+  const user = await User.findOne({ _id: userId })
 
-  if (!workoutList) {
+  if (!workoutList || userTokenId !== user.auth0Id) {
     return next(createCustomError(`No workouts for user with id : ${userId}`, 404), req, res)
   }
 
   const workoutCount = workoutList.workouts.length
 
-  const workouts = workoutList.workouts.filter((workout) => workout._id.toString() !== req.params.id)
+  const workouts = workoutList.workouts.filter((workout) => workout.id !== req.params.id)
 
   // verifies a workout was deleted
   if (workoutCount === workouts.length) {
