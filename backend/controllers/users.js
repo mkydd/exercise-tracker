@@ -19,7 +19,6 @@ const getAllUsers = asyncWrapper(async (req, res, next) => {
 
 const createUser = asyncWrapper(async (req, res, next) => {
   const userTokenId = req.auth.payload.sub;
-
   let userData = { 
     email: req.body.email, 
     auth0Id: req.body.auth0Id,
@@ -35,11 +34,19 @@ const createUser = asyncWrapper(async (req, res, next) => {
     }
   }
 
-  if (userTokenId !== req.body.auth0Id) {
-    console.log('userTokenId !== req.body.auth0Id = ', userTokenId !== req.body.auth0Id)
+  if (userTokenId !== req.body.auth0Id) { 
+    // if someone makes api request with stolen token, they will not know
+    //    what the appropriate auth0Id is
     return next(createCustomError(`Error creating user, please try again`, 500), req,res)
   }
-  const user = await User.create(userData)
+
+  let user;
+  
+  try {
+    user = await User.create(userData)
+  } catch (error) {
+    return next(createCustomError(`Dup user, please try agaError creating user, please try againin`, 500), req,res)
+  }
 
   if (!user) {
     return next(createCustomError(`Error creating user, please try again`, 500), req,res)
