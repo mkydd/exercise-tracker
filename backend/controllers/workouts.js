@@ -36,12 +36,15 @@ const getWorkouts = asyncWrapper(async (req, res, next) => {
 })
 
 const updateWorkout = asyncWrapper(async (req, res, next) => {
+  const userTokenId = req.auth.payload.sub;
+
   const newWorkout = req.body.workout
   const workoutIndex = parseInt(req.body.workoutIndex)
 
   let workoutsData = await Workout.findOne({ userId: req.params.id }).lean()
+  const user = await User.findOne({ _id: req.params.id})
 
-  if (!workoutsData) {
+  if (!workoutsData || userTokenId !== user.auth0Id) {
     return next(createCustomError(`No workoutList with id : ${req.params.id}`, 404), req, res)
   }
 
