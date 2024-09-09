@@ -5,7 +5,14 @@ const { createCustomError } = require('../errors/custom-error')
 const deleteAuthUser = require('../middleware/auth0-delete-user')
 const bcrypt = require('bcrypt')
 
-const getAllUsers = asyncWrapper(async (req, res) => {
+const getAllUsers = asyncWrapper(async (req, res, next) => {
+  try {
+    if (req.body.adminPasscode !== process.env.ADMIN_PASSCODE) {
+      return next(createCustomError(`unauthorized: can not access route`, 403), req, res)
+    }
+  } catch (error) {
+    return next(createCustomError(`unauthorized: can not access route`, 403), req, res)
+  }
   const users = await User.find({})
   res.status(200).json({ users })
 })
