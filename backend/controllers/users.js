@@ -93,6 +93,9 @@ const deleteUser = asyncWrapper(async (req, res, next) => {
 })
 
 const getSingleUser = asyncWrapper(async (req, res, next) => {
+  const userTokenId = req.auth.payload.sub;
+  console.log('userId (token) =', userTokenId)
+  
   const { email } = req.body
 
   if (!email) {
@@ -101,7 +104,7 @@ const getSingleUser = asyncWrapper(async (req, res, next) => {
 
   const user = await User.findOne({ email })
   
-  if (!user) {
+  if (!user || userTokenId != user.auth0Id) {
     return next(createCustomError(`No user with email: ${email}`, 404), req, res)
   }
   

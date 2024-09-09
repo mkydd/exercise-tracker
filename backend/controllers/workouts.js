@@ -3,6 +3,13 @@ const asyncWrapper = require('../middleware/async')
 const { createCustomError } = require('../errors/custom-error')
 
 const getAllWorkouts = asyncWrapper(async (req, res) => {
+  try {
+    if (req.body.adminPasscode !== process.env.ADMIN_PASSCODE) {
+      return next(createCustomError(`unauthorized: can not access route`, 403), req,res)
+    }
+  } catch (error) {
+    return next(createCustomError(`unauthorized: can not access route`, 403), req,res)
+  }
   const workouts = await Workout.find({})
   res.status(200).json({ workouts })
 })

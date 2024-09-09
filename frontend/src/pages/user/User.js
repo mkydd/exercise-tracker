@@ -17,6 +17,7 @@ function User() {
     async function getData() {
       console.log('user =', user)
       const token = await getAccessTokenSilently()
+      console.log('token =', token)
       let data = await getUserData(user.email, token)
       setUserData(data.user)
     }
