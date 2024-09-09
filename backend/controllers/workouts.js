@@ -1,4 +1,5 @@
 const Workout = require('../models/Workout')
+const User = require('../models/User')
 const asyncWrapper = require('../middleware/async')
 const { createCustomError, CustomAPIError } = require('../errors/custom-error')
 
@@ -22,9 +23,12 @@ const createWorkoutList = asyncWrapper(async (req, res, next) => {
 })
 
 const getWorkouts = asyncWrapper(async (req, res, next) => {
-  const workout = await Workout.findOne({ userId: req.params.id })
+  const userTokenId = req.auth.payload.sub;
 
-  if (!workout) {
+  const workout = await Workout.findOne({ userId: req.params.id })
+  const user = await User.findOne({ _id: req.params.id})
+
+  if (!workout || userTokenId != user.auth0Id) {
     return next(createCustomError(`No workouts for user with id : ${req.params.id}`, 404), req, res)
   }
 
