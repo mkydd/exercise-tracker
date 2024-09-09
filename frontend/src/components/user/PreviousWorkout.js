@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
+import { useAuth0 } from "@auth0/auth0-react";
 import ConfirmationPrompt from '../ConfirmationPrompt'
 import months from '../../util/months'
 import DetailedWorkoutHistory from './DetailedWorkoutHistory'
@@ -9,6 +10,7 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 function PreviousWorkout({ userId, workout, allWorkouts, updateWorkouts, workoutIndex }) {
   const { userData, setUserWorkouts } = useOutletContext()
+  const { getAccessTokenSilently } = useAuth0()
   const [showUpdatePrompt, setShowUpdatePrompt] = useState(false)
   const [showMore, setShowMore] = useState(false)
   const [promptDisplay, setDisplayPrompt] = useState(false)
@@ -21,11 +23,13 @@ function PreviousWorkout({ userId, workout, allWorkouts, updateWorkouts, workout
 
   async function deleteWorkout(workoutId, userId) {
     console.log('workout =', workout)
+    const token = await getAccessTokenSilently()
     const workoutRes = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/users/workouts/${workoutId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify({
         userId

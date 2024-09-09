@@ -8,16 +8,18 @@ export default function DeleteUserButton({ auth0UserId }) {
   const [showPrompt, setShowPrompt] = useState(false)
   const message = "Are you sure you want to delete your account? This is an irreversible action."
   const [redirect, setRedirect] = useState(false)
-  const { logout } = useAuth0();
+  const { logout, getAccessTokenSilently } = useAuth0();
 
 
 
   async function deleteAccount(auth0UserId) {
+    const token = await getAccessTokenSilently()
     await fetch(`${process.env.REACT_APP_API_URL}/api/v1/users/${auth0UserId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${token}`
       }
     })
       .then(res => res.json())

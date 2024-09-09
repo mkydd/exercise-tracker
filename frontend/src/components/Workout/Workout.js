@@ -6,6 +6,7 @@ import AddExerciseButton from './AddExerciseButton';
 import CurrentExercises from './CurrentExercises';
 
 import { useOutletContext, useLocation } from 'react-router-dom';
+import { useAuth0 } from "@auth0/auth0-react";
 
 import '../../styles/workout.css'
 
@@ -16,6 +17,7 @@ function Workout() {
   const [workoutName, setWorkoutName] = useState('Workout')
 
   const { state } = useLocation();
+  const { getAccessTokenSilently } = useAuth0()
 
   const [currDate, setCurrDate] = useState({ day: '', month: '', year: '' })
 
@@ -69,11 +71,13 @@ function Workout() {
 
   async function saveWorkout(time) {
     console.log('(save) time =', time)
+    const token = await getAccessTokenSilently()
     const workout = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/users/workouts/${userData._id}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify({
         exercises: allSets,

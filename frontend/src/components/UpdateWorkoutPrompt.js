@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import { useAuth0 } from "@auth0/auth0-react";
 import '../styles/updateWorkoutPrompt.css'
 
 function UpdateWorkoutPrompt({ closePrompt, userId, setUserWorkouts, allWorkouts, workoutIndex }) {
   const [newWorkouts, setNewWorkouts] = useState(structuredClone(allWorkouts))
+  const { getAccessTokenSilently } = useAuth0()
 
   useEffect(() => {
     console.log('!!!newWorkouts =', newWorkouts)
@@ -43,13 +45,15 @@ function UpdateWorkoutPrompt({ closePrompt, userId, setUserWorkouts, allWorkouts
   }
 
   async function updateWorkout() {
+    const token = await getAccessTokenSilently() 
     const updatedWorkout = newWorkouts[workoutIndex]
 
     await fetch(`${process.env.REACT_APP_API_URL}/api/v1/users/workouts/${userId}`, {
       method: 'put',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify({
         workoutIndex,

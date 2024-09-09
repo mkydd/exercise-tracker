@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useAuth0 } from "@auth0/auth0-react";
 import '../../styles/user/profile.css'
 import { useOutletContext } from 'react-router-dom'
 import DeleteUserButton from '../../components/user/DeleteUserButton'
@@ -10,6 +11,9 @@ function Profile() {
   const [auth0Id, setAuth0Id] = useState('')
   const [displayUserInputPrompt, setDisplayUserInputPrompt] = useState(false)
   const [initials, setInitials] = useState('')
+
+  const { getAccessTokenSilently } = useAuth0()
+
 
   useEffect(() => {
     if (userData) {
@@ -25,10 +29,12 @@ function Profile() {
   }, [auth0UserId])
 
   async function updateUserInfo(userInfo) {
+    const token = await getAccessTokenSilently()
     const res = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/users/${userData._id}`, {
       method: "PATCH",
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify(userInfo)
     })
