@@ -7,28 +7,32 @@ import { Outlet } from 'react-router-dom'
 import '../../styles/user/user.css'
 
 function User() {
-  const { user } = useAuth0();
+  const { user, getAccessTokenSilently } = useAuth0()
+
   const [auth0UserId, setAuth0UserId] = useState('')
   const [userData, setUserData] = useState()
   const [userWorkouts, setUserWorkouts] = useState([])
 
   useEffect(() => {
     async function getData() {
-      let data = await getUserData(user.email)
+      console.log('user =', user)
+      const token = await getAccessTokenSilently()
+      let data = await getUserData(user.email, token)
       setUserData(data.user)
     }
     getData()
-  }, [user])
+  }, [user, getAccessTokenSilently])
 
   useEffect(() => {
     async function getData() {
-      let { workout } = await getWorkoutData(userData._id)
+      const token = await getAccessTokenSilently()
+      let { workout } = await getWorkoutData(userData._id, token)
       setUserWorkouts(workout.workouts)
     }
     if (userData) {
       getData()
     }
-  }, [userData])
+  }, [userData, getAccessTokenSilently])
 
   useEffect(() => {
     if (user) {
