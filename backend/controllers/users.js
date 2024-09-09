@@ -18,6 +18,10 @@ const getAllUsers = asyncWrapper(async (req, res, next) => {
 })
 
 const createUser = asyncWrapper(async (req, res, next) => {
+  const userTokenId = req.auth.payload.sub;
+
+  const duplicateUser = User.findOne({ auth0Id: userTokenId})
+
   let userData = { 
     email: req.body.email, 
     auth0Id: req.body.auth0Id,
@@ -33,6 +37,11 @@ const createUser = asyncWrapper(async (req, res, next) => {
     }
   }
 
+  if (duplicateUser || userTokenId !== req.body.auth0Id) {
+    console.log('duplicateUser =', duplicateUser ? true : false)
+    console.log('userTokenId !== req.body.auth0Id = ', userTokenId !== req.body.auth0Id)
+    return next(createCustomError(`Error creating user, please try again`, 500), req,res)
+  }
   const user = await User.create(userData)
 
   if (!user) {
