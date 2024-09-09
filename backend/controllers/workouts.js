@@ -1,31 +1,31 @@
 const Workout = require('../models/Workout')
 const asyncWrapper = require('../middleware/async')
-const { createCustomError } = require('../errors/custom-error')
+const { createCustomError, CustomAPIError } = require('../errors/custom-error')
 
-const getAllWorkouts = asyncWrapper(async (req, res) => {
+const getAllWorkouts = asyncWrapper(async (req, res, next) => {
   try {
     if (req.body.adminPasscode !== process.env.ADMIN_PASSCODE) {
-      return next(createCustomError(`unauthorized: can not access route`, 403), req,res)
+      return next(createCustomError(`unauthorized: can not access route`, 403), req, res)
     }
   } catch (error) {
-    return next(createCustomError(`unauthorized: can not access route`, 403), req,res)
+    return next(createCustomError(`unauthorized: can not access route`, 403), req, res)
   }
   const workouts = await Workout.find({})
 
   return res.status(200).json({ workouts })
 })
 
-const createWorkoutList = asyncWrapper(async (req, res) => {
+const createWorkoutList = asyncWrapper(async (req, res, next) => {
   // const workout = await Workout.create(req.body)
   // res.status(201).json({ workout })
-  return next(createCustomError(`route does not exist`, 404), req,res)
+  return next(createCustomError(`route does not exist`, 404), req, res)
 })
 
 const getWorkouts = asyncWrapper(async (req, res, next) => {
   const workout = await Workout.findOne({ userId: req.params.id })
 
   if (!workout) {
-    return next(createCustomError(`No workouts for user with id : ${req.params.id}`, 404), req,res)
+    return next(createCustomError(`No workouts for user with id : ${req.params.id}`, 404), req, res)
   }
 
   res.status(200).json({ workout })
@@ -38,7 +38,7 @@ const updateWorkout = asyncWrapper(async (req, res, next) => {
   let workoutsData = await Workout.findOne({ userId: req.params.id }).lean()
 
   if (!workoutsData) {
-    return next(createCustomError(`No workoutList with id : ${req.params.id}`, 404))
+    return next(createCustomError(`No workoutList with id : ${req.params.id}`, 404), req, res)
   }
 
   workoutsData.workouts[workoutIndex] = newWorkout
@@ -52,7 +52,7 @@ const updateWorkout = asyncWrapper(async (req, res, next) => {
         runValidators: true 
       })
   } catch (error) {
-    return next(createCustomError(`Update Error : ${error}`, 404))
+    return next(createCustomError(`Update Error : ${error}`, 404), req, res)
   }
     
   res.status(200).json({ newWorkoutData })
@@ -64,7 +64,7 @@ const deleteWorkout = asyncWrapper(async (req, res, next) => {
   const workoutList = await Workout.findOne({ userId })
 
   if (!workoutList) {
-    return next(createCustomError(`No workouts for user with id : ${userId}`, 404))
+    return next(createCustomError(`No workouts for user with id : ${userId}`, 404), req, res)
   }
 
   const workoutCount = workoutList.workouts.length
@@ -73,7 +73,7 @@ const deleteWorkout = asyncWrapper(async (req, res, next) => {
 
   // verifies a workout was deleted
   if (workoutCount === workouts.length) {
-    return next(createCustomError(`No workout with id : ${req.params.id}`, 404))
+    return next(createCustomError(`No workout with id : ${req.params.id}`, 404), req, res)
   }
 
   const newWorkoutList = await Workout.findOneAndUpdate(
@@ -95,7 +95,7 @@ const addWorkout = asyncWrapper(async (req, res, next) => {
   const user = await Workout.findOne({ userId: req.params.id })
   
   if (!user) {
-    return next(createCustomError(`No user with id : ${req.params.id}`, 404))
+    return next(createCustomError(`No user with id : ${req.params.id}`, 404), req, res)
   }
 
   const { workouts } = user
@@ -114,7 +114,7 @@ const addWorkout = asyncWrapper(async (req, res, next) => {
   }
 
   if (!userWorkouts) {
-    return next(createCustomError(`No userWorkouts with id : ${req.params.id}`, 404))
+    return next(createCustomError(`No userWorkouts with id : ${req.params.id}`, 404), req, res)
   }
 
   res.status(200).json({ userWorkouts })
