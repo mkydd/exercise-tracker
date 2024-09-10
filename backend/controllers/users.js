@@ -129,7 +129,6 @@ const deleteUser = asyncWrapper(async (req, res, next) => {
 
 const getSingleUser = asyncWrapper(async (req, res, next) => {
   const userTokenId = req.auth.payload.sub;
-  console.log('userId (token) =', userTokenId)
   
   const { email } = req.body
 
