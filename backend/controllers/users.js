@@ -89,7 +89,7 @@ const updateUser = asyncWrapper(async (req, res, next) => {
     { _id: req.params.id },
     newData,
     { new: true,
-    runValidators: true})
+      runValidators: true })
 
   if (!user || userTokenId != user.auth0Id) {
     return next(createCustomError(`No user with id: ${req.params.id}`, 404), req, res)
