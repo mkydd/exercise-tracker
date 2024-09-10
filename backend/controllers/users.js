@@ -79,13 +79,19 @@ const getUser = asyncWrapper(async (req, res, next) => {
 })
 
 const updateUser = asyncWrapper(async (req, res, next) => {
+  const userTokenId = req.auth.payload.sub;
+
+  const newData = structuredClone(req.body)
+  delete newData._id
+  delete newData.auth0Id
+
   const user = await User.findByIdAndUpdate(
-    {_id: req.params.id},
-    req.body,
+    { _id: req.params.id },
+    newData,
     { new: true,
     runValidators: true})
 
-  if (!user) {
+  if (!user || userTokenId != user.auth0Id) {
     return next(createCustomError(`No user with id: ${req.params.id}`, 404), req, res)
   }  
 
