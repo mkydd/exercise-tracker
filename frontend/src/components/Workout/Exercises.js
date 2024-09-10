@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
-// import { useEffect, useState } from 'react';
 import { allExercises } from '../../util/Data';
 import SearchIcon from '@mui/icons-material/Search';
 
 function Exercises({ onClickFunction }) {
-  // const [exercises, setExercises] = useState([])
   const [selectedExercises, setSelectedExercises] = useState(allExercises)
   const [selectedBodyPart, setSelectedBodyPart] = useState(null)
   const [searchQuery, setSearchQuery] = useState('')
@@ -47,7 +45,7 @@ function Exercises({ onClickFunction }) {
     <div>
       <div className="search-exercises-wrapper">
         <SearchIcon className='search-icon'/>
-        <input type="text" name="search" className='search-exercises' onChange={(e) => searchOnChange(e.target.value)}/>
+        <input type="text" name="search" className='search-exercises' onChange={(e) => searchOnChange(e.target.value.toLowerCase())}/>
       </div>
 
       <div className="exercise-buttons-wrapper">
