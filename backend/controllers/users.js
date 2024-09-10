@@ -18,7 +18,7 @@ const getAllUsers = asyncWrapper(async (req, res, next) => {
 })
 
 const createUser = asyncWrapper(async (req, res, next) => {
-  const userTokenId = req.auth.payload.sub;
+  // const userTokenId = req.auth.payload.sub;
   let userData = { 
     email: req.body.email, 
     auth0Id: req.body.auth0Id,
@@ -34,10 +34,9 @@ const createUser = asyncWrapper(async (req, res, next) => {
     }
   }
 
-  if (userTokenId !== req.body.auth0Id) { 
-    // if someone makes api request with stolen token, they will not know
-    //    what the appropriate auth0Id is
-    return next(createCustomError(`\nuserTokenId = ${userTokenId}\nreq.body.auth0Id = ${req.body.auth0Id}\n1 Error creating user, please try again`, 500), req,res)
+  // make sure adminPasscode is NOT undefined in case process.env.ADMIN_PASSCODE id undefined
+  if (req.body.adminPasscode !== process.env.ADMIN_PASSCODE) {
+    return next(createCustomError(`Error creating user, please try again`, 500), req, res)
   }
 
   let user;
@@ -45,11 +44,11 @@ const createUser = asyncWrapper(async (req, res, next) => {
   try {
     user = await User.create(userData)
   } catch (error) {
-    return next(createCustomError(`Dup user, please try agaError creating user, please try againin`, 500), req,res)
+    return next(createCustomError(`Error creating user, please try again`, 500), req, res)
   }
 
   if (!user) {
-    return next(createCustomError(`3 Error creating user, please try again`, 500), req,res)
+    return next(createCustomError(`Error creating user, please try again`, 500), req, res)
   }
 
   const workoutList = await Workout.create({ userId: user._id, workouts: [] })
