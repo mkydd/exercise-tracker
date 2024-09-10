@@ -61,14 +61,21 @@ const createUser = asyncWrapper(async (req, res, next) => {
 })
 
 const getUser = asyncWrapper(async (req, res, next) => {
+  const userTokenId = req.auth.payload.sub;
   const id = req.params.id;
-  const user = await User.findOne({ _id: id })
+  let user;
 
-  if (!user) {
+  try {
+    user = await User.findOne({ _id: id })
+  } catch (error) {
     return next(createCustomError(`No user with id : ${req.params.id}`, 404), req,res)
   }
 
-  res.status(200).send( user )
+  if (!user || userTokenId !== user.auth0Id) {
+    return next(createCustomError(`No user with id : ${req.params.id}`, 404), req,res)
+  }
+
+  res.status(200).json({ user })
 })
 
 const updateUser = asyncWrapper(async (req, res, next) => {
