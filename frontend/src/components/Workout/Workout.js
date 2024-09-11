@@ -46,11 +46,6 @@ function Workout() {
     })
   }, [])
 
-  // USED FOR TESTING
-  // useEffect(() => {
-  //   console.log('time W =', time)
-  // }, [time])
-
   function exerciseOnClick(exercise) {
     if (currentExercises.includes(exercise)) return;
 
@@ -69,8 +64,22 @@ function Workout() {
     // console.log('Removed ', exercise.name)
   }
 
+  function updateEmptySets() {
+    let newSets = [...allSets]
+    newSets.forEach((exercise, exerciseIndex) => {
+      exercise.sets.forEach((set, setIndex) => {
+        if (!set.reps) {
+          newSets[exerciseIndex].sets[setIndex].reps = 0
+        }
+        if (!set.weight) {
+          newSets[exerciseIndex].sets[setIndex].weight = 0
+        }
+      })
+    })
+    setAllSets(newSets)
+  }
+
   async function saveWorkout(time) {
-    console.log('(save) time =', time)
     const token = await getAccessTokenSilently()
     const workout = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/users/workouts/${userData._id}`, {
       method: 'POST',
@@ -100,7 +109,9 @@ function Workout() {
         workoutName={workoutName} 
         setWorkoutName={setWorkoutName}/>
 
-      <Stopwatch saveWorkout={saveWorkout}/>
+      <Stopwatch 
+        saveWorkout={saveWorkout}
+        updateEmptySets={updateEmptySets}/>
 
       <CurrentExercises 
         exercises={currentExercises} 
