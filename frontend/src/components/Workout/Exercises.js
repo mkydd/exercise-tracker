@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { allExercises } from '../../util/Data';
 import SearchIcon from '@mui/icons-material/Search';
 
-function Exercises({ onClickFunction }) {
+function Exercises({ handleClick }) {
   const [selectedExercises, setSelectedExercises] = useState(allExercises)
   const [selectedBodyPart, setSelectedBodyPart] = useState(null)
   const [searchQuery, setSearchQuery] = useState('')
@@ -79,12 +79,11 @@ function Exercises({ onClickFunction }) {
           {selectedExercises.map((exercise) => {
             return <li 
               key={exercise.id} 
-              
-                onClick={() => onClickFunction(exercise)} 
+              onClick={() => handleClick(exercise)} 
               className='selected-exercise'>
                 <div className="exercise-name">{exercise.name}</div>
                 <div className="exercise-bodypart">{exercise.bodyPart}</div>
-                </li>
+              </li>
           })}
         </ul>}
     </div>

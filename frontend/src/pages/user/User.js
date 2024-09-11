@@ -3,11 +3,13 @@ import { useAuth0 } from "@auth0/auth0-react";
 import getUserData from '../../util/fetchUserData';
 import getWorkoutData from '../../util/fetchUserWorkouts';
 import NavBar from '../../util/NavBar'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
 import '../../styles/user/user.css'
 
 function User() {
   const { user, getAccessTokenSilently } = useAuth0()
+
+  const { pathname } = useLocation();
 
   const [auth0UserId, setAuth0UserId] = useState('')
   const [userData, setUserData] = useState()
@@ -48,7 +50,7 @@ function User() {
 
   return (
     <div className="user">
-      <div className="user-page-wrapper">
+      <div className="user-page-wrapper" style={pathname === '/user/workout' ? {overflowY: 'visible'} : {}}>
         {user && userData && userWorkouts && <Outlet context={{ setUserData, user, userData, userWorkouts, setUserWorkouts, auth0UserId }}/>}
       </div>
       <NavBar />

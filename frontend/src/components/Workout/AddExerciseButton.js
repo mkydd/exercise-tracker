@@ -11,7 +11,12 @@ function AddExerciseButton({ onClickFunction }) {
         onClick={() => setClicked(!clicked)}>
           Add Exercise
       </button>
-      {clicked ? <Exercises onClickFunction={onClickFunction}/> : null}
+      { clicked ? 
+        <Exercises 
+          handleClick={(exercise) => {
+            onClickFunction(exercise)
+            window.scrollTo({ top: 0, 'behavior':'smooth' })
+          }}/> : null}
     </div>
   )
 }

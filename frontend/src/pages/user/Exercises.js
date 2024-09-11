@@ -6,7 +6,7 @@ function Exercises() {
   return (
     <div className='all-exercises'>
       <h1>Exercises</h1>
-      <AllExercises onClickFunction={() => null}/>
+      <AllExercises handleClick={() => null}/>
     </div>
   )
 }
