@@ -1,14 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useAuth0 } from "@auth0/auth0-react";
 import '../styles/updateWorkoutPrompt.css'
 
 function UpdateWorkoutPrompt({ closePrompt, userId, setUserWorkouts, allWorkouts, workoutIndex }) {
   const [newWorkouts, setNewWorkouts] = useState(structuredClone(allWorkouts))
   const { getAccessTokenSilently } = useAuth0()
-
-  useEffect(() => {
-    console.log('!!!newWorkouts =', newWorkouts)
-  }, [newWorkouts])
 
   function deleteSet(exerciseIndex, setIndex) {
     let tempWorkout = [...newWorkouts] // create copy of newWorkouts
@@ -41,6 +37,21 @@ function UpdateWorkoutPrompt({ closePrompt, userId, setUserWorkouts, allWorkouts
     tempWorkouts[workoutIndex]
       .exercises = newExercises
 
+    setNewWorkouts(tempWorkouts)
+  }
+  
+  function updateEmptySets() {
+    let tempWorkouts = [...newWorkouts]
+    tempWorkouts[workoutIndex].exercises.forEach((exercise, exerciseIndex) => {
+      exercise.sets.forEach((set, setIndex) => {
+        if (!set.reps) {
+          tempWorkouts[workoutIndex].exercises[exerciseIndex].sets[setIndex].reps = 0
+        }
+        if (!set.weight) {
+          tempWorkouts[workoutIndex].exercises[exerciseIndex].sets[setIndex].weight = 0
+        }
+      })
+    })
     setNewWorkouts(tempWorkouts)
   }
 
@@ -140,6 +151,7 @@ function UpdateWorkoutPrompt({ closePrompt, userId, setUserWorkouts, allWorkouts
         <button 
           className='update-button'
           onClick={() => {
+            updateEmptySets()
             updateWorkout()
             setUserWorkouts(newWorkouts)
             closePrompt()
@@ -148,7 +160,6 @@ function UpdateWorkoutPrompt({ closePrompt, userId, setUserWorkouts, allWorkouts
         <button 
           className='cancel-button'
           onClick={() => {
-            console.log('og allWorkout =', allWorkouts)
             closePrompt()
           }}>Cancel</button>
       </div>
