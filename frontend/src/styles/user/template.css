@@ -28,6 +28,7 @@
     -webkit-line-clamp: 2; /* num of lines to show */
             line-clamp: 2; 
     -webkit-box-orient: vertical;
+    text-transform: capitalize;
 }
 
 .template-date-start-wrapper {
