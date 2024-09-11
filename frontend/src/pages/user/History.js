@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import PreviousWorkout from '../../components/user/PreviousWorkout'
 import '../../styles/user/history.css'
+import NoWorkoutsMsg from '../../components/NoWorkouts'
 
 function History() {
   const { userData, userWorkouts, setUserWorkouts } = useOutletContext()
@@ -14,6 +15,7 @@ function History() {
     <div className='history'>
       <h1>History</h1> 
       <ul className='workouts'>
+        <NoWorkoutsMsg />
         {userWorkouts && userWorkouts.map((workout, index) => {
           return (
             <li key={`history ${workout._id}`}>

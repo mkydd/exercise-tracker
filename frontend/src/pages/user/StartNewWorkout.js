@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useOutletContext, Navigate } from 'react-router-dom'
 import '../../styles/user/startNewWorkout.css'
 import Template from '../../components/user/Template';
+import NoWorkoutsMsg from '../../components/NoWorkouts';
 
 function StartNewWorkout() {
   const { userWorkouts } = useOutletContext()
@@ -24,6 +25,7 @@ function StartNewWorkout() {
                   workout={workout} />
               </li>)
           })}
+          <NoWorkoutsMsg />
         </ul>
       </div>
     </div>
