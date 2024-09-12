@@ -5,6 +5,7 @@ import { useOutletContext } from 'react-router-dom'
 import DeleteUserButton from '../../components/user/DeleteUserButton'
 import UserInfoInput from '../../components/UserInfoInput'
 import LogoutButton from '../../auth/logout';
+import ResendEmailVerificationBtn from '../../components/user/ResendEmailVerificationBtn';
 
 function Profile() {
   const { userWorkouts, userData, auth0UserId, setUserData } = useOutletContext()
@@ -89,6 +90,7 @@ function Profile() {
       <div className="is-verified-wrapper">
         <div className="verified-label">Account Verified:</div> 
         { user && <div>{ user.isVerified ? <div>&#x2705;</div> : <div>&#x274C;</div> }</div> }
+        {user && !user.isVerified && <ResendEmailVerificationBtn auth0Id={auth0Id}/>}
       </div>
 
       <div className="stats">
