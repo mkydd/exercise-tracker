@@ -4,6 +4,7 @@ import '../../styles/user/profile.css'
 import { useOutletContext } from 'react-router-dom'
 import DeleteUserButton from '../../components/user/DeleteUserButton'
 import UserInfoInput from '../../components/UserInfoInput'
+import LogoutButton from '../../auth/logout';
 
 function Profile() {
   const { userWorkouts, userData, auth0UserId, setUserData } = useOutletContext()
@@ -83,6 +84,7 @@ function Profile() {
           {user && user.email}
         </div>
       </div>
+
       <div className="stats">
       <h2>Stats</h2>
         <div className="stat total-workouts">
@@ -104,6 +106,7 @@ function Profile() {
       <div>
         {user && <DeleteUserButton user={user} auth0UserId={auth0Id}/>}
       </div>
+      <LogoutButton />
     </div>
   )
 }

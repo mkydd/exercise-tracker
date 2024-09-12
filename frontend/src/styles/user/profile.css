@@ -20,6 +20,16 @@
     color: rgb(61, 158, 227);
 }
 
+.profile .logout {
+    color: white;
+    background-color: rgb(180, 180, 180);
+    border: none;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
 .profile .stats {
     border: 1px solid rgb(180, 180, 180);
     border-radius: 0.5rem;
