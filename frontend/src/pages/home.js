@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from '../auth/login';
+import SignUpButton from '../auth/signUp';
 import LogoutButton from '../auth/logout';
 import Loading from '../util/Loading';
 import { Navigate } from "react-router-dom";
@@ -28,8 +29,11 @@ function Home() {
           <div className='message'>Please click button below to access workouts</div>
           <div className='btn-wrapper'><button className='goTo' onClick={() => setGoToWorkouts(true)}>Go to Workouts</button></div>
         </div>
+        <div className="login-signup-wrapper">
+          { !isAuthenticated && <LoginButton /> }
+          { !isAuthenticated && <SignUpButton /> }
+        </div>
         { isAuthenticated && <LogoutButton /> }
-        { !isAuthenticated && <LoginButton /> }
       </div>
 
       {user && goToWorkouts && <Navigate to='/user/home'/>}
