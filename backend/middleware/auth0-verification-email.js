@@ -1,6 +1,6 @@
 const axios = require('axios')
 require('dotenv').config();
-const { getAccessToken } = require('./auth0-getToken')
+const getAccessToken = require('./auth0-getToken')
 
 async function resendVerificationEmail(auth0Id) {
   const url = `https://${process.env.AUTH0_DOMAIN}/api/v2/jobs/verification-email`;
@@ -24,4 +24,4 @@ async function resendVerificationEmail(auth0Id) {
   }
 }
 
-module.exports = { resendVerificationEmail };
+module.exports = resendVerificationEmail;

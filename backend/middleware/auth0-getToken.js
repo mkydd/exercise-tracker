@@ -22,4 +22,4 @@ async function getAccessToken() {
   }
 }
 
-module.exports = { getAccessToken };
+module.exports = getAccessToken;
