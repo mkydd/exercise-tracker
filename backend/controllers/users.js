@@ -3,6 +3,7 @@ const Workout = require('../models/Workout')
 const asyncWrapper = require('../middleware/async')
 const { createCustomError } = require('../errors/custom-error')
 const deleteAuthUser = require('../middleware/auth0-delete-user')
+const resendVerificationEmail = require('../middleware/auth0-verification-email')
 const bcrypt = require('bcrypt')
 
 const getAllUsers = asyncWrapper(async (req, res, next) => {
@@ -147,11 +148,32 @@ const getSingleUser = asyncWrapper(async (req, res, next) => {
   res.status(200).json({ user })
 })
 
+const getVerificationEmail = asyncWrapper(async (req, res, next) => {
+  const auth0Id = req.params.auth0Id
+  const userTokenId = req.auth.payload.sub;
+
+  const user = await User.findOne({ auth0Id })
+
+  if (!user || user.isVerified || auth0Id != userTokenId) {
+    return next(createCustomError('1 Could not resend email. Please try again later.', 500))
+  }
+
+  try {
+    resendVerificationEmail(auth0Id)
+  } catch (error) {
+    console.log('\n\n\n', error, '\n\n\n')
+    return next(createCustomError('Could not resend email. Please try again later.', 500))
+  }
+
+  res.status(200).json({ msg: 'verification email sent' })
+})
+
 module.exports = {
   getAllUsers,
   createUser,
   getUser,
   updateUser,
   deleteUser,
-  getSingleUser
+  getSingleUser,
+  getVerificationEmail
 }
