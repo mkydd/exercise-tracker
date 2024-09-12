@@ -18,7 +18,7 @@ async function getAccessToken() {
     });
     return res.data.access_token;
   } catch (error) {
-    return error
+    throw error
   }
 }
 

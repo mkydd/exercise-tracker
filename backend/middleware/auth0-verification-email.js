@@ -3,10 +3,10 @@ require('dotenv').config();
 const { getAccessToken } = require('./auth0-getToken')
 
 async function resendVerificationEmail(auth0Id) {
-  const token = await getAccessToken();
   const url = `https://${process.env.AUTH0_DOMAIN}/api/v2/jobs/verification-email`;
 
   try {
+    const token = await getAccessToken();
     const res = await axios({
       method: 'POST',
       headers: {
@@ -20,7 +20,7 @@ async function resendVerificationEmail(auth0Id) {
     });
     return res
   } catch (error) {
-    return error
+    throw error
   }
 }
 
