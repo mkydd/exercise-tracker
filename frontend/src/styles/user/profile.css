@@ -34,6 +34,20 @@
     font-weight: bold;
 }
 
+.profile .resend-email-verification {
+    flex-grow: 1;
+    display: flex;
+    justify-content: end;
+}
+
+.profile .resend-email-verification .resend-email-button {
+    color: white;
+    background-color: rgb(61, 158, 227);
+    border: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+}
+
 .profile .logout {
     color: white;
     background-color: rgb(180, 180, 180);
