@@ -24,4 +24,4 @@ async function resendVerificationEmail(auth0Id) {
   }
 }
 
-module.exports = resendVerificationEmail;
+module.exports = { resendVerificationEmail };
