@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import { allExercises } from '../../util/Data';
 import SearchIcon from '@mui/icons-material/Search';
+import { useLocation } from 'react-router-dom'
 
 function Exercises({ handleClick }) {
   const [selectedExercises, setSelectedExercises] = useState(allExercises)
   const [selectedBodyPart, setSelectedBodyPart] = useState(null)
   const [searchQuery, setSearchQuery] = useState('')
+
+  const { pathname } = useLocation();
 
   function filterExercise(bodyPart) {
     if (bodyPart === selectedBodyPart) {
@@ -81,8 +84,15 @@ function Exercises({ handleClick }) {
               key={exercise.id} 
               onClick={() => handleClick(exercise)} 
               className='selected-exercise'>
-                <div className="exercise-name">{exercise.name}</div>
-                <div className="exercise-bodypart">{exercise.bodyPart}</div>
+                <div>
+                  <div className="exercise-name">{exercise.name}</div>
+                  <div className="exercise-bodypart">{exercise.bodyPart}</div>
+                </div>
+                <div className="add-icon">
+                  { pathname === '/user/workout' && 
+                    <div>+</div>
+                  }
+                </div>
               </li>
           })}
         </ul>}

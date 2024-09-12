@@ -70,6 +70,19 @@
 
 .selected-exercise {
     border-top: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.selected-exercise .add-icon {
+    color: rgb(61, 158, 227);
+    margin-inline: 0.5rem;
+    border-radius: 0.25rem;
+    padding: 0rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .exercise-name {
