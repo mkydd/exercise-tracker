@@ -11,7 +11,7 @@ root.render(
       clientId={process.env.REACT_APP_AUTH_CLIENT_ID}
       authorizationParams={{
         redirect_uri: process.env.REACT_APP_HOME_URL,
-        audience:"https://exercise-tracker/api"
+        audience: "https://exercise-tracker/api"
       }}>
       <App />
     </Auth0Provider>
