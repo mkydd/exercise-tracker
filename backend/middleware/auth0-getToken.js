@@ -18,8 +18,8 @@ async function getAccessToken() {
     });
     return res.data.access_token;
   } catch (error) {
-    console.error('Error getting access token:', error.response ? error.response.data : error.message);
+    return error
   }
 }
 
-module.exports = getAccessToken;
+module.exports = { getAccessToken };
