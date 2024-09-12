@@ -20,6 +20,20 @@
     color: rgb(61, 158, 227);
 }
 
+.profile .is-verified-wrapper {
+    border: 1px solid rgb(180, 180, 180);
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+}
+
+.profile .verified-label {
+    font-weight: bold;
+}
+
 .profile .logout {
     color: white;
     background-color: rgb(180, 180, 180);

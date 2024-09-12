@@ -18,10 +18,11 @@ function Profile() {
 
   useEffect(() => {
     if (userData) {
+      console.log('user =', user)
       setUser(userData)
       setInitials(newInitials(userData))
     }
-  }, [userData])
+  }, [userData, user])
 
   useEffect(() => {
     if (auth0UserId) {
@@ -83,6 +84,11 @@ function Profile() {
         <div className="email">
           {user && user.email}
         </div>
+      </div>
+
+      <div className="is-verified-wrapper">
+        <div className="verified-label">Account Verified:</div> 
+        { user && <div>{ user.isVerified ? <div>&#x2705;</div> : <div>&#x274C;</div> }</div> }
       </div>
 
       <div className="stats">
