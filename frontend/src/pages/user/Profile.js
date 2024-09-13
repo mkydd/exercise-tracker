@@ -6,6 +6,7 @@ import DeleteUserButton from '../../components/user/DeleteUserButton'
 import UserInfoInput from '../../components/UserInfoInput'
 import LogoutButton from '../../auth/logout';
 import ResendEmailVerificationBtn from '../../components/user/ResendEmailVerificationBtn';
+import Banner from '../../util/Banner';
 
 function Profile() {
   const { userWorkouts, userData, auth0UserId, setUserData } = useOutletContext()
@@ -13,6 +14,9 @@ function Profile() {
   const [auth0Id, setAuth0Id] = useState('')
   const [displayUserInputPrompt, setDisplayUserInputPrompt] = useState(false)
   const [initials, setInitials] = useState('')
+  const [showBanner, setShowBanner] = useState('')
+  const [bannerStatus, setBannerStatus] = useState('')
+  const [bannerMsg, setBannerMsg] = useState('')
 
   const { getAccessTokenSilently } = useAuth0()
 
@@ -31,6 +35,12 @@ function Profile() {
     }
   }, [auth0UserId])
 
+  function displayBanner(status, msg) {
+    setBannerStatus(status)
+    setShowBanner(true)
+    setBannerMsg(msg)
+  }
+
   async function updateUserInfo(userInfo) {
     const token = await getAccessTokenSilently()
     const res = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/users/${userData._id}`, {
@@ -46,6 +56,7 @@ function Profile() {
 
     if (res.status === 200) {
       setUserData({...user, ...userInfo})
+      displayBanner('success', 'User Info Successfully Updated')
     }
   }
 
@@ -69,6 +80,11 @@ function Profile() {
 
   return (
     <div className='profile'>
+      <Banner 
+        status={bannerStatus}
+        display={showBanner}
+        setDisplay={setShowBanner}
+        msg={bannerMsg}/>
       <h1>Profile</h1>
 
       {user && (!user.name.firstName || !user.name.lastName || displayUserInputPrompt) && 
