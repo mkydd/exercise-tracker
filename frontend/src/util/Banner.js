@@ -26,7 +26,10 @@ function Banner({ status, display, setDisplay, msg }) {
   return (
     <div 
       className='banner-wrapper' 
-      onAnimationEnd={() => setDisplay(false)}>
+      onAnimationEnd={() => {
+        setDisplay(false)
+        setBannerStyles({})
+      }}>
       { display &&
         <div 
         className='banner'
