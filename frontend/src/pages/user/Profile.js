@@ -14,7 +14,7 @@ function Profile() {
   const [auth0Id, setAuth0Id] = useState('')
   const [displayUserInputPrompt, setDisplayUserInputPrompt] = useState(false)
   const [initials, setInitials] = useState('')
-  
+
   const [showBanner, setShowBanner] = useState('')
   const [bannerStatus, setBannerStatus] = useState('')
   const [bannerMsg, setBannerMsg] = useState('')
@@ -43,6 +43,11 @@ function Profile() {
   }
 
   async function updateUserInfo(userInfo) {
+    if  (JSON.stringify(user.name) === JSON.stringify(userInfo.name) 
+      && JSON.stringify(user.stats) === JSON.stringify(userInfo.stats)) {
+        displayBanner('error', 'No Changes Made to User Information')
+        return
+    }
     const token = await getAccessTokenSilently()
     const res = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/users/${userData._id}`, {
       method: "PATCH",
