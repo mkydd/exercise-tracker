@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import '../styles/banner.css'
 
-function Banner({ status, display, setDisplay }) {
+function Banner({ status, display, setDisplay, msg }) {
   const [bannerStyles, setBannerStyles] = useState({})
 
   useEffect(() => {
@@ -31,7 +31,7 @@ function Banner({ status, display, setDisplay }) {
         <div 
         className='banner'
         style={bannerStyles}>
-          User Deleted Successfully
+          {msg}
         </div>
       }
     </div>
