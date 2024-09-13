@@ -1,0 +1,40 @@
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    } 
+    25% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.banner-wrapper {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: 1rem;
+    z-index: 1;
+}
+
+.banner {
+    width: 75%;
+    text-align: center;
+    padding: 1rem 0;
+    border-radius: 2rem;
+    background-color: rgb(61, 158, 227);
+    color: white;
+    animation-name: fade-in;
+    animation-duration: 7s;
+    animation-fill-mode: forwards; /* forwards - specifies to keep styles applied to element after animation */
+}
