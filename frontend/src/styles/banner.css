@@ -31,6 +31,8 @@
     width: 75%;
     text-align: center;
     padding: 1rem 0;
+    font-size: large;
+    font-weight: bold;
     border-radius: 2rem;
     background-color: rgb(61, 158, 227);
     color: white;
