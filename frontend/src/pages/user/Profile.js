@@ -14,6 +14,7 @@ function Profile() {
   const [auth0Id, setAuth0Id] = useState('')
   const [displayUserInputPrompt, setDisplayUserInputPrompt] = useState(false)
   const [initials, setInitials] = useState('')
+  
   const [showBanner, setShowBanner] = useState('')
   const [bannerStatus, setBannerStatus] = useState('')
   const [bannerMsg, setBannerMsg] = useState('')
