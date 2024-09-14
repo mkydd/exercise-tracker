@@ -79,7 +79,7 @@ function UpdateWorkoutPrompt({ closePrompt, userId, setUserWorkouts, allWorkouts
     })
 
     if (res.status === 200) {
-      displayBanner('success', 'Workout Update Successful')
+      displayBanner('success', 'Workout Updated Successfully')
     } else {
       displayBanner('error', 'Unable to Update Workout')
     }
