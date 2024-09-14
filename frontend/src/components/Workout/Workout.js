@@ -11,7 +11,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import '../../styles/workout.css'
 
 function Workout() {
-  const { userData } = useOutletContext()
+  const { userData, setUserWorkouts } = useOutletContext()
   const [currentExercises, setCurrentExercises] = useState([])
   const [allSets, setAllSets] = useState([])
   const [workoutName, setWorkoutName] = useState('Workout')
@@ -81,7 +81,7 @@ function Workout() {
 
   async function saveWorkout(time) {
     const token = await getAccessTokenSilently()
-    const workout = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/users/workouts/${userData._id}`, {
+    const { userWorkouts } = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/users/workouts/${userData._id}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -100,7 +100,7 @@ function Workout() {
         return data
       })
     
-    console.log(workout)
+    setUserWorkouts(userWorkouts.workouts)
   }
   
   return (
