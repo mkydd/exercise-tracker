@@ -10,7 +10,7 @@ root.render(
       domain={process.env.REACT_APP_AUTH_DOMAIN}
       clientId={process.env.REACT_APP_AUTH_CLIENT_ID}
       authorizationParams={{
-        redirect_uri: process.env.REACT_APP_HOME_URL,
+        redirect_uri: `${process.env.REACT_APP_HOME_URL}user/home/`,
         audience: "https://exercise-tracker/api"
       }}>
       <App />

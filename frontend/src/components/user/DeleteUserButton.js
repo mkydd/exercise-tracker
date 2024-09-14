@@ -29,7 +29,7 @@ export default function DeleteUserButton({ auth0UserId }) {
     
     localStorage.setItem('deletedUser', 'true')
 
-    logout()
+    logout({ logoutParams: { returnTo: process.env.REACT_APP_HOME_URL }})
   }
 
   return (
