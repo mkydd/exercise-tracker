@@ -21,7 +21,7 @@ function Banner({ status, display, setDisplay, msg }) {
       default:
         break;
     }
-  }, [status])
+  }, [status, display])
   
   return (
     <div 
