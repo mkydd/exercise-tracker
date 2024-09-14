@@ -8,7 +8,7 @@ import BasicWorkoutHistory from './BasicWorkoutHistory'
 import UpdateWorkoutPrompt from '../UpdateWorkoutPrompt'
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
-function PreviousWorkout({ userId, workout, allWorkouts, updateWorkouts, workoutIndex }) {
+function PreviousWorkout({ userId, workout, allWorkouts, updateWorkouts, workoutIndex, setShowBanner, setBannerStatus, setBannerMsg }) {
   const { userData, setUserWorkouts } = useOutletContext()
   const { getAccessTokenSilently } = useAuth0()
   const [showUpdatePrompt, setShowUpdatePrompt] = useState(false)
@@ -97,7 +97,9 @@ function PreviousWorkout({ userId, workout, allWorkouts, updateWorkouts, workout
           allWorkouts={allWorkouts}
           workoutIndex={workoutIndex}
           userId={userId}
-          />
+          setShowBanner={setShowBanner}
+          setBannerStatus={setBannerStatus}
+          setBannerMsg={setBannerMsg}/>
       }
 
       <ConfirmationPrompt 

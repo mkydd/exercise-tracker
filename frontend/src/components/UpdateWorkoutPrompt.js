@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useAuth0 } from "@auth0/auth0-react";
 import '../styles/updateWorkoutPrompt.css'
 
-function UpdateWorkoutPrompt({ closePrompt, userId, setUserWorkouts, allWorkouts, workoutIndex }) {
+function UpdateWorkoutPrompt({ closePrompt, userId, setUserWorkouts, allWorkouts, workoutIndex, setShowBanner, setBannerStatus, setBannerMsg }) {
   const [newWorkouts, setNewWorkouts] = useState(structuredClone(allWorkouts))
   const { getAccessTokenSilently } = useAuth0()
 
@@ -55,11 +55,17 @@ function UpdateWorkoutPrompt({ closePrompt, userId, setUserWorkouts, allWorkouts
     setNewWorkouts(tempWorkouts)
   }
 
+  function displayBanner(status, msg) {
+    setBannerStatus(status)
+    setShowBanner(true)
+    setBannerMsg(msg)
+  }
+
   async function updateWorkout() {
     const token = await getAccessTokenSilently() 
     const updatedWorkout = newWorkouts[workoutIndex]
 
-    await fetch(`${process.env.REACT_APP_API_URL}/api/v1/users/workouts/${userId}`, {
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/users/workouts/${userId}`, {
       method: 'put',
       headers: {
         'Content-Type': 'application/json',
@@ -70,11 +76,13 @@ function UpdateWorkoutPrompt({ closePrompt, userId, setUserWorkouts, allWorkouts
         workoutIndex,
         workout: updatedWorkout
       })
-    }) 
-      .then(res => res.status)
-      .then(status => {
-        console.log(`workout updated (${status})`)
-      })
+    })
+
+    if (res.status === 200) {
+      displayBanner('success', 'Workout Update Successful')
+    } else {
+      displayBanner('error', 'Unable to Update Workout')
+    }
   }
 
   return ( 

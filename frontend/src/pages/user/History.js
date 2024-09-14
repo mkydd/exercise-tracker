@@ -1,11 +1,15 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import PreviousWorkout from '../../components/user/PreviousWorkout'
 import '../../styles/user/history.css'
 import NoWorkoutsMsg from '../../components/NoWorkouts'
+import Banner from '../../util/Banner';
 
 function History() {
   const { userData, userWorkouts, setUserWorkouts } = useOutletContext()
+  const [showBanner, setShowBanner] = useState(false)
+  const [bannerStatus, setBannerStatus] = useState('')
+  const [bannerMsg, setBannerMsg] = useState('')
 
   useEffect(() => {
     console.log('this is userWorkout = ', userWorkouts)
@@ -13,6 +17,11 @@ function History() {
 
   return (
     <div className='history'>
+      <Banner 
+        status={bannerStatus}
+        display={showBanner}
+        setDisplay={setShowBanner}
+        msg={bannerMsg}/>
       <h1>History</h1> 
       <ul className='workouts'>
         <NoWorkoutsMsg />
@@ -24,7 +33,10 @@ function History() {
                allWorkouts={userWorkouts}
                updateWorkouts={setUserWorkouts}
                workoutIndex={index}
-               userId={userData._id}/>
+               userId={userData._id}
+               setShowBanner={setShowBanner}
+               setBannerStatus={setBannerStatus}
+               setBannerMsg={setBannerMsg}/>
             </li>
           )
         })}
