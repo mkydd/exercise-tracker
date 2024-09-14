@@ -21,10 +21,16 @@ function PreviousWorkout({ userId, workout, allWorkouts, updateWorkouts, workout
   //   console.log('workout =', workout)
   // }, [workout])
 
+  function displayBanner(status, msg) {
+    setBannerStatus(status)
+    setShowBanner(true)
+    setBannerMsg(msg)
+  }
+
   async function deleteWorkout(workoutId, userId) {
     console.log('workout =', workout)
     const token = await getAccessTokenSilently()
-    const workoutRes = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/users/workouts/${workoutId}`, {
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/users/workouts/${workoutId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -35,15 +41,15 @@ function PreviousWorkout({ userId, workout, allWorkouts, updateWorkouts, workout
         userId
       })
     })
-      .then(res => res.json())
-      .then(data => {
-        return data
-      })
+
+    if (res.status === 200) {
+      displayBanner('success', 'Workout Deleted Successfully')
+    } else {
+      displayBanner('error', 'Unable to Delete Workout')
+    }
 
     const newWorkouts = allWorkouts.filter(workout => workout._id !== workoutId)
     updateWorkouts(newWorkouts)
-    
-    console.log(workoutRes) 
   }
   
   return (
