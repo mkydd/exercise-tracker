@@ -134,9 +134,9 @@ function Profile() {
         <button onClick={() => setDisplayUserInputPrompt(true)}>Update User Information</button>
       </div>
       <div>
-        {user && <DeleteUserButton user={user} auth0UserId={auth0Id}/>}
+        { user && <DeleteUserButton user={user} auth0UserId={auth0Id}/> }
       </div>
-      <LogoutButton />
+      { user && <LogoutButton /> }
     </div>
   )
 }
