@@ -4,6 +4,7 @@ import SignUp from "./pages/signUp";
 import UserHome from "./pages/user/StartNewWorkout";
 import Home from "./pages/home";
 import User from "./pages/user/User";
+import './styles/largeStyles.css'
 import './styles/app.css'
 
 

@@ -64,6 +64,7 @@
     border-radius: 0.25rem;
     padding: 0.25rem;
     margin-bottom: 1rem;
+    max-width: 500px;
 }
 
 .home .auth-btn {

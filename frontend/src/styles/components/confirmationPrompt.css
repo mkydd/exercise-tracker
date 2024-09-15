@@ -17,6 +17,7 @@
     border-radius: 0.5rem;
     padding: 0.25rem;
     width: 70%;
+    max-width: 500px;
     height: fit-content;
 }
 

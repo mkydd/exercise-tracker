@@ -131,13 +131,15 @@ function Profile() {
           Height:&nbsp;<div>{user && user.stats.height}</div><div className='unit'>cm</div>
         </div>
       </div>
-      <div className="update-user-info">
-        <button onClick={() => setDisplayUserInputPrompt(true)}>Update User Information</button>
+      <div className="profile-button-wrapper">
+        <div className="update-user-info">
+          <button onClick={() => setDisplayUserInputPrompt(true)}>Update User Information</button>
+        </div>
+        <div>
+          { user && <DeleteUserButton user={user} auth0UserId={auth0Id}/> }
+        </div>
+        { user && <LogoutButton /> }
       </div>
-      <div>
-        { user && <DeleteUserButton user={user} auth0UserId={auth0Id}/> }
-      </div>
-      { user && <LogoutButton /> }
     </div>
   )
 }

@@ -1,0 +1,60 @@
+@media screen and (min-width: 768px) {
+    body {
+        font-size: larger;
+    }
+    .workout-template-wrapper {
+        width: 28vw;
+        height: 28vw;
+    }
+
+    .history .workouts {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2vw;
+    }
+    
+    .history .workouts li {
+        list-style: none;
+        width: 43vw;
+        margin: 0;
+    }
+
+    .history .previous-workout {
+        margin: 0;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .profile .profile-button-wrapper button {
+        width: 26vw;
+        margin-block: 1rem;
+        padding-block: 2rem;
+        font-size: large;
+    }
+
+    .profile .profile-button-wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .workout-template-wrapper {
+        width: 20.5vw;
+        height: 20.5vw;
+    }
+
+    
+}
+
+/* @media screen and (min-width: 1200px) {
+    .app {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .user {
+        max-width: 1200px;
+    }
+} */
