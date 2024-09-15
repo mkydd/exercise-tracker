@@ -11,9 +11,13 @@ const workouts = require('./routes/workouts')
 const users = require('./routes/users')
 const errorHandlerMiddleware = require('./middleware/error-handling')
 const checkJWT = require('./middleware/checkJWT')
+const rateLimiter = require('./middleware/rateLimiter')
 
 // origins allowed to make api requests
 app.use(cors({ origin: ['https://mk-exercise-tracker.netlify.app', 'http://localhost:3000'] }));
+
+// limit request
+app.use(rateLimiter)
 
 // parse application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
@@ -23,7 +27,6 @@ app.use(express.json());
 
 // authorize user
 app.use(checkJWT)
-
 
 // routes
 app.use('/api/v1/users/workouts', workouts)
