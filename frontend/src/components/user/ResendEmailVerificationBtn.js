@@ -1,7 +1,7 @@
 import React from 'react'
 import { useAuth0 } from "@auth0/auth0-react";
 
-function ResendEmailVerificationBtn({ auth0Id }) {
+function ResendEmailVerificationBtn({ auth0Id, displayBanner }) {
   const { getAccessTokenSilently } = useAuth0()
 
   async function resendEmail() {
@@ -16,7 +16,7 @@ function ResendEmailVerificationBtn({ auth0Id }) {
     })
 
     if (res.status === 200) {
-      alert('Verification email sent successfully\n(may take up to 60+ seconds to recieve)')
+      displayBanner('success', 'Verification Email Successfully Sent')
     }
     console.log('res 999 = ', res.status)
     return res

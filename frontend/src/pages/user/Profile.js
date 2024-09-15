@@ -112,7 +112,11 @@ function Profile() {
       <div className="is-verified-wrapper">
         <div className="verified-label">Account Verified:</div> 
         { user && <div>{ user.isVerified ? <div>&#x2705;</div> : <div>&#x274C;</div> }</div> }
-        {user && !user.isVerified && <ResendEmailVerificationBtn auth0Id={auth0Id}/>}
+        { user && 
+          !user.isVerified && 
+          <ResendEmailVerificationBtn 
+            auth0Id={auth0Id}
+            displayBanner={displayBanner}/>}
       </div>
 
       <div className="stats">
