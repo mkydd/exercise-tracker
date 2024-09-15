@@ -1,7 +1,7 @@
 import React from 'react'
 import '../styles/components/confirmationPrompt.css'
 
-function ConfirmationPrompt({ msg, onConfirm, closePrompt, display }) {
+function ConfirmationPrompt({ msg, onConfirm, closePrompt, display, buttonColor }) {
 
   return (
     <div>
@@ -12,6 +12,7 @@ function ConfirmationPrompt({ msg, onConfirm, closePrompt, display }) {
           <div className="buttons">
             <button 
               className="confirm" 
+              style={ buttonColor ? { backgroundColor: buttonColor } : {} }
               onClick={() => {
                 closePrompt(false)
                 onConfirm()
