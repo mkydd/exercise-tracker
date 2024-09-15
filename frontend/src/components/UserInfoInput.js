@@ -29,7 +29,6 @@ function UserInfoInput({ user, onConfirm, closePrompt, setDisplay }) {
         age: parseInt(formJson.age)
       }
     } catch (e) {
-      console.log("err =", e)
       alert("Invalid form input: height, weight, age must be positive numbers")
       return
     }

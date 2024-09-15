@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import PreviousWorkout from '../../components/user/PreviousWorkout'
 import '../../styles/user/history.css'
@@ -10,10 +10,6 @@ function History() {
   const [showBanner, setShowBanner] = useState(false)
   const [bannerStatus, setBannerStatus] = useState('')
   const [bannerMsg, setBannerMsg] = useState('')
-
-  useEffect(() => {
-    console.log('this is userWorkout = ', userWorkouts)
-  }, [userWorkouts])
 
   return (
     <div className='history'>

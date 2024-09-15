@@ -155,13 +155,12 @@ const getVerificationEmail = asyncWrapper(async (req, res, next) => {
   const user = await User.findOne({ auth0Id })
 
   if (!user || user.isVerified || auth0Id != userTokenId) {
-    return next(createCustomError('1 Could not resend email. Please try again later.', 500))
+    return next(createCustomError('Could not resend email. Please try again later.', 500))
   }
 
   try {
     resendVerificationEmail(auth0Id)
   } catch (error) {
-    console.log('\n\n\n', error, '\n\n\n')
     return next(createCustomError('Could not resend email. Please try again later.', 500))
   }
 

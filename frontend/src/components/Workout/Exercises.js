@@ -28,12 +28,9 @@ function Exercises({ handleClick }) {
       }
       return exercise.bodyPart === bodyPart}))
     setSelectedBodyPart(bodyPart)
-    console.log('search =', searchQuery)
-    console.log('selectedExercises =', selectedExercises)
   }
 
   function searchOnChange(exerciseName) {
-    // console.log('exerciseName =', exerciseName)
     setSearchQuery(exerciseName)
     setSelectedExercises(allExercises.filter((exercise) => {
       if (selectedBodyPart) {

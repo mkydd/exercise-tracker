@@ -18,9 +18,7 @@ function User() {
 
   useEffect(() => {
     async function getData() {
-      console.log('user =', user)
       const token = await getAccessTokenSilently() // checks cache first before requesting new token
-      console.log('token =', token)
       let data = await getUserData(user.email, token)
       setUserData(data.user)
     }
@@ -55,11 +53,6 @@ function User() {
       setAuth0UserId(user.sub)
     }
   }, [user])
-
-  useEffect(() => {
-    console.log('updated workout =', userWorkouts)
-  }, [userWorkouts])
-
 
   return (
     <div className="user">

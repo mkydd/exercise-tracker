@@ -24,7 +24,6 @@ function Profile() {
 
   useEffect(() => {
     if (userData) {
-      console.log('user =', user)
       setUser(userData)
       setInitials(newInitials(userData))
     }
@@ -57,8 +56,6 @@ function Profile() {
       },
       body: JSON.stringify(userInfo)
     })
-
-    console.log("UpdateUserInfo status =", res.status)
 
     if (res.status === 200) {
       setUserData({...user, ...userInfo})

@@ -6,7 +6,6 @@ function Login() {
 
   function loginUser(e) {
     e.preventDefault()
-    console.log(`email = ${email}\npassword = ${password}`)
   }
 
   return (

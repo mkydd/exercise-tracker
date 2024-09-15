@@ -24,7 +24,6 @@ function Workout() {
   useEffect(() => {
     // used to recieve props from previous page when user starts from old workout
     if (state && state.workout) {
-    console.log('state =', state)
       setAllSets(state.workout.exercises)
       let allExercises = []
       state.workout.exercises.forEach((exercise) => {
@@ -50,7 +49,6 @@ function Workout() {
     if (currentExercises.includes(exercise)) return;
 
     setCurrentExercises([...currentExercises, exercise])
-    // console.log('Exercise Added')
   }
 
   function removeExercise(exercise) {
@@ -61,7 +59,6 @@ function Workout() {
       }
     }
     setCurrentExercises(newArr)
-    // console.log('Removed ', exercise.name)
   }
 
   function updateEmptySets() {

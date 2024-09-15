@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 function CurrentExercises({ allSets, setAllSets, exercises, removeExercise }) {
 
@@ -30,10 +30,6 @@ function CurrentExercises({ allSets, setAllSets, exercises, removeExercise }) {
     })
 
     if (!updated) {
-      console.log('exercise =', {
-        exerciseId: exercise.id, 
-        exerciseName: exercise.name,
-        sets: [{setNumber: 1, reps: 0, weight: 0}]})
       setAllSets([...allSets, {
         exerciseId: exercise.id, 
         exerciseName: exercise.name,
@@ -112,7 +108,6 @@ function CurrentExercises({ allSets, setAllSets, exercises, removeExercise }) {
 
     let newArr = allSets.filter((sets) => sets.exerciseId !== exercise.id)
     newArr.push(cloneSetData)
-    console.log('New Reps =', newArr)
     setAllSets(newArr)
   }
 
@@ -122,9 +117,7 @@ function CurrentExercises({ allSets, setAllSets, exercises, removeExercise }) {
   }
 
   function removeSet(exercise, setNumber) {
-    console.log('Starting to remove set')
     let setData = allSets.filter((sets) => sets.exerciseId === exercise.id)[0]
-    console.log('setData =', setData)
     let cloneSetData = Object.assign({}, setData)
     let newSets = []
 
@@ -144,10 +137,6 @@ function CurrentExercises({ allSets, setAllSets, exercises, removeExercise }) {
     newArr.push(cloneSetData)
     setAllSets(newArr)
   }
-  
-  useEffect(() => {
-    // console.log('allSets =', allSets)
-  }, [allSets])
 
   return (
     <div>

@@ -28,7 +28,6 @@ function PreviousWorkout({ userId, workout, allWorkouts, updateWorkouts, workout
   }
 
   async function deleteWorkout(workoutId, userId) {
-    console.log('workout =', workout)
     const token = await getAccessTokenSilently()
     const res = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/users/workouts/${workoutId}`, {
       method: 'DELETE',

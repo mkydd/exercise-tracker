@@ -18,7 +18,6 @@ function ResendEmailVerificationBtn({ auth0Id, displayBanner }) {
     if (res.status === 200) {
       displayBanner('success', 'Verification Email Successfully Sent')
     }
-    console.log('res 999 = ', res.status)
     return res
   }
   return (
