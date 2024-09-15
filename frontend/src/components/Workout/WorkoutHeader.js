@@ -5,7 +5,7 @@ function WorkoutHeader({ workoutName, setWorkoutName }) {
     <div className='workout-header'>
       <input 
         type="text" 
-        maxlength="50"
+        maxLength="50"
         value={workoutName} 
         className='workout-header-input'
         onChange={(e) => setWorkoutName(e.target.value)}
