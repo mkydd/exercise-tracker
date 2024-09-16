@@ -1,0 +1,1 @@
+![screenshot of home page](./exercise-tracker-demo/home.png)
