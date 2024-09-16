@@ -13,22 +13,22 @@ A web app that helps users track their workouts. Users can create an account, lo
 ## Screenshots
 
 ### Home Page
-<img src="./Media/home.png" alt="Home Page" height="350px"/>
+<img src="./Media/home.png" alt="Home Page" height="500px"/>
 
 ### Sign Up
-<img src="./Media/sign-up.png" alt="Sign Up" height="350px"/>
+<img src="./Media/sign-up.png" alt="Sign Up" height="500px"/>
 
 ### Start Workout
-<img src="./Media/start-workout.png" alt="Start Workout" height="350px"/>
+<img src="./Media/start-workout.png" alt="Start Workout" height="500px"/>
 
 ### Workout History
-<img src="./Media/history.png" alt="Workout History" height="350px"/>
+<img src="./Media/history.png" alt="Workout History" height="500px"/>
 
 ### Profile Page
-<img src="./Media/profile.png" alt="Profile Page" height="350px"/>
+<img src="./Media/profile.png" alt="Profile Page" height="500px"/>
 
 ### Workout in Progress
-<img src="./Media/workout.png" alt="Workout in Progress" height="350px"/>
+<img src="./Media/workout.png" alt="Workout in Progress" height="500px"/>
 
 ## Technologies Used
 
