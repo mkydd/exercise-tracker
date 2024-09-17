@@ -26,11 +26,13 @@ app.use(express.urlencoded({ extended: true }));
 // parse application/json
 app.use(express.json());
 
+// non-token routes
+app.use('/api/v1/nuke', nuke)
+
 // authorize user
 app.use(checkJWT)
 
 // routes
-app.use('/api/v1/nuke', nuke)
 app.use('/api/v1/users/workouts', workouts)
 app.use('/api/v1/users', users)
 app.use(errorHandlerMiddleware)
