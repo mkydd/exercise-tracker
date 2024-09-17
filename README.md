@@ -36,7 +36,3 @@ A web app that helps users track their workouts. Users can create an account, lo
 - Backend: Node.js, Express
 - Database: MongoDB
 - Authentication: AUTH0, JSON Web Tokens (JWT)
-
-## Contributing
-
-Feel free to submit issues or pull requests to help improve the app.
