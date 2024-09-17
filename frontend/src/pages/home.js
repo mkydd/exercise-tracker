@@ -48,21 +48,16 @@ function Home() {
           { !isAuthenticated && <SignUpButton /> }
         </div>
         { isAuthenticated && <LogoutButton /> }
+      </div>
+
+      <div className="warning-wrapper">
         <div className="warning">
-        This app is for demo purposes only. 
-        Please be aware that all user data is deleted at the end of each day.
+          This app is for demo purposes only. 
+          Please be aware that all user data is deleted at the end of each day.
         </div>
       </div>
       
-
       {user && goToWorkouts && <Navigate to='/user/home'/>}
-
-
-      
-
-      {/* { isAuthenticated && user.email } */}
-      
-
     </div>
   )
 }
