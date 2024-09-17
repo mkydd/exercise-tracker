@@ -10,6 +10,13 @@ A web app that helps users track their workouts. Users can create an account, lo
 - **Profile**: Update your account details.
 - **Responsive Design**: Works on both mobile and desktop devices.
 
+## Technologies Used
+
+- Frontend: HTML, CSS, JavaScript, React
+- Backend: Node.js, Express
+- Database: MongoDB
+- Authentication: AUTH0, JSON Web Tokens (JWT)
+
 ## Screenshots
 
 ### Home Page
@@ -29,10 +36,3 @@ A web app that helps users track their workouts. Users can create an account, lo
 
 ### Workout in Progress
 <img src="./Media/workout.png" alt="Workout in Progress" height="500px"/>
-
-## Technologies Used
-
-- Frontend: HTML, CSS, JavaScript, React
-- Backend: Node.js, Express
-- Database: MongoDB
-- Authentication: AUTH0, JSON Web Tokens (JWT)
