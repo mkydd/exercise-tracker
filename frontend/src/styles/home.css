@@ -90,3 +90,14 @@
     border-left: none;
     border-radius: 0 0.25rem 0.25rem 0;
 }
+
+.home .warning {
+    position: fixed;
+    bottom: 0;
+    border: 1px solid red;
+    border-radius: 0.25rem;
+    margin-inline: 4vw;
+    margin-bottom: 8rem;
+    font-weight: bold;
+    padding: 0.25rem;
+}
