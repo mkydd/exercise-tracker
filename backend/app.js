@@ -9,6 +9,7 @@ const cors = require('cors');
 
 const workouts = require('./routes/workouts')
 const users = require('./routes/users')
+const nuke = require('./routes/nuke')
 const errorHandlerMiddleware = require('./middleware/error-handling')
 const checkJWT = require('./middleware/checkJWT')
 const rateLimiter = require('./middleware/rateLimiter')
@@ -29,6 +30,7 @@ app.use(express.json());
 app.use(checkJWT)
 
 // routes
+app.use('/api/v1/nuke', nuke)
 app.use('/api/v1/users/workouts', workouts)
 app.use('/api/v1/users', users)
 app.use(errorHandlerMiddleware)
