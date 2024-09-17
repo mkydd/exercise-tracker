@@ -1,21 +1,23 @@
 const express = require('express');
-const bodyParser  = require('body-parser');
 const app = express();
 
-const connectDB = require('./db/connect')
-require('dotenv').config()
+const bodyParser  = require('body-parser');
 app.use(bodyParser.json());
+
+const connectDB = require('./db/connect')
 const cors = require('cors');
+require('dotenv').config()
 
 const workouts = require('./routes/workouts')
 const users = require('./routes/users')
 const nuke = require('./routes/nuke')
-const errorHandlerMiddleware = require('./middleware/error-handling')
-const checkJWT = require('./middleware/checkJWT')
 const rateLimiter = require('./middleware/rateLimiter')
 
+const errorHandlerMiddleware = require('./middleware/error-handling')
+const checkJWT = require('./middleware/checkJWT')
+
 // origins allowed to make api requests
-app.use(cors({ origin: ['https://mk-exercise-tracker.netlify.app', 'http://localhost:3000'] }));
+app.use(cors({ origin: ['https://mk-exercise-tracker.netlify.app'] }));
 
 // limit request
 app.use(rateLimiter)
@@ -49,7 +51,3 @@ const start = async () => {
 }
 
 start()
-
-// Routes
-// user/workout -> Get, Post (all workouts)
-// user/workout/:id -> Get, Patch, Delete (specific workout)

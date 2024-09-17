@@ -143,25 +143,25 @@ function CurrentExercises({ allSets, setAllSets, exercises, removeExercise }) {
       <ul className='current-exercises-list'>
         {exercises.map((exercise) => {
           return (
-              <li key={exercise.id} className='current-exercise'>
-                <div className='name'>
-                  {exercise.name}
-                  <button className="remove-exercise" onClick={() => removeExerciseOnClick(exercise)}>(Remove)</button>
-                </div>
-                <table className='current-exercise-table'>
-                  <tbody>
-                    <tr>
-                      <th></th>
-                      <th>Set</th>
-                      <th>lbs</th>
-                      <th>Reps</th>
-                    </tr>
-                    
-                    {allSets.length > 0 ? displaySets(exercise) : null}
-                  </tbody>
-                </table>
-                <button className='add-set-button' onClick={() => addSet(exercise)}>+ Add Set</button>
-              </li>)
+            <li key={exercise.id} className='current-exercise'>
+              <div className='name'>
+                {exercise.name}
+                <button className="remove-exercise" onClick={() => removeExerciseOnClick(exercise)}>(Remove)</button>
+              </div>
+              <table className='current-exercise-table'>
+                <tbody>
+                  <tr>
+                    <th></th>
+                    <th>Set</th>
+                    <th>lbs</th>
+                    <th>Reps</th>
+                  </tr>
+                  
+                  {allSets.length > 0 ? displaySets(exercise) : null}
+                </tbody>
+              </table>
+              <button className='add-set-button' onClick={() => addSet(exercise)}>+ Add Set</button>
+            </li>)
         })}
       </ul>
     </div>

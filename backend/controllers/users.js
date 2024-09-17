@@ -18,8 +18,7 @@ const getAllUsers = asyncWrapper(async (req, res, next) => {
   res.status(200).json({ users })
 })
 
-const createUser = asyncWrapper(async (req, res, next) => {
-  // const userTokenId = req.auth.payload.sub;
+const createUser = asyncWrapper(async (req, res, next) => { // method only used by AUTH0 (not used on front-end)
   let userData = { 
     email: req.body.email, 
     auth0Id: req.body.auth0Id,

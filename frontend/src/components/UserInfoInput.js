@@ -2,17 +2,6 @@ import React from 'react'
 import '../styles/components/userInfoPrompt.css'
 
 function UserInfoInput({ user, onConfirm, closePrompt, setDisplay }) {
-  // let userInfo = {
-  //   name: {
-  //     firstName: user.name.firstName,
-  //     lastName: user.name.lastName
-  //   },
-  //   stats: {
-  //     height: user.stats.height,
-  //     weight: user.stats.weight,
-  //     age: user.stats.age
-  //   }
-  // }
 
   function handleSubmit(e) {
     e.preventDefault();

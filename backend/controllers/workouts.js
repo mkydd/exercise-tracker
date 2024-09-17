@@ -16,12 +16,6 @@ const getAllWorkouts = asyncWrapper(async (req, res, next) => {
   return res.status(200).json({ workouts })
 })
 
-const createWorkoutList = asyncWrapper(async (req, res, next) => {
-  // const workout = await Workout.create(req.body)
-  // res.status(201).json({ workout })
-  return next(createCustomError(`route does not exist`, 404), req, res)
-})
-
 const getWorkouts = asyncWrapper(async (req, res, next) => {
   const userTokenId = req.auth.payload.sub;
 
@@ -129,7 +123,6 @@ const addWorkout = asyncWrapper(async (req, res, next) => {
 
 module.exports = {
   getAllWorkouts,
-  createWorkoutList,
   getWorkouts,
   updateWorkout,
   deleteWorkout,

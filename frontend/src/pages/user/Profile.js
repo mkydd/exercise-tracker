@@ -10,6 +10,8 @@ import Banner from '../../util/Banner';
 
 function Profile() {
   const { userWorkouts, userData, auth0UserId, setUserData } = useOutletContext()
+  const { getAccessTokenSilently } = useAuth0()
+
   const [user, setUser] = useState()
   const [auth0Id, setAuth0Id] = useState('')
   const [displayUserInputPrompt, setDisplayUserInputPrompt] = useState(false)
@@ -18,9 +20,6 @@ function Profile() {
   const [showBanner, setShowBanner] = useState('')
   const [bannerStatus, setBannerStatus] = useState('')
   const [bannerMsg, setBannerMsg] = useState('')
-
-  const { getAccessTokenSilently } = useAuth0()
-
 
   useEffect(() => {
     if (userData) {
