@@ -38,14 +38,17 @@
   }
 }
 
-@media screen and (min-width: 1200px) {
-  .workout-template-wrapper {
-    width: 20.5vw;
-    height: 20.5vw;
+@media screen and (min-width: 1440px) {
+  .templates {
+    justify-content: space-between;
+  }
+  body .workout-template-wrapper {
+    width: 300px;
+    height: 300px;
   }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1440px) {
   .app {
     display: flex;
     flex-wrap: wrap;
