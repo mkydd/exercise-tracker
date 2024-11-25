@@ -11,13 +11,17 @@ require("dotenv").config();
 const workouts = require("./routes/workouts");
 const users = require("./routes/users");
 const nuke = require("./routes/nuke");
-const rateLimiter = require("./middleware/rateLimiter");
 
 const errorHandlerMiddleware = require("./middleware/error-handling");
 const checkJWT = require("./middleware/checkJWT");
+const rateLimiter = require("./middleware/rateLimiter");
+const initializeNukeScheduler = require("./middleware/scheduler");
 
 // origins allowed to make api requests
 app.use(cors({ origin: ["https://mk-exercise-tracker.netlify.app"] }));
+
+// execute nuke at midnight
+initializeNukeScheduler();
 
 // limit request
 app.use(rateLimiter);
