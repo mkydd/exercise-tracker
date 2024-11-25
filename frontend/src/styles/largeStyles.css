@@ -25,8 +25,8 @@
 }
 
 @media screen and (min-width: 900px) {
-  .profile .profile-button-wrapper button {
-    width: 26vw;
+  /* .profile .profile-button-wrapper > * {
+    width: 30%;
     margin-block: 1rem;
     padding-block: 2rem;
     font-size: large;
@@ -35,7 +35,7 @@
   .profile .profile-button-wrapper {
     display: flex;
     justify-content: space-between;
-  }
+  } */
 }
 
 @media screen and (min-width: 1440px) {
