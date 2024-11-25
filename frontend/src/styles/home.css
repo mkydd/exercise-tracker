@@ -1,107 +1,107 @@
 .home {
-    height: 100dvh;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-items: center;
+  height: 100dvh;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .home .header {
-    display: flex;
-    justify-content: center;
-    margin: 1.5rem;
-    position: fixed;
-    top: 0;
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem;
+  position: fixed;
+  top: 0;
 }
 
 .home .header .tracker {
-    color: rgb(61, 158, 227);
+  color: rgb(61, 158, 227);
 }
 
 .home .welcome-message {
-    width: 100%;
-    text-align: center;
-    height: fit-content;
+  width: 100%;
+  text-align: center;
+  height: fit-content;
 }
 
 .home .welcome-wrapper {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .home .name {
-    color: rgb(61, 158, 227);
+  color: rgb(61, 158, 227);
 }
 
 .home .welcome-message h2 {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 1rem;
-    font-size: 1.7rem;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 1.7rem;
 }
 
 .home .message-btn-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .home .message {
-    width: fit-content;
-    margin-bottom: 1rem;
+  width: fit-content;
+  margin-bottom: 1rem;
 }
 
 .home .btn-wrapper {
-    width: 92%;
+  width: 92%;
 }
 
 .home .welcome-message .goTo {
-    background-color: rgb(61, 158, 227);
-    font-size: medium;
-    color: white;
-    border: none;
-    width: 100%;
-    border-radius: 0.25rem;
-    padding: 0.25rem;
-    margin-bottom: 1rem;
-    max-width: 500px;
+  background-color: rgb(61, 158, 227);
+  font-size: medium;
+  color: white;
+  border: none;
+  width: 100%;
+  border-radius: 0.25rem;
+  padding: 0.25rem;
+  margin-bottom: 1rem;
+  max-width: 500px;
 }
 
 .home .auth-btn {
-    background-color: white;
-    font-size: medium;
-    padding: 0.25rem 0.5rem;
-    border: 1px solid rgb(61, 158, 227);
-    color: rgb(61, 158, 227);
-    border-radius: 0.25rem;
+  background-color: white;
+  font-size: medium;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid rgb(61, 158, 227);
+  color: rgb(61, 158, 227);
+  border-radius: 0.25rem;
 }
 
 .home .login-signup-wrapper .login {
-    color: rgb(61, 158, 227);
-    border: 1px solid rgb(61, 158, 227);
-    border-right: none;
-    border-radius: 0.25rem 0 0 0.25rem;
+  color: rgb(61, 158, 227);
+  border: 1px solid rgb(61, 158, 227);
+  border-right: none;
+  border-radius: 0.25rem 0 0 0.25rem;
 }
 
 .home .login-signup-wrapper .sign-up {
-    color: white;
-    background-color: rgb(61, 158, 227);
-    border: 1px solid rgb(61, 158, 227);
-    border-left: none;
-    border-radius: 0 0.25rem 0.25rem 0;
+  color: white;
+  background-color: rgb(61, 158, 227);
+  border: 1px solid rgb(61, 158, 227);
+  border-left: none;
+  border-radius: 0 0.25rem 0.25rem 0;
 }
 
 .home .warning-wrapper {
-    position: fixed;
-    bottom: 0;
+  position: fixed;
+  bottom: 0;
 }
 
 .home .warning {
-    border: 1px solid red;
-    text-align: center;
-    border-radius: 0.25rem;
-    margin-inline: 4vw;
-    margin-bottom: 8rem;
-    font-weight: bold;
-    padding: 0.25rem;
+  border: 1px solid red;
+  text-align: center;
+  border-radius: 0.25rem;
+  margin-inline: 4vw;
+  margin-bottom: 8rem;
+  font-weight: bold;
+  padding: 0.25rem;
 }
